@@ -1,0 +1,182 @@
+{
+  "name": "David Malmström ✌️",
+  "plainName": "David Malmström",
+  "headline": "Frontendutvecklare",
+  "location": "Stockholm, Sverige",
+  "summary": "Jag bygger tillgängliga digitala upplevelser där genomtänkt design möter pålitlig teknik. Som IT-konsult samarbetar jag med team för att göra webbapplikationer snabbare, enklare att använda och lättare att underhålla.",
+  "labels": {
+    "skipToContent": "Hoppa till innehållet",
+    "about": "Om mig",
+    "experience": "Erfarenhet",
+    "skills": "Kompetenser",
+    "education": "Utbildning",
+    "certifications": "Certifiering",
+    "languages": "Språk",
+    "recommendation": "Rekommendation",
+    "contact": "Kontakta mig",
+    "current": "Nuvarande",
+    "consultant": "IT-konsult",
+    "contract": "Konsultuppdrag",
+    "fullTime": "Heltid",
+    "partTime": "Deltid",
+    "freelance": "Frilans",
+    "credentialIssued": "Utfärdad",
+    "language": "Språk",
+    "sections": "Sidavsnitt",
+    "pdf": "PDF",
+    "readingList": "Läslistan",
+    "theme": "Tema",
+    "themeLight": "Ljust",
+    "themeDark": "Mörkt",
+    "themeSystem": "System",
+    "topSkills": "Främsta kompetenser",
+    "clientWork": "Utvalda kunduppdrag",
+    "educationNote": "Studier i datavetenskap; examen slutfördes inte.",
+    "email": "E-post",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "curatedReads": "Utvalda teknikartiklar"
+  },
+  "experience": {
+    "devcore": {
+      "company": "DevCore AB",
+      "title": "IT-konsult",
+      "employmentType": "fullTime",
+      "dates": {
+        "start": "Maj 2018",
+        "end": "current"
+      },
+      "location": "Stockholm, Sverige · Hybrid",
+      "description": "Jag leder och bidrar i kundprojekt där jag utvecklar dynamiska och tillgängliga applikationer med Angular och React. Tillsammans med kunder och designers skapar jag intuitiva gränssnitt och effektivare leveranser med GitHub Actions, Azure och OpenShift. Jag fokuserar på prestanda, skalbarhet, förvaltning, mentorskap och teamutveckling.",
+      "assignments": [
+        {
+          "company": "Large Resource Company",
+          "title": "Frontendansvarig",
+          "employmentType": "contract",
+          "dates": {
+            "start": "Mars 2024",
+            "end": "current"
+          },
+          "location": "Stockholms län, Sverige · Hybrid",
+          "description": "Utvecklar företagets webbnärvaro med fokus på prestanda, användarupplevelse och långsiktig förvaltning."
+        },
+        {
+          "company": "Large Swedish bank",
+          "title": "Mjukvaruutvecklare",
+          "employmentType": "contract",
+          "dates": {
+            "start": "Nov 2019",
+            "end": "Mars 2024"
+          },
+          "location": "Stockholms län, Sverige",
+          "description": "Utvecklade React- och Angular-applikationer med stort fokus på tillgänglighet och användarupplevelse. Bidrog även inom design, .NET Core och C#, DevOps, dokumentation och mentorskap i ett agilt tvärfunktionellt team."
+        }
+      ]
+    },
+    "rightGrafiska": {
+      "company": "Rätt Grafiska",
+      "title": "Grafisk formgivare",
+      "employmentType": "partTime",
+      "dates": {
+        "start": "Aug 2017",
+        "end": "Mars 2018"
+      },
+      "location": "Stockholm, Sverige",
+      "description": "Vikarierande grafisk formgivare med uppdrag för tryck och digitala kanaler, bland annat tidskrifter, broschyrer, visitkort, webbplatser, nyhetsbrev, klistermärken och annonser."
+    },
+    "freelance": {
+      "company": "Frilans",
+      "title": "Grafisk formgivare",
+      "employmentType": "freelance",
+      "dates": {
+        "start": "Aug 2014",
+        "end": "Sep 2017"
+      },
+      "location": "Stockholm, Sverige",
+      "description": "Tog fram logotyper, visuella identiteter och webbplatser åt kunder."
+    }
+  },
+  "skills": {
+    "top": ["TypeScript", "React", "DevOps", "C#", "Accessibility"],
+    "groups": [
+      {
+        "name": "Språk och ramverk",
+        "items": [
+          "TypeScript",
+          "JavaScript",
+          "React",
+          "Angular",
+          "Vue.js",
+          "HTML",
+          "CSS",
+          "SCSS",
+          "Tailwind CSS",
+          "C#"
+        ]
+      },
+      {
+        "name": "Frontend och verktyg",
+        "items": ["Front-End Development", "Vite", "Optimizely", "E-Commerce"]
+      },
+      {
+        "name": "Backend och data",
+        "items": [".NET Core", "ASP.NET Core", "SQL"]
+      },
+      {
+        "name": "Molnet och DevOps",
+        "items": ["DevOps", "GitHub Actions", "OpenShift", "Git", "Linux"]
+      },
+      {
+        "name": "Tillgänglighet och design",
+        "items": ["Accessibility", "User Experience (UX)", "Figma", "Graphic Design", "Illustrator"]
+      },
+      {
+        "name": "Ledarskap och arbetssätt",
+        "items": [
+          "Professional Mentoring",
+          "Cross-functional Collaborations",
+          "Agile Methodologies",
+          "Software Development",
+          "Documentation"
+        ]
+      },
+      {
+        "name": "AI",
+        "items": ["Artificial Intelligence (AI)", "GitHub Copilot"]
+      }
+    ]
+  },
+  "education": {
+    "institution": "Högskolan Dalarna",
+    "program": "Datavetenskap",
+    "dates": "2011–2013",
+    "details": "Studier mot en kandidatexamen; utbildningen slutfördes inte."
+  },
+  "certification": {
+    "name": "GitHub Copilot",
+    "issuer": "GitHub",
+    "issued": "Juli 2026"
+  },
+  "languages": [
+    {
+      "name": "Svenska",
+      "proficiency": "Modersmåls- eller tvåspråkig nivå"
+    },
+    {
+      "name": "Engelska",
+      "proficiency": "Professionell arbetsnivå"
+    }
+  ],
+  "recommendation": {
+    "quote": "I can really recommend David if you are looking for someone who is dedicated, is curious to find new interesting ways forward and not least feels professional pride in what he delivers.",
+    "author": "Daniel Blomgren",
+    "role": "Mjukvaruutvecklare på Carnegie",
+    "context": "Arbetade tillsammans · Mars 2024"
+  },
+  "contact": {
+    "email": "davidmalmstromcv.ambush687@8shield.net",
+    "linkedin": "https://www.linkedin.com/in/syradar/",
+    "github": "https://github.com/syradar",
+    "curatedReads": "https://syradar.github.io/blog/links/"
+  }
+}

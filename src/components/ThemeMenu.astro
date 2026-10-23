@@ -1,0 +1,102 @@
+---
+import Check from "astro-heroicons/outline/Check.astro";
+import ComputerDesktop from "astro-heroicons/outline/ComputerDesktop.astro";
+import Moon from "astro-heroicons/outline/Moon.astro";
+import Sun from "astro-heroicons/outline/Sun.astro";
+
+interface Props {
+	labels: { theme: string; themeLight: string; themeDark: string; themeSystem: string };
+}
+
+const { labels } = Astro.props;
+const options = [
+	{ value: "light", label: labels.themeLight, Icon: Sun },
+	{ value: "dark", label: labels.themeDark, Icon: Moon },
+	{ value: "system", label: labels.themeSystem, Icon: ComputerDesktop },
+];
+---
+
+<details class="syr-theme">
+	<summary aria-label={labels.theme}>
+		<Sun class="syr-theme-icon" data-icon="light" />
+		<Moon class="syr-theme-icon" data-icon="dark" />
+		<ComputerDesktop class="syr-theme-icon" data-icon="system" />
+	</summary>
+	<div class="syr-theme-menu syr-squircle" role="menu" aria-label={labels.theme}>
+		{
+			options.map(({ value, label, Icon }) => (
+				<button type="button" role="menuitemradio" aria-checked="false" data-theme-option={value}>
+					<Icon class="syr-theme-icon" />
+					{label}
+					<Check class="syr-check" />
+				</button>
+			))
+		}
+	</div>
+</details>
+
+<script>
+	const menu = document.querySelector<HTMLDetailsElement>(".syr-theme");
+	const buttons = document.querySelectorAll<HTMLButtonElement>("[data-theme-option]");
+	const current = () => document.documentElement.dataset.theme ?? "light";
+
+	const sync = () => {
+		buttons.forEach((button) => {
+			button.setAttribute("aria-checked", String(button.dataset.themeOption === current()));
+		});
+	};
+
+	const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+	let closeTimer: number | undefined;
+
+	const close = () => {
+		if (!menu?.open) return;
+		if (reduceMotion.matches) {
+			menu.open = false;
+			return;
+		}
+		menu.dataset.closing = "";
+		window.clearTimeout(closeTimer);
+		closeTimer = window.setTimeout(() => {
+			menu.open = false;
+			delete menu.dataset.closing;
+		}, 150);
+	};
+
+	menu?.querySelector("summary")?.addEventListener("click", (event) => {
+		window.clearTimeout(closeTimer);
+		delete menu.dataset.closing;
+		if (menu.open) {
+			event.preventDefault();
+			close();
+		}
+	});
+
+	buttons.forEach((button) => {
+		button.addEventListener("click", () => {
+			const value = button.dataset.themeOption ?? "light";
+			const root = document.documentElement;
+			root.dataset.themeSwitching = "";
+			root.dataset.theme = value;
+			window.setTimeout(() => delete root.dataset.themeSwitching, 400);
+			localStorage.setItem("syr-theme", value);
+			sync();
+			close();
+		});
+	});
+
+	document.addEventListener("click", (event) => {
+		if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) {
+			close();
+		}
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && menu?.open) {
+			close();
+			menu.querySelector("summary")?.focus();
+		}
+	});
+
+	sync();
+</script>

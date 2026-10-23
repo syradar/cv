@@ -1,0 +1,182 @@
+{
+  "name": "David Malmström ✌️",
+  "plainName": "David Malmström",
+  "headline": "Frontend Engineer",
+  "location": "Stockholm, Sweden",
+  "summary": "I build accessible digital experiences that bring together thoughtful design and dependable engineering. As an IT consultant, I work with teams to make web applications faster, easier to use, and simpler to maintain.",
+  "labels": {
+    "skipToContent": "Skip to content",
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education",
+    "certifications": "Certification",
+    "languages": "Languages",
+    "recommendation": "Recommendation",
+    "contact": "Get in touch",
+    "current": "Present",
+    "consultant": "IT Consultant",
+    "contract": "Contract",
+    "fullTime": "Full-time",
+    "partTime": "Part-time",
+    "freelance": "Freelance",
+    "credentialIssued": "Issued",
+    "language": "Language",
+    "sections": "Page sections",
+    "pdf": "PDF",
+    "readingList": "Reading list",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "topSkills": "Top skills",
+    "clientWork": "Selected client work",
+    "educationNote": "Studies in computer science; degree not completed.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "curatedReads": "Curated tech reads"
+  },
+  "experience": {
+    "devcore": {
+      "company": "DevCore AB",
+      "title": "IT Consultant",
+      "employmentType": "fullTime",
+      "dates": {
+        "start": "May 2018",
+        "end": "current"
+      },
+      "location": "Stockholm, Sweden · Hybrid",
+      "description": "I lead and contribute to client projects, building dynamic and accessible applications with Angular and React. I work closely with clients and designers to create intuitive interfaces, and improve delivery with GitHub Actions, Azure, and OpenShift. My focus is on performance, scalability, maintainability, mentoring, and helping teams grow.",
+      "assignments": [
+        {
+          "company": "Large Resource Company",
+          "title": "Front End Lead",
+          "employmentType": "contract",
+          "dates": {
+            "start": "Mar 2024",
+            "end": "current"
+          },
+          "location": "Stockholm County, Sweden · Hybrid",
+          "description": "Enhancing the company's web presence with a focus on performance, user experience, and maintainability."
+        },
+        {
+          "company": "Large Swedish bank",
+          "title": "Software Developer",
+          "employmentType": "contract",
+          "dates": {
+            "start": "Nov 2019",
+            "end": "Mar 2024"
+          },
+          "location": "Stockholm County, Sweden",
+          "description": "Built React and Angular applications with a strong focus on accessibility and user experience. Contributed to design, .NET Core and C# services, DevOps, documentation, and mentoring in an agile cross-functional team."
+        }
+      ]
+    },
+    "rightGrafiska": {
+      "company": "Rätt Grafiska",
+      "title": "Graphic Designer",
+      "employmentType": "partTime",
+      "dates": {
+        "start": "Aug 2017",
+        "end": "Mar 2018"
+      },
+      "location": "Stockholm, Sweden",
+      "description": "Substitute graphic designer, creating work for print and digital channels, including magazines, brochures, business cards, websites, newsletters, stickers, and advertising."
+    },
+    "freelance": {
+      "company": "Freelance",
+      "title": "Graphic Designer",
+      "employmentType": "freelance",
+      "dates": {
+        "start": "Aug 2014",
+        "end": "Sep 2017"
+      },
+      "location": "Stockholm, Sweden",
+      "description": "Created logos, brand identities, and websites for clients."
+    }
+  },
+  "skills": {
+    "top": ["TypeScript", "React", "DevOps", "C#", "Accessibility"],
+    "groups": [
+      {
+        "name": "Languages and frameworks",
+        "items": [
+          "TypeScript",
+          "JavaScript",
+          "React",
+          "Angular",
+          "Vue.js",
+          "HTML",
+          "CSS",
+          "SCSS",
+          "Tailwind CSS",
+          "C#"
+        ]
+      },
+      {
+        "name": "Frontend and tooling",
+        "items": ["Front-End Development", "Vite", "Optimizely", "E-Commerce"]
+      },
+      {
+        "name": "Backend and data",
+        "items": [".NET Core", "ASP.NET Core", "SQL"]
+      },
+      {
+        "name": "Cloud and DevOps",
+        "items": ["DevOps", "GitHub Actions", "OpenShift", "Git", "Linux"]
+      },
+      {
+        "name": "Accessibility and design",
+        "items": ["Accessibility", "User Experience (UX)", "Figma", "Graphic Design", "Illustrator"]
+      },
+      {
+        "name": "Leadership and ways of working",
+        "items": [
+          "Professional Mentoring",
+          "Cross-functional Collaborations",
+          "Agile Methodologies",
+          "Software Development",
+          "Documentation"
+        ]
+      },
+      {
+        "name": "AI",
+        "items": ["Artificial Intelligence (AI)", "GitHub Copilot"]
+      }
+    ]
+  },
+  "education": {
+    "institution": "Dalarna University",
+    "program": "Computer Science",
+    "dates": "2011–2013",
+    "details": "Studies toward a bachelor's degree; not completed."
+  },
+  "certification": {
+    "name": "GitHub Copilot",
+    "issuer": "GitHub",
+    "issued": "July 2026"
+  },
+  "languages": [
+    {
+      "name": "Swedish",
+      "proficiency": "Native or bilingual proficiency"
+    },
+    {
+      "name": "English",
+      "proficiency": "Professional working proficiency"
+    }
+  ],
+  "recommendation": {
+    "quote": "I can really recommend David if you are looking for someone who is dedicated, is curious to find new interesting ways forward and not least feels professional pride in what he delivers.",
+    "author": "Daniel Blomgren",
+    "role": "Software Developer at Carnegie",
+    "context": "Worked together · March 2024"
+  },
+  "contact": {
+    "email": "davidmalmstromcv.ambush687@8shield.net",
+    "linkedin": "https://www.linkedin.com/in/syradar/",
+    "github": "https://github.com/syradar",
+    "curatedReads": "https://syradar.github.io/blog/links/"
+  }
+}
