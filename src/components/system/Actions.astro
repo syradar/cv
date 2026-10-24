@@ -1,0 +1,12 @@
+---
+import DocumentArrowDown from "astro-heroicons/outline/DocumentArrowDown.astro";
+interface Props { email: string; contactLabel: string; pdfLabel: string; disabled?: boolean }
+const {email, contactLabel, pdfLabel, disabled = false} = Astro.props;
+---
+<div class="syr-actions">
+  <a class="syr-button syr-button-primary syr-squircle" href={`mailto:${email}`}>{contactLabel}</a>
+  <button class="syr-button syr-button-quiet syr-squircle" type="button" data-print disabled={disabled}><DocumentArrowDown class="syr-button-icon" />{pdfLabel}</button>
+</div>
+<script>
+ document.querySelectorAll<HTMLButtonElement>("[data-print]").forEach(button => button.addEventListener("click", () => window.print()));
+</script>

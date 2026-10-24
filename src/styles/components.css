@@ -1,0 +1,499 @@
+@layer components {
+  .syr-page,
+  .syr-hero-inner {
+    width: min(100% - 3rem, 68rem);
+    margin-inline: auto;
+  }
+
+  .syr-hero-inner {
+    padding-bottom: 2.5rem;
+    color: var(--syr-hero-ink);
+  }
+
+  .syr-meta {
+    margin: 0;
+    color: var(--syr-muted);
+    font-family: var(--syr-font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
+  }
+
+  .syr-intro .syr-meta {
+    color: var(--syr-hero-muted);
+  }
+
+  .syr-intro {
+    max-width: 46rem;
+    padding-block: 4rem 3.5rem;
+  }
+
+  .syr-intro h1 {
+    font-family: var(--syr-font-display);
+    margin: 1rem 0 0;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: var(--syr-title-weight);
+    letter-spacing: var(--syr-title-tracking);
+    line-height: var(--syr-title-leading);
+  }
+
+  .syr-intro h1 span {
+    display: block;
+  }
+
+  .syr-headline {
+    margin: 1.1rem 0 0;
+    color: var(--syr-hero-ink);
+    font-size: 1.3rem;
+    font-weight: 580;
+    letter-spacing: -0.03em;
+  }
+
+  .syr-summary {
+    max-width: 38rem;
+    margin: 1.3rem 0 0;
+    color: var(--syr-hero-muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .syr-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.8rem;
+  }
+
+  .syr-button {
+    display: inline-flex;
+    min-height: 2.8rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    border: 0;
+    border-radius: var(--syr-radius-control);
+    padding: 0.65rem 1.2rem;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .syr-button-primary {
+    background: var(--syr-action-bg);
+    color: var(--syr-action-ink);
+  }
+
+  .syr-button {
+    transition:
+      background-color 160ms ease,
+      transform var(--syr-spring-duration) var(--syr-spring);
+  }
+
+  .syr-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .syr-button:active {
+    transform: scale(0.96);
+  }
+
+  .syr-button-quiet {
+    background: var(--syr-quiet-bg);
+    color: var(--syr-quiet-ink);
+  }
+
+  .syr-button-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .syr-section-nav {
+    position: relative;
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+  }
+
+  .syr-section-nav a {
+    position: relative;
+    z-index: 1;
+    border-radius: var(--syr-radius-inner);
+    padding: 0.55rem 1rem;
+    color: var(--syr-hero-ink);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .syr-section-nav a:hover,
+  .syr-section-nav a:focus-visible {
+    color: var(--syr-action-ink);
+  }
+
+  .syr-nav-glider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--syr-radius-inner);
+    background: var(--syr-action-bg);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform var(--syr-spring-duration) var(--syr-spring),
+      width var(--syr-spring-duration) var(--syr-spring),
+      height var(--syr-spring-duration) var(--syr-spring),
+      opacity 140ms ease;
+  }
+
+  .syr-nav-glider[data-visible="true"] {
+    opacity: 1;
+  }
+
+  .syr-section {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 2.3fr);
+    gap: 1.5rem 2rem;
+    padding-top: var(--syr-section-space);
+    scroll-margin-top: 1.5rem;
+  }
+
+  .syr-section > h2 {
+    align-self: start;
+    margin: 0.3rem 0 0;
+    font-size: 1.5rem;
+    font-weight: 630;
+    letter-spacing: -0.05em;
+  }
+
+  .syr-section-content {
+    min-width: 0;
+  }
+
+  .syr-stack {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .syr-card {
+    border: var(--syr-border-width) solid var(--syr-line);
+    border-radius: var(--syr-radius-card);
+    padding: var(--syr-card-padding);
+    background: var(--syr-card);
+    box-shadow: var(--syr-elevation-1);
+  }
+
+  .syr-nested {
+    border: var(--syr-border-width) solid var(--syr-line);
+    border-radius: var(--syr-radius-nested);
+    padding: 1.2rem 1.3rem;
+    background: var(--syr-card-nested);
+    box-shadow: var(--syr-elevation-2);
+  }
+
+  .syr-card h3 {
+    margin: 0.55rem 0 0;
+    font-size: 1.2rem;
+    font-weight: 630;
+    letter-spacing: -0.035em;
+  }
+
+  .syr-nested h4 {
+    margin: 0.5rem 0 0;
+    font-size: 1rem;
+    font-weight: 620;
+    letter-spacing: -0.025em;
+  }
+
+  .syr-company {
+    margin: 0.25rem 0 0;
+    color: var(--syr-muted);
+    font-size: 0.9rem;
+  }
+
+  .syr-description {
+    max-width: 44rem;
+    margin: 0.8rem 0 0;
+    color: var(--syr-muted);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .syr-client-heading {
+    margin-top: 1.6rem;
+  }
+
+  .syr-assignment-list {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 0.7rem;
+  }
+
+  .syr-about-copy {
+    max-width: 42rem;
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    letter-spacing: -0.018em;
+  }
+
+  .syr-contact-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 1.6rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .syr-contact-links a {
+    display: grid;
+    min-width: 0;
+    gap: 0.25rem;
+    border-radius: var(--syr-radius-nested);
+    padding: 0.8rem 1rem;
+    color: var(--syr-ink);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease,
+      transform var(--syr-spring-duration) var(--syr-spring);
+  }
+
+  .syr-contact-links a:hover,
+  .syr-contact-links a:focus-visible {
+    background: var(--syr-accent);
+    color: var(--syr-on-accent);
+    transform: translateY(-2px);
+  }
+
+  .syr-contact-links a span:first-child {
+    color: var(--syr-muted);
+    font-family: var(--syr-font-mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 160ms ease;
+  }
+
+  .syr-contact-links a:hover span:first-child,
+  .syr-contact-links a:focus-visible span:first-child {
+    color: var(--syr-hero-ink);
+  }
+
+  .syr-contact-links a span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .syr-group-heading {
+    margin: 0 0 0.7rem !important;
+    color: var(--syr-muted);
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .syr-skill-groups {
+    display: grid;
+    gap: 1.4rem;
+    margin-top: 1.7rem;
+  }
+
+  .syr-skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .syr-skill-list-top {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .syr-card-accent {
+    border-color: var(--syr-action-ink);
+    background: var(--syr-accent);
+    color: var(--syr-on-accent);
+  }
+
+  .syr-card-accent .syr-group-heading {
+    color: var(--syr-hero-muted);
+  }
+
+  .syr-language-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .syr-language-list h3 {
+    margin: 0 !important;
+    font-size: 1.05rem !important;
+  }
+
+  .syr-language-list p {
+    margin: 0.35rem 0 0;
+    color: var(--syr-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .syr-recommendation {
+    margin: 0;
+  }
+
+  .syr-recommendation blockquote {
+    max-width: 48rem;
+    margin: 0;
+    font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+    font-weight: 550;
+    letter-spacing: -0.04em;
+    line-height: 1.45;
+  }
+
+  .syr-recommendation figcaption {
+    display: grid;
+    gap: 0.15rem;
+    margin-top: 1.4rem;
+    font-size: 0.85rem;
+  }
+
+  .syr-recommendation figcaption span {
+    color: var(--syr-muted);
+  }
+
+  @media (max-width: 760px) {
+    .syr-page {
+      width: min(100% - 2rem, 42rem);
+    }
+
+    .syr-intro {
+      padding-block: 2.5rem 2.5rem;
+    }
+
+    .syr-section {
+      grid-template-columns: minmax(0, 1fr);
+      padding-top: 3rem;
+    }
+
+    .syr-contact-links,
+    .syr-language-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .syr-nav-glider,
+    .syr-button,
+    .syr-contact-links a {
+      transition: none;
+    }
+  }
+
+  @media print {
+    .syr-page {
+      width: 100%;
+    }
+
+    .syr-intro {
+      padding-block: 0 1.5rem;
+    }
+
+    .syr-hero-inner,
+    .syr-intro .syr-meta,
+    .syr-headline,
+    .syr-summary {
+      color: #111;
+    }
+
+    .syr-section-nav,
+    .syr-actions {
+      display: none;
+    }
+
+    .syr-section {
+      grid-template-columns: 9rem minmax(0, 1fr);
+      padding-top: 1.5rem;
+      break-inside: avoid;
+    }
+
+    .syr-card {
+      border: var(--syr-border-width) solid var(--syr-line);
+      break-inside: avoid;
+    }
+
+    .syr-card-accent {
+      border-color: var(--syr-line);
+      background: transparent;
+      color: var(--syr-ink);
+    }
+
+    .syr-card-accent .syr-group-heading {
+      color: var(--syr-muted);
+    }
+  }
+}
+
+@layer components {
+  .syr-section > h2,
+  .syr-card h3,
+  .syr-nested h4 {
+    font-family: var(--syr-font-display);
+  }
+  .syr-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .syr-button:focus-visible {
+    outline-color: var(--syr-hero-ink);
+  }
+}
+
+@layer components {
+  .syr-contact-links a:hover,
+  .syr-contact-links a:focus-visible,
+  .syr-contact-links a:hover span:first-child,
+  .syr-contact-links a:focus-visible span:first-child,
+  .syr-card-accent .syr-group-heading {
+    color: var(--syr-on-accent);
+  }
+  .syr-card-accent {
+    border-color: var(--syr-accent);
+  }
+}
+
+@layer components {
+  .syr-hero-band :is(a, button):focus-visible {
+    outline-color: var(--syr-hero-ink);
+  }
+}
+@layer print {
+  @media print {
+    .syr-contact-links a span:last-child {
+      overflow: visible;
+      text-overflow: clip;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .syr-card-accent .syr-group-heading {
+      color: var(--syr-ink);
+    }
+  }
+}

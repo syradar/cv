@@ -1,0 +1,198 @@
+@layer controls {
+  .ds-controls,
+  .workshop-chrome {
+    --ui-bg: #fff;
+    --ui-ink: #292929;
+    --ui-muted: #646464;
+    --ui-line: #dedede;
+    --ui-hover: #f2f2f2;
+    --ui-active: #e9eefb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: var(--ui-ink);
+    color-scheme: light;
+  }
+  .ds-controls {
+    position: relative;
+    z-index: 30;
+  }
+  .ds-controls summary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    background: var(--ui-bg);
+    color: var(--ui-ink);
+    cursor: pointer;
+    list-style: none;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .ds-controls summary::-webkit-details-marker {
+    display: none;
+  }
+  .ds-controls summary:hover {
+    background: var(--ui-hover);
+  }
+  .ds-settings {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    width: min(310px, calc(100vw - 2rem));
+    padding: 1rem;
+    background: var(--ui-bg);
+    color: var(--ui-ink);
+    border: 1px solid var(--ui-line);
+    border-radius: 9px;
+    box-shadow:
+      0 8px 32px #0003,
+      0 1px 3px #0002;
+  }
+  .ds-settings-heading {
+    display: grid;
+    gap: 0.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--ui-line);
+  }
+  .ds-settings-heading span,
+  .ds-preset small {
+    font-size: 12px;
+    color: var(--ui-muted);
+  }
+  .ds-settings fieldset {
+    min-width: 0;
+    margin: 1rem 0 0;
+    padding: 0;
+    border: 0;
+  }
+  .ds-settings legend {
+    margin-bottom: 0.5rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ui-muted);
+  }
+  .ds-preset {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .ds-preset:hover {
+    background: var(--ui-hover);
+  }
+  .ds-preset:has(input:checked) {
+    background: var(--ui-active);
+  }
+  .ds-preset input {
+    accent-color: #3658a4;
+    margin: 0;
+  }
+  .ds-preset strong,
+  .ds-preset small {
+    display: block;
+  }
+  .ds-preset strong {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .ds-sample {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #ddd;
+    flex-shrink: 0;
+  }
+  .ds-sample-nasa {
+    background: #ff4f00;
+    color: white;
+    border-radius: 5px;
+    font-family: sans-serif;
+  }
+  .ds-sample-editorial {
+    background: #f8f7f3;
+    color: #263f58;
+    font-family: Georgia, serif;
+    font-size: 21px;
+  }
+  .ds-sample-neobrutalism {
+    background: #c9f14a;
+    color: #16152b;
+    border: 2px solid #16152b;
+    box-shadow: 2px 2px 0 #16152b;
+    font-weight: 900;
+  }
+  .ds-modes {
+    display: flex;
+    gap: 0.25rem;
+  }
+  .ds-modes label {
+    flex: 1;
+    cursor: pointer;
+  }
+  .ds-modes input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+  .ds-modes span {
+    display: block;
+    text-align: center;
+    padding: 0.45rem;
+    border: 1px solid var(--ui-line);
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .ds-modes input:checked + span {
+    background: var(--ui-active);
+    border-color: #7a91c4;
+  }
+  .ds-modes input:focus-visible + span {
+    outline: 2px solid #3658a4;
+    outline-offset: 2px;
+  }
+  .ds-controls :focus-visible,
+  .workshop-chrome :focus-visible {
+    outline: 2px solid #3658a4;
+    outline-offset: 3px;
+  }
+  .ds-status {
+    margin: 0.6rem 0 0;
+    min-height: 1em;
+    font-size: 11px;
+    color: var(--ui-muted);
+  }
+  @scope (.ds-controls) {
+    input {
+      accent-color: #3658a4;
+    }
+  }
+}
+
+@layer controls {
+  .is-workshop .ds-controls {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+  .is-workshop .ds-controls .ds-settings {
+    top: auto;
+    bottom: calc(100% + 0.5rem);
+    max-height: calc(100dvh - 6rem);
+    overflow-y: auto;
+  }
+  @media (max-width: 760px) {
+    .is-workshop .ds-controls {
+      right: 1rem;
+      bottom: 1rem;
+    }
+  }
+}
