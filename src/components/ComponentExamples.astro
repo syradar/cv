@@ -1,0 +1,24 @@
+---
+import Quotation from "./system/Quotation.astro";
+import Surface from "./system/Surface.astro";
+import Actions from "./system/Actions.astro";
+import SkillList from "./system/SkillList.astro";
+import Role from "./system/Role.astro";
+import cv from "../data/cv.en.json";
+const role = cv.experience.rightGrafiska;
+---
+<section class="workshop-components" id="components" aria-labelledby="components-heading">
+  <header class="workshop-chrome workshop-section-heading"><h2 id="components-heading">Component workbench</h2><p>The same pieces used in the CV above. Change an identity to see them together.</p></header>
+  <div class="workshop-example"><div class="workshop-chrome workshop-caption"><h3>Actions</h3><p>Contact link, print action, and disabled state. Hover or focus to inspect.</p></div>
+    <div class="workshop-action-stage"><Actions email={cv.contact.email} contactLabel={cv.labels.contact} pdfLabel={cv.labels.pdf} /><Actions email={cv.contact.email} contactLabel={cv.labels.contact} pdfLabel={cv.labels.pdf} disabled /></div>
+  </div>
+  <div class="workshop-example"><div class="workshop-chrome workshop-caption"><h3>Surfaces and roles</h3><p>Primary content and nested client assignments.</p></div><div class="workshop-surface-stage">
+    <Role title={role.title} company={role.company} dates={`${role.dates.start} — ${role.dates.end}`} description={role.description} />
+    <Surface><p class="syr-meta">{cv.labels.clientWork}</p><div class="syr-assignment-list">{cv.experience.devcore.assignments.slice(0,1).map(assignment => <Role nested title={assignment.title} company={assignment.company} dates={`${assignment.dates.start} — ${cv.labels.current}`} description={assignment.description} />)}</div></Surface>
+  </div></div>
+  <div class="workshop-example"><div class="workshop-chrome workshop-caption"><h3>Skill lists</h3><p>Emphasized skills and a standard group.</p></div><div class="workshop-surface-stage">
+    <Surface variant="accent"><h3 class="syr-group-heading">{cv.labels.topSkills}</h3><SkillList items={cv.skills.top} prominent /></Surface>
+    <Surface><h3 class="syr-group-heading">{cv.skills.groups[0].name}</h3><SkillList items={cv.skills.groups[0].items} /></Surface>
+  </div></div>
+  <div class="workshop-example"><div class="workshop-chrome workshop-caption"><h3>Typography and quotation</h3><p>Long-form content, attribution, and secondary text.</p></div><Quotation {...cv.recommendation} /></div>
+</section>

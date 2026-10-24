@@ -1,102 +1,27 @@
 ---
-import Check from "astro-heroicons/outline/Check.astro";
-import ComputerDesktop from "astro-heroicons/outline/ComputerDesktop.astro";
-import Moon from "astro-heroicons/outline/Moon.astro";
-import Sun from "astro-heroicons/outline/Sun.astro";
-
-interface Props {
-	labels: { theme: string; themeLight: string; themeDark: string; themeSystem: string };
-}
-
-const { labels } = Astro.props;
-const options = [
-	{ value: "light", label: labels.themeLight, Icon: Sun },
-	{ value: "dark", label: labels.themeDark, Icon: Moon },
-	{ value: "system", label: labels.themeSystem, Icon: ComputerDesktop },
+const { locale = "en" } = Astro.props;
+const sv = locale === "sv";
+const title = sv ? "Visningsinställningar" : "Display settings";
+const identities = [
+  {value: "nasa", label: "Modern NASA", detail: sv ? "Precision och energi" : "Precision and energy", sample: "Aa"},
+  {value: "editorial", label: "Editorial", detail: sv ? "Typografi och eftertanke" : "Type and thoughtfulness", sample: "Aa"},
+  {value: "neobrutalism", label: "Neobrutalism", detail: sv ? "Kontrast och attityd" : "Contrast and attitude", sample: "Aa"},
 ];
 ---
-
-<details class="syr-theme">
-	<summary aria-label={labels.theme}>
-		<Sun class="syr-theme-icon" data-icon="light" />
-		<Moon class="syr-theme-icon" data-icon="dark" />
-		<ComputerDesktop class="syr-theme-icon" data-icon="system" />
-	</summary>
-	<div class="syr-theme-menu syr-squircle" role="menu" aria-label={labels.theme}>
-		{
-			options.map(({ value, label, Icon }) => (
-				<button type="button" role="menuitemradio" aria-checked="false" data-theme-option={value}>
-					<Icon class="syr-theme-icon" />
-					{label}
-					<Check class="syr-check" />
-				</button>
-			))
-		}
-	</div>
+<details class="ds-controls">
+  <summary aria-label={title}><span aria-hidden="true">◧</span> {sv ? "Utseende" : "Appearance"}</summary>
+  <div class="ds-settings">
+    <div class="ds-settings-heading"><strong>{title}</strong><span>{sv ? "Samma innehåll. Nytt uttryck." : "Same content. Different character."}</span></div>
+    <fieldset><legend>{sv ? "Identitet" : "Identity"}</legend>
+      {identities.map(identity => <label class="ds-preset"><input type="radio" name="identity" value={identity.value} data-identity-option aria-label={identity.label} /><span class:list={["ds-sample", `ds-sample-${identity.value}`]} aria-hidden="true">{identity.sample}</span><span><strong>{identity.label}</strong><small>{identity.detail}</small></span></label>)}
+    </fieldset>
+    <fieldset><legend>{sv ? "Färgläge" : "Color mode"}</legend><div class="ds-modes">
+      {[{value:"light",label:sv?"Ljust":"Light"},{value:"dark",label:sv?"Mörkt":"Dark"},{value:"system",label:sv?"System":"System"}].map(mode => <label><input type="radio" name="appearance" value={mode.value} data-theme-option aria-label={mode.label} /><span>{mode.label}</span></label>)}
+    </div></fieldset>
+    <p class="ds-status" aria-live="polite" data-preference-status></p>
+  </div>
 </details>
-
 <script>
-	const menu = document.querySelector<HTMLDetailsElement>(".syr-theme");
-	const buttons = document.querySelectorAll<HTMLButtonElement>("[data-theme-option]");
-	const current = () => document.documentElement.dataset.theme ?? "light";
-
-	const sync = () => {
-		buttons.forEach((button) => {
-			button.setAttribute("aria-checked", String(button.dataset.themeOption === current()));
-		});
-	};
-
-	const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-	let closeTimer: number | undefined;
-
-	const close = () => {
-		if (!menu?.open) return;
-		if (reduceMotion.matches) {
-			menu.open = false;
-			return;
-		}
-		menu.dataset.closing = "";
-		window.clearTimeout(closeTimer);
-		closeTimer = window.setTimeout(() => {
-			menu.open = false;
-			delete menu.dataset.closing;
-		}, 150);
-	};
-
-	menu?.querySelector("summary")?.addEventListener("click", (event) => {
-		window.clearTimeout(closeTimer);
-		delete menu.dataset.closing;
-		if (menu.open) {
-			event.preventDefault();
-			close();
-		}
-	});
-
-	buttons.forEach((button) => {
-		button.addEventListener("click", () => {
-			const value = button.dataset.themeOption ?? "light";
-			const root = document.documentElement;
-			root.dataset.themeSwitching = "";
-			root.dataset.theme = value;
-			window.setTimeout(() => delete root.dataset.themeSwitching, 400);
-			localStorage.setItem("syr-theme", value);
-			sync();
-			close();
-		});
-	});
-
-	document.addEventListener("click", (event) => {
-		if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) {
-			close();
-		}
-	});
-
-	document.addEventListener("keydown", (event) => {
-		if (event.key === "Escape" && menu?.open) {
-			close();
-			menu.querySelector("summary")?.focus();
-		}
-	});
-
-	sync();
+  import { initializeSettings } from "../scripts/preferences";
+  initializeSettings();
 </script>

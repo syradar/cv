@@ -1,0 +1,9 @@
+---
+interface Props {
+  as?: "div" | "article" | "figure";
+  variant?: "default" | "nested" | "accent";
+  class?: string;
+}
+const { as: Tag = "div", variant = "default", class: className } = Astro.props;
+---
+<Tag class:list={[variant === "nested" ? "syr-nested" : "syr-card", { "syr-card-accent": variant === "accent" }, "syr-squircle", className]}><slot /></Tag>
