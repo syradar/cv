@@ -1,1 +1,8 @@
 vp staged
+
+# Regenerate the committed PDFs only when something that affects them changed.
+if git diff --cached --name-only | grep -E '^(src/|scripts/generate-pdfs\.mjs$)' | grep -vE '^src/(dev|components/examples)/' > /dev/null; then
+  echo "CV sources changed, regenerating PDFs..."
+  vp run pdf || exit 1
+  git add public/*.pdf
+fi
