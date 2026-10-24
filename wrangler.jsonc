@@ -1,5 +1,5 @@
 {
-  "name": "syradar-cv",
+  "name": "cv",
   "compatibility_date": "2026-10-24", // Update to the day you deploy
   "assets": {
     "directory": "./dist",
