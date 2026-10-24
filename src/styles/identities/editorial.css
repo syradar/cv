@@ -1,0 +1,73 @@
+/* Editorial: serif type, paper tones, square corners, no elevation. */
+@layer identities {
+  [data-identity="editorial"] {
+    --syr-paper: #f8f7f3;
+    --syr-card: #fdfcf9;
+    --syr-card-nested: #f4f2ec;
+    --syr-tint: #e8e6df;
+    --syr-ink: #242a30;
+    --syr-muted: #535e68;
+    --syr-line: #c2c5c5;
+    --syr-accent: #263f58;
+    --syr-accent-ink: #263f58;
+    --syr-on-accent: #fff;
+    --syr-font-body: var(--font-serif);
+    --syr-font-display: var(--font-editorial-display);
+    --syr-font-mono: ui-sans-serif, system-ui, sans-serif;
+    --syr-title-weight: 400;
+    --syr-title-tracking: -0.045em;
+    --syr-title-leading: 1.02;
+    --syr-section-space: var(--space-20);
+    --syr-card-padding: clamp(1.2rem, 3vw, 2rem);
+    --syr-radius-card: 0;
+    --syr-radius-nested: 0;
+    --syr-radius-tag: 0;
+    --syr-radius-control: 0;
+    --syr-radius-inner: 0;
+  }
+
+  [data-identity="editorial"][data-theme="dark"] {
+    --syr-paper: #20262d;
+    --syr-card: #252e37;
+    --syr-card-nested: #2d3742;
+    --syr-tint: #394551;
+    --syr-ink: #f1eee6;
+    --syr-muted: #b8c1c9;
+    --syr-line: #53616e;
+    --syr-accent: #b5cee5;
+    --syr-accent-ink: #c3d9ed;
+    --syr-on-accent: #20262d;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-identity="editorial"][data-theme="system"] {
+      --syr-paper: #20262d;
+      --syr-card: #252e37;
+      --syr-card-nested: #2d3742;
+      --syr-tint: #394551;
+      --syr-ink: #f1eee6;
+      --syr-muted: #b8c1c9;
+      --syr-line: #53616e;
+      --syr-accent: #b5cee5;
+      --syr-accent-ink: #c3d9ed;
+      --syr-on-accent: #20262d;
+    }
+  }
+}
+
+@layer components {
+  [data-identity="editorial"] .syr-hero-band {
+    border-bottom: 1px solid var(--syr-line);
+  }
+  [data-identity="editorial"] .syr-intro {
+    max-width: 51rem;
+  }
+  [data-identity="editorial"] .syr-card {
+    border-inline: 0;
+    border-bottom: 0;
+  }
+  [data-identity="editorial"] .syr-description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+}

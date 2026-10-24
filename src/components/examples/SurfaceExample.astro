@@ -1,0 +1,11 @@
+---
+import Surface from "../system/Surface.astro";
+import SkillList from "../system/SkillList.astro";
+import cv from "../../data/cv.en.json";
+---
+
+<div class="workshop-surface-stage">
+  <Surface><p class="syr-meta">Default</p><p class="syr-description">{cv.summary}</p></Surface>
+  <Surface variant="nested"><p class="syr-meta">Nested</p><p class="syr-description">{cv.headline}</p></Surface>
+  <Surface variant="accent"><h3 class="syr-group-heading">Accent</h3><SkillList items={cv.skills.top.slice(0, 2)} prominent /></Surface>
+</div>

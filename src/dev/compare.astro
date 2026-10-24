@@ -1,0 +1,152 @@
+---
+import "../styles/global.css";
+import { examples } from "../components/examples/registry";
+
+const identities = [
+  { value: "nasa", label: "Modern NASA" },
+  { value: "editorial", label: "Editorial" },
+  { value: "neobrutalism", label: "Neobrutalism" },
+];
+const modes = ["light", "dark", "system"];
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Compare identities</title>
+  </head>
+  <body class="compare">
+    <header class="compare-bar">
+      <h1>Compare identities</h1>
+      <fieldset class="compare-modes">
+        <legend>Color mode</legend>
+        {
+          modes.map((mode) => (
+            <label>
+              <input
+                type="radio"
+                name="mode"
+                value={mode}
+                checked={mode === "light"}
+              />
+              {mode}
+            </label>
+          ))
+        }
+      </fieldset>
+    </header>
+    <div class="compare-scroll">
+      <div class="compare-grid">
+        {
+          identities.map((identity) => (
+            <h2 class="compare-heading">{identity.label}</h2>
+          ))
+        }
+        {
+          examples.map((example) => (
+            <>
+              <div class="compare-caption">
+                <h3>{example.title}</h3>
+                <p>{example.description}</p>
+              </div>
+              {identities.map((identity) => (
+                <div
+                  class="compare-cell"
+                  data-identity={identity.value}
+                  data-theme="light"
+                  data-compare-cell
+                >
+                  <example.Component />
+                </div>
+              ))}
+            </>
+          ))
+        }
+      </div>
+    </div>
+
+    <script>
+      const cells = document.querySelectorAll<HTMLElement>(
+        "[data-compare-cell]",
+      );
+
+      const inputModes =
+        document.querySelectorAll<HTMLInputElement>("input[name=mode]");
+
+      for (const inputMode of inputModes) {
+        inputMode.addEventListener("change", () => {
+          for (const cell of cells) {
+            cell.dataset.theme = inputMode.value;
+          }
+        });
+      }
+    </script>
+
+    <style is:global>
+      .compare {
+        margin: 0;
+        font:
+          14px system-ui,
+          sans-serif;
+      }
+      .compare-bar {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.75rem 1.5rem;
+        border-bottom: 1px solid #ccc;
+        background: #fff;
+        color: #222;
+      }
+      .compare-bar h1 {
+        margin: 0;
+        font-size: 1rem;
+      }
+      .compare-modes {
+        display: flex;
+        gap: 1rem;
+        margin: 0;
+        border: 0;
+        padding: 0;
+      }
+      .compare-scroll {
+        overflow-x: auto;
+      }
+      .compare-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .compare-heading {
+        margin: 0;
+        padding: 0.75rem 1.5rem;
+        background: #fff;
+        color: #222;
+        font-size: 0.9rem;
+      }
+      .compare-caption {
+        grid-column: 1 / -1;
+        padding: 1.5rem 1.5rem 0.5rem;
+        background: #fff;
+        color: #222;
+      }
+      .compare-caption h3,
+      .compare-caption p {
+        margin: 0;
+      }
+      .compare-caption p {
+        color: #666;
+      }
+      .compare-cell {
+        min-width: 0;
+        padding: 1.5rem;
+      }
+    </style>
+  </body>
+</html>

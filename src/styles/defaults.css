@@ -1,0 +1,131 @@
+/*
+ * Neutral baseline for every design token. Identities in ./identities/ override
+ * only what differs. This layer sits before `identities`, so an identity always
+ * wins. An identity that sets light colors must also set its dark and system
+ * colors, because its light values outrank the dark defaults here.
+ */
+@layer tokens {
+  :root,
+  [data-identity] {
+    /* Typography */
+    --syr-font-body: var(--font-sans);
+    --syr-font-display: var(--syr-font-body);
+    --syr-font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --syr-title-weight: 650;
+    --syr-title-tracking: -0.05em;
+    --syr-title-leading: 1;
+
+    /* Spacing and borders */
+    --syr-section-space: var(--space-16);
+    --syr-card-padding: clamp(1.2rem, 3vw, 1.9rem);
+    --syr-border-width: 1px;
+
+    /* Surfaces and text */
+    --syr-paper: var(--color-gray-50);
+    --syr-card: var(--color-white);
+    --syr-card-nested: var(--color-white);
+    --syr-tint: var(--color-gray-100);
+    --syr-ink: var(--color-gray-900);
+    --syr-muted: var(--color-gray-600);
+    --syr-line: var(--color-gray-200);
+    --syr-accent: var(--color-gray-900);
+    --syr-accent-ink: var(--color-gray-900);
+    --syr-on-accent: #fff;
+
+    /* Hero band */
+    --syr-hero-bg: var(--syr-paper);
+    --syr-hero-ink: var(--syr-ink);
+    --syr-hero-muted: var(--syr-muted);
+    --syr-hero-pattern: none;
+
+    /* Buttons */
+    --syr-action-bg: var(--syr-accent);
+    --syr-action-ink: var(--syr-on-accent);
+    --syr-quiet-bg: var(--syr-tint);
+    --syr-quiet-ink: var(--syr-ink);
+    --syr-button-translate: 0 0;
+    --syr-button-scale: 1;
+    --syr-button-text-transform: none;
+    --syr-button-letter-spacing: normal;
+
+    /* Shape and depth */
+    --syr-radius-card: 0.5rem;
+    --syr-radius-nested: 0.4rem;
+    --syr-radius-tag: 0.25rem;
+    --syr-radius-control: 0.375rem;
+    --syr-radius-inner: 0.25rem;
+    --syr-shadow-rgb: 0 0 0;
+    --syr-elevation-1: none;
+    --syr-elevation-2: none;
+
+    /* Motion */
+    --syr-spring: linear(
+      0,
+      0.031,
+      0.109,
+      0.218,
+      0.342,
+      0.47,
+      0.593,
+      0.706,
+      0.805,
+      0.887,
+      0.954,
+      1.004,
+      1.041,
+      1.065,
+      1.078,
+      1.083,
+      1.082,
+      1.077,
+      1.068,
+      1.058,
+      1.047,
+      1.037,
+      1.027,
+      1.019,
+      1.008,
+      1
+    );
+    --syr-spring-duration: 520ms;
+
+    color-scheme: light;
+    font-family: var(--syr-font-body);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--syr-paper);
+    color: var(--syr-ink);
+  }
+
+  [data-theme="dark"] {
+    --syr-paper: #181817;
+    --syr-card: #242422;
+    --syr-card-nested: #2e2e2c;
+    --syr-tint: #333331;
+    --syr-ink: #f2f1ed;
+    --syr-muted: #bdbcb6;
+    --syr-line: #3d3c39;
+    --syr-accent: #f2f1ed;
+    --syr-accent-ink: #f2f1ed;
+    --syr-on-accent: #181817;
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-theme="system"] {
+      --syr-paper: #181817;
+      --syr-card: #242422;
+      --syr-card-nested: #2e2e2c;
+      --syr-tint: #333331;
+      --syr-ink: #f2f1ed;
+      --syr-muted: #bdbcb6;
+      --syr-line: #3d3c39;
+      --syr-accent: #f2f1ed;
+      --syr-accent-ink: #f2f1ed;
+      --syr-on-accent: #181817;
+      color-scheme: dark;
+    }
+  }
+}

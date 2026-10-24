@@ -1,0 +1,82 @@
+/* Neobrutalism: heavy type, hard borders and offset shadows, lime accent. */
+@layer identities {
+  [data-identity="neobrutalism"] {
+    --syr-paper: #e9edff;
+    --syr-card: #fff;
+    --syr-card-nested: #f1f3ff;
+    --syr-tint: #d2d9ff;
+    --syr-ink: #16152b;
+    --syr-muted: #424157;
+    --syr-line: #16152b;
+    --syr-accent: #c9f14a;
+    --syr-accent-ink: #32329a;
+    --syr-on-accent: #16152b;
+    --syr-font-body: var(--font-grotesk);
+    --syr-font-display: var(--font-heavy);
+    --syr-title-weight: 900;
+    --syr-title-tracking: -0.065em;
+    --syr-title-leading: 1.02;
+    --syr-section-space: var(--space-12);
+    --syr-card-padding: clamp(1.2rem, 3vw, 1.6rem);
+    --syr-border-width: 2px;
+    --syr-radius-card: var(--syr-card-padding);
+    --syr-radius-nested: 2px;
+    --syr-radius-tag: 0;
+    --syr-radius-control: 0;
+    --syr-radius-inner: 0;
+    --syr-elevation-1: 6px 6px 0 var(--syr-line);
+    --syr-elevation-2: 3px 3px 0 var(--syr-line);
+    --syr-hero-bg: var(--syr-accent);
+    --syr-hero-ink: #16152b;
+    --syr-hero-muted: #424157;
+    --syr-action-bg: #16152b;
+    --syr-action-ink: #fff;
+    --syr-quiet-bg: #fff;
+    --syr-quiet-ink: #16152b;
+  }
+
+  [data-identity="neobrutalism"][data-theme="dark"] {
+    --syr-paper: #202036;
+    --syr-card: #2f2e49;
+    --syr-card-nested: #393852;
+    --syr-tint: #43415f;
+    --syr-ink: #f5f2ff;
+    --syr-muted: #d0cce4;
+    --syr-line: #b5afff;
+    --syr-accent-ink: #d4d0ff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-identity="neobrutalism"][data-theme="system"] {
+      --syr-paper: #202036;
+      --syr-card: #2f2e49;
+      --syr-card-nested: #393852;
+      --syr-tint: #43415f;
+      --syr-ink: #f5f2ff;
+      --syr-muted: #d0cce4;
+      --syr-line: #b5afff;
+      --syr-accent-ink: #d4d0ff;
+    }
+  }
+}
+
+@layer components {
+  [data-identity="neobrutalism"] .syr-hero-band {
+    border-bottom: 3px solid var(--syr-line);
+  }
+  [data-identity="neobrutalism"] .syr-button {
+    border: 2px solid #16152b;
+    /* box-shadow: 0px 0px 0 #16152b; */
+    box-shadow: 3px 3px 0 #16152b;
+    transition: transform var(--syr-spring-duration) var(--syr-spring) box-shadow
+      var(--syr-spring-duration) var(--syr-spring);
+    /* &:hover {
+      box-shadow: 3px 3px 0 #16152b;
+      transform: translate(-3px, -3px);
+    } */
+  }
+  [data-identity="neobrutalism"] .syr-button:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+  }
+}

@@ -20,6 +20,7 @@ export default defineConfig({
       "package.json",
       "pnpm-workspace.yaml",
       "vite.config.ts",
+      "wrangler.jsonc",
     ],
     jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
     rules: { "vite-plus/prefer-vite-plus-imports": "error" },

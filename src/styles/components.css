@@ -87,6 +87,7 @@
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
+    box-shadow: var(--boxshadow);
   }
 
   .syr-button-primary {
@@ -95,17 +96,19 @@
   }
 
   .syr-button {
+    translate: var(--syr-button-translate);
+    scale: var(--syr-button-scale);
     transition:
       background-color 160ms ease,
+      box-shadow 160ms ease,
+      translate var(--syr-spring-duration) var(--syr-spring),
+      scale var(--syr-spring-duration) var(--syr-spring),
       transform var(--syr-spring-duration) var(--syr-spring);
   }
 
-  .syr-button:hover {
-    transform: translateY(-2px);
-  }
-
-  .syr-button:active {
-    transform: scale(0.96);
+  .syr-button-label {
+    text-transform: var(--syr-button-text-transform);
+    letter-spacing: var(--syr-button-letter-spacing);
   }
 
   .syr-button-quiet {

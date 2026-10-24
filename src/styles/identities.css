@@ -1,151 +1,13 @@
-@layer identities {
-  :root[data-identity="editorial"] {
-    --syr-paper: #f8f7f3;
-    --syr-card: #fdfcf9;
-    --syr-card-nested: #f4f2ec;
-    --syr-tint: #e8e6df;
-    --syr-ink: #242a30;
-    --syr-muted: #535e68;
-    --syr-line: #c2c5c5;
-    --syr-accent: #263f58;
-    --syr-accent-ink: #263f58;
-    --syr-on-accent: #fff;
-    --syr-font-body: var(--font-serif);
-    --syr-font-display: var(--font-editorial-display);
-    --syr-font-mono: ui-sans-serif, system-ui, sans-serif;
-    --syr-title-weight: 400;
-    --syr-title-tracking: -0.045em;
-    --syr-title-leading: 1.02;
-    --syr-section-space: var(--space-20);
-    --syr-card-padding: clamp(1.2rem, 3vw, 2rem);
-    --syr-radius-card: 0;
-    --syr-radius-nested: 0;
-    --syr-radius-tag: 0;
-    --syr-radius-control: 0;
-    --syr-radius-inner: 0;
-    --syr-elevation-1: none;
-    --syr-elevation-2: none;
-    --syr-hero-bg: var(--syr-paper);
-    --syr-hero-ink: var(--syr-ink);
-    --syr-hero-muted: var(--syr-muted);
-    --syr-hero-pattern: none;
-    --syr-action-bg: var(--syr-accent);
-    --syr-action-ink: var(--syr-on-accent);
-    --syr-quiet-bg: var(--syr-tint);
-    --syr-quiet-ink: var(--syr-ink);
-  }
-  :root[data-identity="neobrutalism"] {
-    --syr-paper: #e9edff;
-    --syr-card: #fff;
-    --syr-card-nested: #f1f3ff;
-    --syr-tint: #d2d9ff;
-    --syr-ink: #16152b;
-    --syr-muted: #424157;
-    --syr-line: #16152b;
-    --syr-accent: #c9f14a;
-    --syr-accent-ink: #32329a;
-    --syr-on-accent: #16152b;
-    --syr-font-body: var(--font-grotesk);
-    --syr-font-display: var(--font-heavy);
-    --syr-title-weight: 900;
-    --syr-title-tracking: -0.065em;
-    --syr-title-leading: 1.02;
-    --syr-section-space: var(--space-12);
-    --syr-card-padding: clamp(1.2rem, 3vw, 1.6rem);
-    --syr-border-width: 2px;
-    --syr-radius-card: 0;
-    --syr-radius-nested: 0;
-    --syr-radius-tag: 0;
-    --syr-radius-control: 0;
-    --syr-radius-inner: 0;
-    --syr-elevation-1: 6px 6px 0 var(--syr-line);
-    --syr-elevation-2: 3px 3px 0 var(--syr-line);
-    --syr-hero-bg: var(--syr-accent);
-    --syr-hero-ink: #16152b;
-    --syr-hero-muted: #424157;
-    --syr-hero-pattern: none;
-    --syr-action-bg: #16152b;
-    --syr-action-ink: #fff;
-    --syr-quiet-bg: #fff;
-    --syr-quiet-ink: #16152b;
-  }
-  :root[data-identity="editorial"][data-theme="dark"] {
-    --syr-paper: #20262d;
-    --syr-card: #252e37;
-    --syr-card-nested: #2d3742;
-    --syr-tint: #394551;
-    --syr-ink: #f1eee6;
-    --syr-muted: #b8c1c9;
-    --syr-line: #53616e;
-    --syr-accent: #b5cee5;
-    --syr-accent-ink: #c3d9ed;
-    --syr-on-accent: #20262d;
-  }
-  :root[data-identity="neobrutalism"][data-theme="dark"] {
-    --syr-paper: #202036;
-    --syr-card: #2f2e49;
-    --syr-card-nested: #393852;
-    --syr-tint: #43415f;
-    --syr-ink: #f5f2ff;
-    --syr-muted: #d0cce4;
-    --syr-line: #b5afff;
-    --syr-accent-ink: #d4d0ff;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root[data-identity="editorial"][data-theme="system"] {
-      --syr-paper: #20262d;
-      --syr-card: #252e37;
-      --syr-card-nested: #2d3742;
-      --syr-tint: #394551;
-      --syr-ink: #f1eee6;
-      --syr-muted: #b8c1c9;
-      --syr-line: #53616e;
-      --syr-accent: #b5cee5;
-      --syr-accent-ink: #c3d9ed;
-      --syr-on-accent: #20262d;
-    }
-    :root[data-identity="neobrutalism"][data-theme="system"] {
-      --syr-paper: #202036;
-      --syr-card: #2f2e49;
-      --syr-card-nested: #393852;
-      --syr-tint: #43415f;
-      --syr-ink: #f5f2ff;
-      --syr-muted: #d0cce4;
-      --syr-line: #b5afff;
-      --syr-accent-ink: #d4d0ff;
-    }
-  }
-}
-@layer components {
-  :root[data-identity="editorial"] .syr-hero-band {
-    border-bottom: 1px solid var(--syr-line);
-  }
-  :root[data-identity="editorial"] .syr-intro {
-    max-width: 51rem;
-  }
-  :root[data-identity="editorial"] .syr-card {
-    border-inline: 0;
-    border-bottom: 0;
-  }
-  :root[data-identity="editorial"] .syr-description {
-    font-size: 1.05rem;
-    line-height: 1.8;
-  }
-  :root[data-identity="neobrutalism"] .syr-hero-band {
-    border-bottom: 3px solid var(--syr-line);
-  }
-  :root[data-identity="neobrutalism"] .syr-button {
-    border: 2px solid #16152b;
-    box-shadow: 3px 3px 0 #16152b;
-  }
-  :root[data-identity="neobrutalism"] .syr-button:active {
-    transform: translate(3px, 3px);
-    box-shadow: none;
-  }
-}
+/* One file per identity lives in ./identities/; shared token defaults are in ./defaults.css.
+   Edit an identity file to override only what differs from the defaults. */
+@import "./identities/nasa.css";
+@import "./identities/editorial.css";
+@import "./identities/neobrutalism.css";
+
+/* Shared across identities: print always renders light and chrome-free. */
 @layer print {
   @media print {
-    :root[data-identity] {
+    [data-identity] {
       --syr-paper: #fff;
       --syr-card: #fff;
       --syr-card-nested: #fff;
@@ -160,6 +22,7 @@
       background: white;
       color-scheme: light;
     }
+
     .syr-topbar,
     .ds-controls,
     .workshop-chrome {

@@ -1,0 +1,16 @@
+---
+import Surface from "../system/Surface.astro";
+import SkillList from "../system/SkillList.astro";
+import cv from "../../data/cv.en.json";
+---
+
+<div class="workshop-surface-stage">
+  <Surface variant="accent">
+    <h3 class="syr-group-heading">{cv.labels.topSkills}</h3>
+    <SkillList items={cv.skills.top} prominent />
+  </Surface>
+  <Surface>
+    <h3 class="syr-group-heading">{cv.skills.groups[0].name}</h3>
+    <SkillList items={cv.skills.groups[0].items} />
+  </Surface>
+</div>

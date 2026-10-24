@@ -1,0 +1,31 @@
+---
+import Surface from "../system/Surface.astro";
+import Role from "../system/Role.astro";
+import cv from "../../data/cv.en.json";
+const role = cv.experience.rightGrafiska;
+---
+
+<div class="workshop-surface-stage">
+  <Role
+    title={role.title}
+    company={role.company}
+    dates={`${role.dates.start} — ${role.dates.end}`}
+    description={role.description}
+  />
+  <Surface>
+    <p class="syr-meta">{cv.labels.clientWork}</p>
+    <div class="syr-assignment-list">
+      {
+        cv.experience.devcore.assignments.slice(0, 1).map((assignment) => (
+          <Role
+            nested
+            title={assignment.title}
+            company={assignment.company}
+            dates={`${assignment.dates.start} — ${cv.labels.current}`}
+            description={assignment.description}
+          />
+        ))
+      }
+    </div>
+  </Surface>
+</div>

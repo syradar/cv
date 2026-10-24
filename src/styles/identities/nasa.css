@@ -1,0 +1,92 @@
+/* Modern NASA: orange accent, patterned hero, soft shadows, squircle corners. Also applies when no identity is set. */
+@layer identities {
+  [data-identity="nasa"],
+  :root:not([data-identity]) {
+    --syr-title-tracking: -0.07em;
+    --syr-hero-bg: var(--color-orange-700);
+    --syr-hero-ink: #fff;
+    --syr-hero-muted: #fff;
+    --syr-hero-pattern: url("/hero-pattern.svg");
+    --syr-action-bg: #fff;
+    --syr-action-ink: #b83a00;
+    --syr-quiet-bg: color-mix(in srgb, var(--syr-accent) 50%, white);
+    --syr-quiet-ink: #1f1f1e;
+    --syr-paper: var(--color-gray-50);
+    --syr-card: var(--color-white);
+    --syr-card-nested: var(--color-white);
+    --syr-tint: var(--color-gray-100);
+    --syr-ink: var(--color-gray-900);
+    --syr-muted: var(--color-gray-600);
+    --syr-line: var(--color-gray-200);
+    --syr-accent: var(--color-orange-500);
+    --syr-accent-ink: var(--color-orange-700);
+    --syr-on-accent: var(--color-gray-900);
+    --syr-elevation-1:
+      0 3px 1px -2px rgb(var(--syr-shadow-rgb) / 12%), 0 2px 2px 0 rgb(var(--syr-shadow-rgb) / 8%),
+      0 1px 5px 0 rgb(var(--syr-shadow-rgb) / 6%);
+    --syr-elevation-2:
+      0 2px 1px -1px rgb(var(--syr-shadow-rgb) / 10%), 0 1px 1px 0 rgb(var(--syr-shadow-rgb) / 7%),
+      0 1px 3px 0 rgb(var(--syr-shadow-rgb) / 5%);
+    --syr-radius-card: 0.9rem;
+    --syr-radius-nested: 0.65rem;
+    --syr-radius-tag: 0.4rem;
+    --syr-radius-control: 0.5rem;
+    --syr-radius-inner: 0.4rem;
+  }
+
+  [data-identity="nasa"] {
+    .syr-button:hover {
+      --syr-button-translate: 0 -2px;
+      --boxshadow: var(--syr-elevation-1);
+    }
+
+    .syr-button:active {
+      --syr-button-scale: 0.96;
+      --boxshadow: var(--syr-elevation-2);
+    }
+  }
+
+  [data-identity="nasa"][data-theme="dark"],
+  :root[data-theme="dark"]:not([data-identity]) {
+    --syr-paper: #181817;
+    --syr-card: #242422;
+    --syr-card-nested: #2e2e2c;
+    --syr-tint: #333331;
+    --syr-ink: #f2f1ed;
+    --syr-muted: #bdbcb6;
+    --syr-line: #3d3c39;
+    --syr-accent-ink: #ff8a5c;
+    --syr-on-accent: #181817;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-identity="nasa"][data-theme="system"],
+    :root[data-theme="system"]:not([data-identity]) {
+      --syr-paper: #181817;
+      --syr-card: #242422;
+      --syr-card-nested: #2e2e2c;
+      --syr-tint: #333331;
+      --syr-ink: #f2f1ed;
+      --syr-muted: #bdbcb6;
+      --syr-line: #3d3c39;
+      --syr-accent-ink: #ff8a5c;
+      --syr-on-accent: #181817;
+    }
+  }
+}
+
+@layer base {
+  @supports (corner-shape: squircle) {
+    [data-identity="nasa"] {
+      --syr-radius-card: 1.8rem;
+      --syr-radius-nested: 1.3rem;
+      --syr-radius-tag: 0.8rem;
+      --syr-radius-control: 1rem;
+      --syr-radius-inner: 0.8rem;
+    }
+
+    [data-identity="nasa"] :is(.syr-squircle, .syr-contact-links a) {
+      corner-shape: squircle;
+    }
+  }
+}

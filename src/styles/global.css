@@ -1,119 +1,11 @@
 @layer reset, tokens, identities, base, components, workshop, controls, print;
 @import "./primitives.css";
+@import "./defaults.css";
 @import "./identities.css";
 @import "./components.css";
 @import "./workshop.css";
 @import "./controls.css";
 
-@layer tokens {
-  :root {
-    --syr-font-body: var(--font-sans);
-    --syr-font-display: var(--syr-font-body);
-    --syr-title-weight: 650;
-    --syr-title-tracking: -0.07em;
-    --syr-title-leading: 1;
-    --syr-section-space: var(--space-16);
-    --syr-card-padding: clamp(1.2rem, 3vw, 1.9rem);
-    --syr-border-width: 1px;
-    --syr-hero-bg: var(--color-orange-700);
-    --syr-hero-ink: #fff;
-    --syr-hero-muted: #fff;
-    --syr-hero-pattern: url("/hero-pattern.svg");
-    --syr-action-bg: #fff;
-    --syr-action-ink: #b83a00;
-    --syr-quiet-bg: color-mix(in srgb, var(--syr-accent) 50%, white);
-    --syr-quiet-ink: #1f1f1e;
-    --syr-paper: var(--color-gray-50);
-    --syr-card: var(--color-white);
-    --syr-card-nested: var(--color-white);
-    --syr-tint: var(--color-gray-100);
-    --syr-ink: var(--color-gray-900);
-    --syr-muted: var(--color-gray-600);
-    --syr-line: var(--color-gray-200);
-    --syr-accent: var(--color-orange-500);
-    --syr-accent-ink: var(--color-orange-700);
-    --syr-on-accent: var(--color-gray-900);
-    --syr-shadow-rgb: 0 0 0;
-    --syr-elevation-1:
-      0 3px 1px -2px rgb(var(--syr-shadow-rgb) / 12%), 0 2px 2px 0 rgb(var(--syr-shadow-rgb) / 8%),
-      0 1px 5px 0 rgb(var(--syr-shadow-rgb) / 6%);
-    --syr-elevation-2:
-      0 2px 1px -1px rgb(var(--syr-shadow-rgb) / 10%), 0 1px 1px 0 rgb(var(--syr-shadow-rgb) / 7%),
-      0 1px 3px 0 rgb(var(--syr-shadow-rgb) / 5%);
-    --syr-radius-card: 0.9rem;
-    --syr-radius-nested: 0.65rem;
-    --syr-radius-tag: 0.4rem;
-    --syr-radius-control: 0.5rem;
-    --syr-radius-inner: 0.4rem;
-    --syr-spring: linear(
-      0,
-      0.031,
-      0.109,
-      0.218,
-      0.342,
-      0.47,
-      0.593,
-      0.706,
-      0.805,
-      0.887,
-      0.954,
-      1.004,
-      1.041,
-      1.065,
-      1.078,
-      1.083,
-      1.082,
-      1.077,
-      1.068,
-      1.058,
-      1.047,
-      1.037,
-      1.027,
-      1.019,
-      1.008,
-      1
-    );
-    --syr-spring-duration: 520ms;
-    --syr-font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-    color-scheme: light;
-    font-family: var(--syr-font-body);
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: var(--syr-paper);
-    color: var(--syr-ink);
-  }
-
-  :root[data-theme="dark"] {
-    --syr-paper: #181817;
-    --syr-card: #242422;
-    --syr-card-nested: #2e2e2c;
-    --syr-tint: #333331;
-    --syr-ink: #f2f1ed;
-    --syr-muted: #bdbcb6;
-    --syr-line: #3d3c39;
-    --syr-accent-ink: #ff8a5c;
-    --syr-on-accent: #181817;
-    --syr-shadow-rgb: 0 0 0;
-    color-scheme: dark;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root[data-theme="system"] {
-      --syr-paper: #181817;
-      --syr-card: #242422;
-      --syr-card-nested: #2e2e2c;
-      --syr-tint: #333331;
-      --syr-ink: #f2f1ed;
-      --syr-muted: #bdbcb6;
-      --syr-line: #3d3c39;
-      --syr-accent-ink: #ff8a5c;
-      --syr-on-accent: #181817;
-      color-scheme: dark;
-    }
-  }
-}
 @layer base {
   * {
     box-sizing: border-box;
@@ -129,6 +21,12 @@
     margin: 0;
   }
 
+  [data-identity] {
+    background: var(--syr-paper);
+    color: var(--syr-ink);
+    font-family: var(--syr-font-body);
+  }
+
   button,
   a {
     -webkit-tap-highlight-color: transparent;
@@ -142,21 +40,6 @@
   :focus-visible {
     outline: 3px solid var(--syr-accent-ink);
     outline-offset: 3px;
-  }
-
-  @supports (corner-shape: squircle) {
-    :root:not([data-identity="editorial"]):not([data-identity="neobrutalism"]) {
-      --syr-radius-card: 1.8rem;
-      --syr-radius-nested: 1.3rem;
-      --syr-radius-tag: 0.8rem;
-      --syr-radius-control: 1rem;
-      --syr-radius-inner: 0.8rem;
-    }
-
-    :root:not([data-identity="editorial"]):not([data-identity="neobrutalism"])
-      :is(.syr-squircle, .syr-contact-links a) {
-      corner-shape: squircle;
-    }
   }
 
   .syr-site {
