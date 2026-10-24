@@ -1,0 +1,7 @@
+echo "Regenerating PDFs to check they are up to date..."
+if ! vp run pdf:check; then
+  echo ""
+  echo "The PDFs in public/ were out of date. They have been regenerated;"
+  echo "commit them (git add public/*.pdf) and push again."
+  exit 1
+fi

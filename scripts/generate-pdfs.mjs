@@ -1,14 +1,28 @@
-import { mkdir, readFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { extname, relative, resolve, sep } from "node:path";
 import { once } from "node:events";
 import puppeteer from "puppeteer";
 
-const outputDirectory = resolve("dist");
+// Serve the built site from dist/, but write PDFs to public/ so they are committed
+// and shipped as static assets (Cloudflare's build has no Chrome to generate them).
+const siteDirectory = resolve("dist");
+const outputDirectory = resolve("public");
 const pages = [
   { route: "/", filename: "cv-david-malmstrom-en.pdf" },
   { route: "/sv/", filename: "cv-david-malmstrom-sv.pdf" },
 ];
+
+// Chrome stamps the current time into the PDF, which would make every run differ.
+// The replacement has the same length, so the PDF's byte offsets stay valid.
+const FIXED_DATE = "D:20000101000000+00'00'";
+const pinPdfDates = (pdf) =>
+  Buffer.from(
+    Buffer.from(pdf)
+      .toString("latin1")
+      .replace(/\/(CreationDate|ModDate) \(D:[^)]*\)/g, `/$1 (${FIXED_DATE})`),
+    "latin1",
+  );
 
 await mkdir(outputDirectory, { recursive: true });
 
@@ -24,9 +38,9 @@ const server = createServer(async (request, response) => {
   const pathname = new URL(request.url ?? "/", "http://127.0.0.1").pathname;
   const relativePath =
     pathname === "/" ? "index.html" : pathname.endsWith("/") ? `${pathname}index.html` : pathname;
-  const filePath = resolve(outputDirectory, decodeURIComponent(relativePath).replace(/^\/+/, ""));
+  const filePath = resolve(siteDirectory, decodeURIComponent(relativePath).replace(/^\/+/, ""));
 
-  const relativeFilePath = relative(outputDirectory, filePath);
+  const relativeFilePath = relative(siteDirectory, filePath);
   if (relativeFilePath === ".." || relativeFilePath.startsWith(`..${sep}`)) {
     response.writeHead(403).end();
     return;
@@ -69,16 +83,16 @@ try {
     if (!bodyText.trim()) {
       throw new Error(`Page ${route} rendered without content; refusing to generate ${filename}.`);
     }
-    await page.pdf({
-      path: resolve(outputDirectory, filename),
+    const pdf = await page.pdf({
       format: "A4",
       printBackground: true,
       preferCSSPageSize: true,
       displayHeaderFooter: false,
       margin: { top: "12mm", right: "12mm", bottom: "12mm", left: "12mm" },
     });
+    await writeFile(resolve(outputDirectory, filename), pinPdfDates(pdf));
     await page.close();
-    console.log(`Generated dist/${filename}`);
+    console.log(`Generated public/${filename}`);
   }
 } finally {
   await browser?.close();

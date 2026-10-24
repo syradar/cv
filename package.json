@@ -19,7 +19,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/generate-pdfs.mjs",
+    "build": "astro build",
+    "pdf": "astro build && node scripts/generate-pdfs.mjs",
+    "pdf:check": "pnpm pdf && git diff --exit-code -- public/*.pdf",
     "preview": "astro preview",
     "astro": "astro",
     "prepare": "vp config"

@@ -1,6 +1,10 @@
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@1.3.0
   vite-plus: 1.3.0
+onlyBuiltDependencies:
+  - esbuild
+  - puppeteer
+  - workerd
 overrides:
   vite@*: 'catalog:'
 peerDependencyRules:
@@ -8,5 +12,3 @@ peerDependencyRules:
     - vite
   allowedVersions:
     vite: '*'
-onlyBuiltDependencies:
-  - puppeteer
