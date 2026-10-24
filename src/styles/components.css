@@ -103,12 +103,16 @@
       box-shadow 160ms ease,
       translate var(--syr-spring-duration) var(--syr-spring),
       scale var(--syr-spring-duration) var(--syr-spring),
-      transform var(--syr-spring-duration) var(--syr-spring);
+      transform var(--syr-spring-duration) var(--syr-spring),
+      text-transform var(--syr-spring-duration) var(--syr-spring),
+      letter-spacing var(--syr-spring-duration) var(--syr-spring);
   }
 
   .syr-button-label {
     text-transform: var(--syr-button-text-transform);
     letter-spacing: var(--syr-button-letter-spacing);
+    font-weight: var(--syr-button-font-weight);
+    transition: inherit;
   }
 
   .syr-button-quiet {

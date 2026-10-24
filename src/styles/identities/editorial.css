@@ -56,18 +56,64 @@
 }
 
 @layer components {
-  [data-identity="editorial"] .syr-hero-band {
-    border-bottom: 1px solid var(--syr-line);
+  [data-identity="editorial"] {
+    .syr-hero-band {
+      border-bottom: 1px solid var(--syr-line);
+    }
+    .syr-intro {
+      max-width: 51rem;
+    }
+    .syr-card {
+      border-inline: 0;
+      border-bottom: 0;
+    }
+    .syr-description {
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .syr-button {
+      transition:
+        background-color 160ms ease,
+        border-radius 240ms ease-in-out;
+      &:hover {
+        --syr-radius-control: 0.5em;
+
+        .syr-button-label {
+          --syr-button-letter-spacing: 0.1em;
+        }
+      }
+    }
+
+    .syr-button-label {
+      --syr-button-font-weight: 700;
+      --syr-button-letter-spacing: 0.05em;
+      --syr-button-text-transform: uppercase;
+      display: inline-grid;
+      /* The spring overshoots, which would push the label wider than the reserved width. */
+      transition: letter-spacing 240ms ease-in-out;
+      text-align: center;
+
+      /* Invisible copy at the hover spacing reserves the final width so the button doesn't shift. */
+      &::after {
+        content: attr(data-label);
+        height: 0;
+        visibility: hidden;
+        letter-spacing: 0.1em;
+        text-transform: inherit;
+      }
+    }
   }
-  [data-identity="editorial"] .syr-intro {
-    max-width: 51rem;
-  }
-  [data-identity="editorial"] .syr-card {
-    border-inline: 0;
-    border-bottom: 0;
-  }
-  [data-identity="editorial"] .syr-description {
-    font-size: 1.05rem;
-    line-height: 1.8;
+}
+
+@layer base {
+  @supports (corner-shape: scoop) {
+    [data-identity="editorial"] {
+    }
+
+    [data-identity="editorial"] :is(.syr-button) {
+      corner-shape: scoop;
+      --syr-radius-control: 0;
+    }
   }
 }

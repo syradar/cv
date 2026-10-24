@@ -1,6 +1,6 @@
 // @ts-check
 import type { AstroIntegration } from "astro";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 // The identity comparison page only exists under `astro dev`.
 const devCompareRoute: AstroIntegration = {
@@ -18,6 +18,21 @@ const devCompareRoute: AstroIntegration = {
 
 export default defineConfig({
   integrations: [devCompareRoute],
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Bricolage Grotesque",
+      cssVariable: "--font-bricolage-grotesque",
+      weights: ["400", "700"],
+      options: {
+        experimental: {
+          variableAxis: {
+            wdth: ["75", "100"],
+          },
+        },
+      },
+    },
+  ],
   i18n: {
     locales: ["en", "sv"],
     defaultLocale: "en",

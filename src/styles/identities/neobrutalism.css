@@ -12,7 +12,7 @@
     --syr-accent-ink: #32329a;
     --syr-on-accent: #16152b;
     --syr-font-body: var(--font-grotesk);
-    --syr-font-display: var(--font-heavy);
+    --syr-font-display: var(--font-bricolage-grotesque);
     --syr-title-weight: 900;
     --syr-title-tracking: -0.065em;
     --syr-title-leading: 1.02;
@@ -29,7 +29,7 @@
     --syr-hero-bg: var(--syr-accent);
     --syr-hero-ink: #16152b;
     --syr-hero-muted: #424157;
-    --syr-action-bg: #16152b;
+    --syr-action-bg: #f14aca;
     --syr-action-ink: #fff;
     --syr-quiet-bg: #fff;
     --syr-quiet-ink: #16152b;

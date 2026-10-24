@@ -47,6 +47,7 @@
     --syr-button-scale: 1;
     --syr-button-text-transform: none;
     --syr-button-letter-spacing: normal;
+    --syr-button-font-weight: 600;
 
     /* Shape and depth */
     --syr-radius-card: 0.5rem;

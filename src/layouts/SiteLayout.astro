@@ -1,4 +1,5 @@
 ---
+import { Font } from "astro:assets";
 import ThemeMenu from "../components/ThemeMenu.astro";
 import english from "../data/cv.en.json";
 import "../styles/global.css";
@@ -9,7 +10,9 @@ interface Props {
 	showcase?: boolean;
 }
 const { locale, cv, showcase = false } = Astro.props;
-const title = showcase ? `Design system — ${cv.plainName}` : `${cv.plainName} — ${cv.headline}`;
+const title = showcase
+	? `Design system — ${cv.plainName}`
+	: `${cv.plainName} — ${cv.headline}`;
 const description = showcase
 	? "A component workshop by David Malmström, exploring three visual identities through one shared design system."
 	: cv.summary;
@@ -27,17 +30,25 @@ const languages = [
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		{!showcase && <>
-			<link rel="alternate" hreflang="en" href="/" />
-			<link rel="alternate" hreflang="sv" href="/sv/" />
-			<link rel="alternate" hreflang="x-default" href="/" />
-		</>}
+		{
+			!showcase && (
+				<>
+					<link rel="alternate" hreflang="en" href="/" />
+					<link rel="alternate" hreflang="sv" href="/sv/" />
+					<link rel="alternate" hreflang="x-default" href="/" />
+				</>
+			)
+		}
+		<Font cssVariable="--font-bricolage-grotesque" preload />
+
 		<title>{title}</title>
 		<script is:inline>
 			try {
 				var identity = localStorage.getItem("syr-identity");
 				document.documentElement.dataset.identity =
-					identity === "editorial" || identity === "neobrutalism" ? identity : "nasa";
+					identity === "editorial" || identity === "neobrutalism"
+						? identity
+						: "nasa";
 				var saved = localStorage.getItem("syr-theme");
 				document.documentElement.dataset.theme =
 					saved === "dark" || saved === "system" ? saved : "light";
@@ -48,20 +59,51 @@ const languages = [
 		</script>
 	</head>
 	<body class:list={[{ "is-workshop": showcase }]}>
-		<a class="syr-skip-link" href="#main-content">{cv.labels.skipToContent}</a>
+		<a class="syr-skip-link" href="#main-content"
+			>{cv.labels.skipToContent}</a
+		>
 		<slot name="workshop" />
 		<div class="syr-site">
 			<div class="syr-hero-band">
 				<div class="syr-topbar">
-					<nav class="syr-segmented syr-squircle" aria-label={cv.labels.language}>
-						{languages.map((language) => language.code === locale ? (
-							<span class="syr-squircle" aria-current="true" lang={language.code}>{language.label}</span>
-						) : (
-							<a class="syr-squircle" href={language.href} lang={language.code} hreflang={language.code}>{language.label}</a>
-						))}
+					<nav
+						class="syr-segmented syr-squircle"
+						aria-label={cv.labels.language}
+					>
+						{
+							languages.map((language) =>
+								language.code === locale ? (
+									<span
+										class="syr-squircle"
+										aria-current="true"
+										lang={language.code}
+									>
+										{language.label}
+									</span>
+								) : (
+									<a
+										class="syr-squircle"
+										href={language.href}
+										lang={language.code}
+										hreflang={language.code}
+									>
+										{language.label}
+									</a>
+								),
+							)
+						}
 					</nav>
-					<a class="syr-workshop-link" href={showcase ? "/" : "/design-system/"}>
-						{showcase ? "Back to CV" : locale === "sv" ? "Designsystem" : "Design system"}
+					<a
+						class="syr-workshop-link"
+						href={showcase ? "/" : "/design-system/"}
+					>
+						{
+							showcase
+								? "Back to CV"
+								: locale === "sv"
+									? "Designsystem"
+									: "Design system"
+						}
 					</a>
 					<ThemeMenu locale={locale} />
 				</div>
