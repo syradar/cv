@@ -9,6 +9,7 @@ const keysOf = (value: unknown): unknown => {
   if (value !== null && typeof value === "object") {
     return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, keysOf(child)]));
   }
+
   return typeof value;
 };
 
@@ -28,7 +29,42 @@ describe("CV locale data", () => {
           Object.values(value).forEach(visit);
         }
       };
+
       visit(locale);
+    }
+  });
+
+  it("keeps recruiter-focused role evidence and frontend skills", () => {
+    expect(english.headline).toBe("Senior Frontend Engineer");
+    expect(swedish.headline).toBe("Senior frontendutvecklare");
+    expect(english.skills.top).toEqual([
+      "TypeScript",
+      "React",
+      "Angular",
+      "Vue.js",
+      "Accessibility",
+    ]);
+    expect(english.experience.devcore.assignments[0].highlights).toHaveLength(5);
+    expect(swedish.experience.devcore.assignments[0].highlights).toHaveLength(5);
+    expect(english.experience.devcore.assignments[0].company).toContain("Confidential client");
+    expect(swedish.experience.devcore.assignments[0].company).toContain("Konfidentiell kund");
+
+    const removedSkills = new Set([
+      "Software Development",
+      "Documentation",
+      "Agile Methodologies",
+      "Cross-functional Collaborations",
+      "Front-End Development",
+      "E-Commerce",
+      "Python",
+    ]);
+
+    for (const locale of [english, swedish]) {
+      const skills = locale.skills.groups.flatMap((group) => group.items);
+
+      for (const removedSkill of removedSkills) {
+        expect(skills).not.toContain(removedSkill);
+      }
     }
   });
 });

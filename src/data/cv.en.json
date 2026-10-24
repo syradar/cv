@@ -1,7 +1,7 @@
 {
   "name": "David Malmström ✌️",
   "plainName": "David Malmström",
-  "headline": "Frontend Engineer",
+  "headline": "Senior Frontend Engineer",
   "location": "Stockholm, Sweden",
   "summary": "I build accessible digital experiences that bring together thoughtful design and dependable engineering. As an IT consultant, I work with teams to make web applications faster, easier to use, and simpler to maintain.",
   "labels": {
@@ -50,7 +50,7 @@
       "description": "I lead and contribute to client projects, building dynamic and accessible applications with Angular and React. I work closely with clients and designers to create intuitive interfaces, and improve delivery with GitHub Actions, Azure, and OpenShift. My focus is on performance, scalability, maintainability, mentoring, and helping teams grow.",
       "assignments": [
         {
-          "company": "Large Resource Company",
+          "company": "Confidential client — large resource company",
           "title": "Front End Lead",
           "employmentType": "contract",
           "dates": {
@@ -58,10 +58,16 @@
             "end": "current"
           },
           "location": "Stockholm County, Sweden · Hybrid",
-          "description": "Enhancing the company's web presence with a focus on performance, user experience, and maintainability."
+          "highlights": [
+            "Led frontend delivery for a subcontractor team building a large-scale project for the client’s website.",
+            "Migrated the frontend from Vue 2 to Vue 3.",
+            "Restructured SCSS to use modern CSS features.",
+            "Introduced TypeScript incrementally across new and legacy pages.",
+            "Set up frontend tests with Vitest and presented frontend changes to the team."
+          ]
         },
         {
-          "company": "Large Swedish bank",
+          "company": "Confidential client — large Swedish bank",
           "title": "Software Developer",
           "employmentType": "contract",
           "dates": {
@@ -97,7 +103,7 @@
     }
   },
   "skills": {
-    "top": ["TypeScript", "React", "DevOps", "C#", "Accessibility"],
+    "top": ["TypeScript", "React", "Angular", "Vue.js", "Accessibility"],
     "groups": [
       {
         "name": "Languages and frameworks",
@@ -116,7 +122,7 @@
       },
       {
         "name": "Frontend and tooling",
-        "items": ["Front-End Development", "Vite", "Optimizely", "E-Commerce"]
+        "items": ["Vite", "Optimizely"]
       },
       {
         "name": "Backend and data",
@@ -132,13 +138,7 @@
       },
       {
         "name": "Leadership and ways of working",
-        "items": [
-          "Professional Mentoring",
-          "Cross-functional Collaborations",
-          "Agile Methodologies",
-          "Software Development",
-          "Documentation"
-        ]
+        "items": ["Professional Mentoring"]
       },
       {
         "name": "AI",

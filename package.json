@@ -19,16 +19,18 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/generate-pdfs.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "prepare": "vp config"
   },
   "dependencies": {
+    "@types/node": "^26.6.5",
     "astro": "^7.4.2",
     "astro-heroicons": "2.1.5-1"
   },
   "devDependencies": {
+    "puppeteer": "^25.16.0",
     "vite-plus": "catalog:"
   }
 }

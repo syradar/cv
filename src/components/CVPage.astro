@@ -1,5 +1,4 @@
 ---
-import DocumentArrowDown from "astro-heroicons/outline/DocumentArrowDown.astro";
 import english from "../data/cv.en.json";
 import swedish from "../data/cv.sv.json";
 import SiteLayout from "../layouts/SiteLayout.astro";
@@ -40,8 +39,8 @@ const structuredData = {
 	knowsAbout: skills,
 };
 const sections = [
-	{ id: "about", label: cv.labels.about },
 	{ id: "experience", label: cv.labels.experience },
+	{ id: "about", label: cv.labels.about },
 	{ id: "skills", label: cv.labels.skills },
 	{ id: "education", label: cv.labels.education },
 ];
@@ -59,15 +58,19 @@ const restName = nameRest.join(" ");
 				<span>{restName}</span>
 			</h1>
 			<p class="syr-headline">{cv.headline}</p>
-			<p class="syr-summary">{cv.summary}</p>
 			<div class="syr-actions">
 				<a class="syr-button syr-button-primary syr-squircle" href={`mailto:${cv.contact.email}`}>
 					{cv.labels.contact}
 				</a>
-				<button class="syr-button syr-button-quiet syr-squircle" type="button" data-print>
-					<DocumentArrowDown class="syr-button-icon" />
+				<a
+					class="syr-button syr-button-quiet syr-squircle"
+					href={`/cv-david-malmstrom-${locale}.pdf`}
+					target="_blank"
+					rel="noopener"
+					type="application/pdf"
+				>
 					{cv.labels.pdf}
-				</button>
+				</a>
 			</div>
 		</header>
 
@@ -78,6 +81,53 @@ const restName = nameRest.join(" ");
 	</div>
 
 	<main id="main-content" class="syr-page">
+		<section id="experience" class="syr-section" aria-labelledby="experience-heading">
+			<h2 id="experience-heading">{cv.labels.experience}</h2>
+			<div class="syr-section-content syr-stack">
+				<article class="syr-card syr-squircle">
+					<p class="syr-meta">
+						{cv.experience.devcore.dates.start} — {dateEnd(cv.experience.devcore.dates.end)} · {employmentLabel(cv.experience.devcore.employmentType)}
+					</p>
+					<h3>{cv.experience.devcore.title}</h3>
+					<p class="syr-company">{cv.experience.devcore.company}</p>
+					<p class="syr-description">{cv.experience.devcore.description}</p>
+					<p class="syr-meta syr-client-heading">{cv.labels.clientWork}</p>
+					<div class="syr-assignment-list">
+						{
+							cv.experience.devcore.assignments.map((assignment) => (
+								<article class="syr-nested syr-squircle">
+									<p class="syr-meta">
+										{assignment.dates.start} — {dateEnd(assignment.dates.end)}
+									</p>
+									<h4>{assignment.title}</h4>
+									<p class="syr-company">{assignment.company}</p>
+									{assignment.highlights ? (
+										<ul class="syr-experience-highlights">
+											{assignment.highlights.map((highlight) => <li>{highlight}</li>)}
+										</ul>
+									) : (
+										<p class="syr-description">{assignment.description}</p>
+									)}
+								</article>
+							))
+						}
+					</div>
+				</article>
+				{
+					otherRoles.map((role) => (
+						<article class="syr-card syr-squircle">
+							<p class="syr-meta">
+								{role.dates.start} — {dateEnd(role.dates.end)} · {employmentLabel(role.employmentType)}
+							</p>
+							<h3>{role.title}</h3>
+							<p class="syr-company">{role.company}</p>
+							<p class="syr-description">{role.description}</p>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
 		<section id="about" class="syr-section" aria-labelledby="about-heading">
 			<h2 id="about-heading">{cv.labels.about}</h2>
 			<div class="syr-section-content">
@@ -106,47 +156,6 @@ const restName = nameRest.join(" ");
 						</li>
 					</ul>
 				</div>
-			</div>
-		</section>
-
-		<section id="experience" class="syr-section" aria-labelledby="experience-heading">
-			<h2 id="experience-heading">{cv.labels.experience}</h2>
-			<div class="syr-section-content syr-stack">
-				<article class="syr-card syr-squircle">
-					<p class="syr-meta">
-						{cv.experience.devcore.dates.start} — {dateEnd(cv.experience.devcore.dates.end)} · {employmentLabel(cv.experience.devcore.employmentType)}
-					</p>
-					<h3>{cv.experience.devcore.title}</h3>
-					<p class="syr-company">{cv.experience.devcore.company}</p>
-					<p class="syr-description">{cv.experience.devcore.description}</p>
-					<p class="syr-meta syr-client-heading">{cv.labels.clientWork}</p>
-					<div class="syr-assignment-list">
-						{
-							cv.experience.devcore.assignments.map((assignment) => (
-								<article class="syr-nested syr-squircle">
-									<p class="syr-meta">
-										{assignment.dates.start} — {dateEnd(assignment.dates.end)}
-									</p>
-									<h4>{assignment.title}</h4>
-									<p class="syr-company">{assignment.company}</p>
-									<p class="syr-description">{assignment.description}</p>
-								</article>
-							))
-						}
-					</div>
-				</article>
-				{
-					otherRoles.map((role) => (
-						<article class="syr-card syr-squircle">
-							<p class="syr-meta">
-								{role.dates.start} — {dateEnd(role.dates.end)} · {employmentLabel(role.employmentType)}
-							</p>
-							<h3>{role.title}</h3>
-							<p class="syr-company">{role.company}</p>
-							<p class="syr-description">{role.description}</p>
-						</article>
-					))
-				}
 			</div>
 		</section>
 
@@ -229,8 +238,6 @@ const restName = nameRest.join(" ");
 </SiteLayout>
 
 <script>
-	document.querySelector("[data-print]")?.addEventListener("click", () => window.print());
-
 	const nav = document.querySelector<HTMLElement>("[data-section-nav]");
 	const glider = nav?.querySelector<HTMLElement>(".syr-nav-glider");
 
@@ -305,14 +312,6 @@ const restName = nameRest.join(" ");
 		letter-spacing: -0.03em;
 	}
 
-	.syr-summary {
-		max-width: 38rem;
-		margin: 1.3rem 0 0;
-		color: rgb(255 255 255 / 92%);
-		font-size: 1.08rem;
-		line-height: 1.7;
-	}
-
 	.syr-actions {
 		display: flex;
 		flex-wrap: wrap;
@@ -358,11 +357,6 @@ const restName = nameRest.join(" ");
 	.syr-button-quiet {
 		background: color-mix(in srgb, var(--syr-accent) 50%, white);
 		color: #1f1f1e;
-	}
-
-	.syr-button-icon {
-		width: 1.1rem;
-		height: 1.1rem;
 	}
 
 	.syr-section-nav {
@@ -477,6 +471,16 @@ const restName = nameRest.join(" ");
 		color: var(--syr-muted);
 		font-size: 0.94rem;
 		line-height: 1.65;
+	}
+
+	.syr-experience-highlights {
+		display: grid;
+		gap: 0.45rem;
+		margin: 0.8rem 0 0;
+		padding-left: 1.2rem;
+		color: var(--syr-muted);
+		font-size: 0.94rem;
+		line-height: 1.55;
 	}
 
 	.syr-client-heading {
@@ -668,15 +672,30 @@ const restName = nameRest.join(" ");
 			width: 100%;
 		}
 
+		.syr-hero-inner {
+			padding-bottom: 0;
+		}
+
 		.syr-intro {
-			padding-block: 0 1.5rem;
+			max-width: none;
+			padding-block: 0 0.5rem;
 		}
 
 		.syr-hero-inner,
 		.syr-intro .syr-meta,
-		.syr-headline,
-		.syr-summary {
+		.syr-headline {
 			color: #111;
+		}
+
+		h1 {
+			font-size: 3rem;
+			letter-spacing: -0.05em;
+			line-height: 0.95;
+		}
+
+		.syr-headline {
+			margin-top: 0.4rem;
+			font-size: 1rem;
 		}
 
 		.syr-section-nav,
@@ -685,14 +704,100 @@ const restName = nameRest.join(" ");
 		}
 
 		.syr-section {
-			grid-template-columns: 9rem minmax(0, 1fr);
-			padding-top: 1.5rem;
-			break-inside: avoid;
+			grid-template-columns: 7rem minmax(0, 1fr);
+			gap: 0.35rem 0.8rem;
+			padding-top: 0.75rem;
 		}
 
 		.syr-card {
+			padding: 0.65rem 0.8rem;
 			border: 1px solid var(--syr-line);
+			break-inside: auto;
+		}
+
+		.syr-nested {
+			padding: 0.55rem 0.65rem;
 			break-inside: avoid;
+		}
+
+		.syr-section > h2 {
+			margin-top: 0.1rem;
+			font-size: 1rem;
+		}
+
+		.syr-card h3 {
+			margin-top: 0.2rem;
+			font-size: 0.95rem;
+		}
+
+		.syr-nested h4 {
+			margin-top: 0.2rem;
+			font-size: 0.85rem;
+		}
+
+		.syr-meta {
+			font-size: 0.62rem;
+		}
+
+		.syr-company,
+		.syr-description,
+		.syr-experience-highlights {
+			font-size: 0.76rem;
+			line-height: 1.3;
+		}
+
+		.syr-description,
+		.syr-experience-highlights {
+			margin-top: 0.35rem;
+		}
+
+		.syr-assignment-list,
+		.syr-stack,
+		.syr-skill-groups {
+			gap: 0.4rem;
+		}
+
+		.syr-skill-groups {
+			margin-top: 0;
+		}
+
+		.syr-skill-list {
+			gap: 0.1rem 0.8rem;
+			font-size: 0.76rem;
+			line-height: 1.25;
+		}
+
+		.syr-group-heading {
+			margin-bottom: 0.2rem !important;
+			font-size: 0.75rem !important;
+		}
+
+		.syr-about-copy {
+			font-size: 0.85rem;
+			line-height: 1.4;
+		}
+
+		.syr-contact-links {
+			gap: 0.2rem 0.6rem;
+			margin-top: 0.5rem;
+		}
+
+		.syr-contact-links a {
+			padding: 0.25rem 0.4rem;
+			font-size: 0.7rem;
+		}
+
+		.syr-language-list {
+			gap: 0.5rem;
+		}
+
+		.syr-language-list h3,
+		.syr-language-list p {
+			font-size: 0.75rem !important;
+		}
+
+		.syr-recommendation blockquote {
+			font-size: 1rem;
 		}
 
 		.syr-card-accent {
