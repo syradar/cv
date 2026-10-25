@@ -1,13 +1,56 @@
 ---
 import DocumentArrowDown from "astro-heroicons/outline/DocumentArrowDown.astro";
-interface Props { email: string; contactLabel: string; pdfLabel: string; pdfHref?: string; disabled?: boolean; static?: boolean }
-const {email, contactLabel, pdfLabel, pdfHref, disabled = false, static: isStatic = false} = Astro.props;
+interface Props {
+  email: string;
+  contactLabel: string;
+  pdfLabel: string;
+  pdfHref?: string;
+  disabled?: boolean;
+  static?: boolean;
+}
+const {
+  email,
+  contactLabel,
+  pdfLabel,
+  pdfHref,
+  disabled = false,
+  static: isStatic = false,
+} = Astro.props;
 ---
+
 <div class="syr-actions" data-component="actions" data-static={isStatic}>
-  <a class="syr-button syr-button-primary syr-squircle" href={`mailto:${email}`}><span class="syr-button-label" data-label={contactLabel}>{contactLabel}</span></a>
-  {pdfHref ? (
-    <a class="syr-button syr-button-quiet syr-squircle" href={pdfHref} target="_blank" rel="noopener" type="application/pdf"><span class="syr-button-label" data-label={pdfLabel}>{pdfLabel}</span></a>
-  ) : (
-  <button class="syr-button syr-button-quiet syr-squircle" type="button" data-print disabled={disabled}><DocumentArrowDown class="syr-button-icon" /><span class="syr-button-label" data-label={pdfLabel}>{pdfLabel}</span></button>
-  )}
+  <a class="syr-button syr-button-primary syr-squircle" href={`mailto:${email}`}
+    ><span class="syr-button-label" data-label={contactLabel}
+      >{contactLabel}</span
+    ></a
+  >
+  {
+    pdfHref ? (
+      <a
+        class="syr-button syr-button-quiet syr-squircle"
+        href={pdfHref}
+        target="_blank"
+        rel="noopener"
+        type="application/pdf"
+      >
+        <span class="syr-button-label" data-label={pdfLabel}>
+          {pdfLabel}
+        </span>
+      </a>
+    ) : (
+      <button
+        class="syr-button syr-button-quiet syr-squircle"
+        type="button"
+        data-print
+        disabled={disabled}
+      >
+        <>
+          <DocumentArrowDown class="syr-button-icon" />
+          <span class="syr-button-label" data-label={pdfLabel}>
+            {pdfLabel}
+          </span>
+        </>
+      </button>
+    )
+  }
 </div>

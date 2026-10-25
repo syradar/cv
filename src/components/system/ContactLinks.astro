@@ -14,15 +14,19 @@ const { links } = Astro.props;
 ---
 
 <ul class="syr-contact-links" data-component="contact-links" data-static="true">
-  {links.map((link) => (
-    <li>
-      <a
-        href={link.href}
-        target={link.external ? "_blank" : undefined}
-        rel={link.external ? "noreferrer" : undefined}
-      >
-        <span>{link.label}</span><span>{link.value}</span>
-      </a>
-    </li>
-  ))}
+  {
+    links.map((link) => (
+      <li>
+        <a
+          class="syr-contact-link"
+          href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noreferrer" : undefined}
+        >
+          <span class="syr-contact-link-label">{link.label}</span>
+          <span class="syr-contact-link-value">{link.value}</span>
+        </a>
+      </li>
+    ))
+  }
 </ul>

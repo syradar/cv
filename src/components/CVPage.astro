@@ -59,26 +59,53 @@ const sections = [
 ];
 const otherRoles = [cv.experience.rightGrafiska, cv.experience.freelance];
 const contactLinks = [
-	{ label: cv.labels.email, value: cv.contact.email, href: `mailto:${cv.contact.email}` },
-	{ label: cv.labels.linkedin, value: "syradar", href: cv.contact.linkedin, external: true },
-	{ label: cv.labels.github, value: "@syradar", href: cv.contact.github, external: true },
-	{ label: cv.labels.curatedReads, value: cv.labels.readingList, href: cv.contact.curatedReads, external: true },
+	{
+		label: cv.labels.email,
+		value: cv.contact.email,
+		href: `mailto:${cv.contact.email}`,
+	},
+	{
+		label: cv.labels.linkedin,
+		value: "syradar",
+		href: cv.contact.linkedin,
+		external: true,
+	},
+	{
+		label: cv.labels.github,
+		value: "@syradar",
+		href: cv.contact.github,
+		external: true,
+	},
+	{
+		label: cv.labels.curatedReads,
+		value: cv.labels.readingList,
+		href: cv.contact.curatedReads,
+		external: true,
+	},
 ];
 ---
 
 <SiteLayout locale={locale} cv={cv} showcase={showcase}>
-	{showcase && (
-		<header slot="workshop" class="workshop-chrome workshop-header">
-			<nav aria-label="Workshop">
-				<a href="/">David Malmström / CV</a>
-				<a href="#main-content">Live composition</a>
-				<a href="#components">Components</a>
-				{import.meta.env.DEV && <a href="/design-system/compare">Compare identities</a>}
-			</nav>
-			<p class="workshop-title">One CV. Three identities.</p>
-			<p>A component workshop exploring Modern NASA, Editorial, and Neobrutalism. Open Appearance to change the identity or color mode.</p>
-		</header>
-	)}
+	{
+		showcase && (
+			<header slot="workshop" class="workshop-chrome workshop-header">
+				<nav aria-label="Workshop">
+					<a href="/">David Malmström / CV</a>
+					<a href="#main-content">Live composition</a>
+					<a href="#components">Components</a>
+					{import.meta.env.DEV && (
+						<a href="/design-system/compare">Compare identities</a>
+					)}
+				</nav>
+				<p class="workshop-title">One CV. Three identities.</p>
+				<p>
+					A component workshop exploring Modern NASA, Editorial, and
+					Neobrutalism. Open Appearance to change the identity or
+					color mode.
+				</p>
+			</header>
+		)
+	}
 	<div slot="hero" class="syr-hero-inner">
 		<Hero
 			name={cv.name}
@@ -94,67 +121,90 @@ const contactLinks = [
 	</div>
 
 	<main id="main-content" class="syr-page">
-		<Section id="experience" title={cv.labels.experience} headingId="experience-heading" contentClass="syr-stack">
-				<Entry
-					dates={`${cv.experience.devcore.dates.start} — ${dateEnd(cv.experience.devcore.dates.end)} · ${employmentLabel(cv.experience.devcore.employmentType)}`}
-					title={cv.experience.devcore.title}
-					company={cv.experience.devcore.company}
-				>
-					<p class="syr-description">{cv.experience.devcore.description}</p>
-					<p class="syr-meta syr-client-heading">{cv.labels.clientWork}</p>
-					<div class="syr-assignment-list">
-						{
-cv.experience.devcore.assignments.map((assignment) => (
-								<Role
-									nested
-									title={assignment.title}
-									company={assignment.company}
-									dates={`${assignment.dates.start} — ${dateEnd(assignment.dates.end)}`}
-									description={assignment.highlights ? undefined : assignment.description}
-								>
-									{assignment.highlights && (
-										<Highlights items={assignment.highlights} />
-									)}
-								</Role>
-							))
-						}
-					</div>
-				</Entry>
-				{
-					otherRoles.map((role) => (
-						<Role
-							title={role.title}
-							company={role.company}
-							dates={`${role.dates.start} — ${dateEnd(role.dates.end)} · ${employmentLabel(role.employmentType)}`}
-							description={role.description}
-						/>
-					))
-				}
+		<Section
+			id="experience"
+			title={cv.labels.experience}
+			headingId="experience-heading"
+			contentClass="syr-stack"
+		>
+			<Entry
+				dates={`${cv.experience.devcore.dates.start} — ${dateEnd(cv.experience.devcore.dates.end)} · ${employmentLabel(cv.experience.devcore.employmentType)}`}
+				title={cv.experience.devcore.title}
+				company={cv.experience.devcore.company}
+			>
+				<p class="syr-description">
+					{cv.experience.devcore.description}
+				</p>
+				<p class="syr-meta syr-client-heading">
+					{cv.labels.clientWork}
+				</p>
+				<div class="syr-assignment-list">
+					{
+						cv.experience.devcore.assignments.map((assignment) => (
+							<Role
+								nested
+								title={assignment.title}
+								company={assignment.company}
+								dates={`${assignment.dates.start} — ${dateEnd(assignment.dates.end)}`}
+								description={
+									assignment.highlights
+										? undefined
+										: assignment.description
+								}
+							>
+								{assignment.highlights && (
+									<Highlights items={assignment.highlights} />
+								)}
+							</Role>
+						))
+					}
+				</div>
+			</Entry>
+			{
+				otherRoles.map((role) => (
+					<Role
+						title={role.title}
+						company={role.company}
+						dates={`${role.dates.start} — ${dateEnd(role.dates.end)} · ${employmentLabel(role.employmentType)}`}
+						description={role.description}
+					/>
+				))
+			}
 		</Section>
 
 		<Section id="about" title={cv.labels.about} headingId="about-heading">
-				<Surface as="div">
-					<p class="syr-about-copy">{cv.summary}</p>
-					<ContactLinks links={contactLinks} />
-				</Surface>
+			<Surface as="div">
+				<p class="syr-about-copy">{cv.summary}</p>
+				<ContactLinks links={contactLinks} />
+			</Surface>
 		</Section>
 
-		<Section id="skills" title={cv.labels.skills} headingId="skills-heading" contentClass="syr-stack">
-				<Surface as="div">
-					<div class="syr-skill-groups">
-						{
-							cv.skills.groups.map((group) => (
-								<div>
-									<h3 class="syr-group-heading">{group.name}</h3>
-									<SkillList items={group.items} />
-								</div>
-							))
-						}
-					</div>
-				</Surface>
+		<Section
+			id="skills"
+			title={cv.labels.skills}
+			headingId="skills-heading"
+			contentClass="syr-stack"
+		>
+			<Surface as="div">
+				<div class="syr-skill-groups">
+					{
+						cv.skills.groups.map((group) => (
+							<div>
+								<h3 class="syr-group-heading">{group.name}</h3>
+								<SkillList items={group.items} />
+							</div>
+						))
+					}
+				</div>
+			</Surface>
 		</Section>
 
-		<Section id="education" title={cv.labels.education} headingId="education-heading" contentClass="syr-stack">
+		<Section
+			id="education"
+			title={cv.labels.education}
+			headingId="education-heading"
+			contentClass="syr-stack"
+		>
 			<Entry
 				dates={cv.education.dates}
 				title={cv.education.program}
@@ -169,23 +219,37 @@ cv.experience.devcore.assignments.map((assignment) => (
 		</Section>
 
 		<Section title={cv.labels.languages} headingId="languages-heading">
-				<Surface as="div">
-					<LanguageList languages={cv.languages} />
-				</Surface>
+			<Surface as="div">
+				<LanguageList languages={cv.languages} />
+			</Surface>
 		</Section>
 
-		<Section title={cv.labels.recommendation} headingId="recommendation-heading">
-				<Quotation {...cv.recommendation} />
+		<Section
+			title={cv.labels.recommendation}
+			headingId="recommendation-heading"
+		>
+			<Quotation {...cv.recommendation} />
 		</Section>
-		<Section id="personal" title={cv.labels.personal} headingId="personal-heading">
-				<Surface as="div">
-					<p class="syr-description">
-						{cv.personal.interests}{" "}{cv.personal.projectIntro}{" "}
-						<a href={cv.personal.projectUrl} target="_blank" rel="noreferrer">{cv.personal.projectName}</a>, {cv.personal.projectDescription}
-					</p>
-				</Surface>
+		<Section
+			id="personal"
+			title={cv.labels.personal}
+			headingId="personal-heading"
+		>
+			<Surface as="div">
+				<p class="syr-description">
+					{cv.personal.interests}{" "}{cv.personal.projectIntro}{" "}
+					<a
+						href={cv.personal.projectUrl}
+						target="_blank"
+						rel="noreferrer">{cv.personal.projectName}</a
+					>, {cv.personal.projectDescription}
+				</p>
+			</Surface>
 		</Section>
 		{showcase && <ComponentExamples />}
 	</main>
-	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+	<script
+		type="application/ld+json"
+		set:html={JSON.stringify(structuredData)}
+	/>
 </SiteLayout>

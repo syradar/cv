@@ -311,28 +311,32 @@
   }
 
   .syr-group-heading {
-    margin: 0 0 0.7rem !important;
-    color: var(--syr-muted);
+    margin: 0 0 0.55rem 0 !important;
+    /*color: var(--syr-muted);
     font-size: 0.85rem !important;
     font-weight: 600 !important;
-    letter-spacing: 0 !important;
+    letter-spacing: 0 !important; */
   }
 
   .syr-skill-groups {
     display: grid;
-    gap: 1.4rem;
-    margin-top: 1.7rem;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(28ch, 1fr));
   }
 
   .syr-skill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.6rem;
+    /* display: flex;
+    flex-wrap: wrap; */
+    /* gap: 0.4rem 1.6rem; */
     margin: 0;
-    padding: 0;
-    list-style: none;
-    font-size: 0.95rem;
+    padding-inline-start: 1em;
+    /* list-style: none; */
+    /* font-size: 0.95rem; */
     line-height: 1.5;
+
+    ::marker {
+      color: var(--syr-accent);
+    }
   }
 
   .syr-skill-list-top {

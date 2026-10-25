@@ -6,6 +6,10 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ul class="syr-experience-highlights" data-component="highlights" data-static="true">
+<ul
+  class="syr-experience-highlights"
+  data-component="highlights"
+  data-static="true"
+>
   {items.map((item) => <li>{item}</li>)}
 </ul>
