@@ -57,14 +57,37 @@
 
   .syr-hero-band {
     position: relative;
-    background: var(--syr-hero-bg) var(--syr-hero-pattern) 0 0 / 600px 600px;
+    isolation: isolate;
+    background: var(--syr-hero-bg);
     color: var(--syr-hero-ink);
+  }
+
+  .syr-hero-pattern {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .syr-hero-pattern::before {
+    content: "";
+    position: absolute;
+    /* Extra bleed keeps the slightly rotated tile covering the clipped edges. */
+    inset: -608px -8px -8px -608px;
+    background: var(--syr-hero-pattern) 0 0 / 600px 600px;
+    /* Avoid Firefox snapping this slow translation to whole device pixels. */
+    transform: rotate(0.05deg) translate3d(0, 0, 0);
+    will-change: transform;
     animation: syr-pattern-drift 90s linear infinite;
   }
 
   @keyframes syr-pattern-drift {
+    from {
+      transform: rotate(0.05deg) translate3d(0, 0, 0);
+    }
     to {
-      background-position: 600px 600px;
+      transform: rotate(0.05deg) translate3d(600px, 600px, 0);
     }
   }
 
@@ -150,8 +173,9 @@
       scroll-behavior: auto;
     }
 
-    .syr-hero-band {
+    .syr-hero-pattern::before {
       animation: none;
+      will-change: auto;
     }
 
     .syr-segmented a {
@@ -186,7 +210,10 @@
 
     .syr-hero-band {
       background: none;
-      animation: none;
+    }
+
+    .syr-hero-pattern {
+      display: none;
     }
 
     .syr-topbar,
