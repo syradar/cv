@@ -31,4 +31,20 @@ export function initializeNameWidth(hero: HTMLElement): void {
     observer.observe(reference)
     observer.observe(content)
   }
+
+  const heading = hero.querySelector<HTMLElement>("[data-name-heading]")
+
+  if (!heading) {
+    return
+  }
+
+  hero.dataset.nameVisible = "false"
+
+  const visibilityObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      hero.dataset.nameVisible = String(entry.isIntersecting)
+    }
+  })
+
+  visibilityObserver.observe(heading)
 }
