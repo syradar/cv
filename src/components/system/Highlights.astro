@@ -1,0 +1,11 @@
+---
+interface Props {
+  items: string[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="syr-experience-highlights" data-component="highlights" data-static="true">
+  {items.map((item) => <li>{item}</li>)}
+</ul>

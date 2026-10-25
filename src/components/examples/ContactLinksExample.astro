@@ -1,0 +1,16 @@
+---
+import ContactLinks from "../system/ContactLinks.astro";
+import cv from "../../data/cv.en.json";
+
+---
+
+<div class="workshop-surface-stage">
+  <ContactLinks
+    links={[
+      { label: cv.labels.email, value: cv.contact.email, href: `mailto:${cv.contact.email}` },
+      { label: cv.labels.linkedin, value: "syradar", href: cv.contact.linkedin, external: true },
+      { label: cv.labels.github, value: "@syradar", href: cv.contact.github, external: true },
+      { label: cv.labels.curatedReads, value: cv.labels.readingList, href: cv.contact.curatedReads, external: true },
+    ]}
+  />
+</div>

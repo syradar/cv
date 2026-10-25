@@ -2,4 +2,4 @@
 interface Props { items: string[]; prominent?: boolean }
 const { items, prominent = false } = Astro.props;
 ---
-<ul class:list={["syr-skill-list", {"syr-skill-list-top": prominent}]}>{items.map(item => <li>{item}</li>)}</ul>
+<ul class:list={["syr-skill-list", {"syr-skill-list-top": prominent}]} data-component="skill-list" data-static="true">{items.map(item => <li>{item}</li>)}</ul>

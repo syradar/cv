@@ -1,0 +1,23 @@
+---
+interface Props {
+  id?: string;
+  title: string;
+  headingId: string;
+  contentClass?: string;
+}
+
+const { id, title, headingId, contentClass } = Astro.props;
+---
+
+<section
+  id={id}
+  class="syr-section"
+  data-component="section"
+  data-static="true"
+  aria-labelledby={headingId}
+>
+  <h2 id={headingId}>{title}</h2>
+  <div class:list={["syr-section-content", contentClass]}>
+    <slot />
+  </div>
+</section>

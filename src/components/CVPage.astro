@@ -2,9 +2,15 @@
 import Quotation from "./system/Quotation.astro";
 import ComponentExamples from "./ComponentExamples.astro";
 import Role from "./system/Role.astro";
-import Actions from "./system/Actions.astro";
 import SkillList from "./system/SkillList.astro";
 import Surface from "./system/Surface.astro";
+import Hero from "./system/Hero.astro";
+import SectionNav from "./system/SectionNav.astro";
+import Section from "./system/Section.astro";
+import ContactLinks from "./system/ContactLinks.astro";
+import LanguageList from "./system/LanguageList.astro";
+import Entry from "./system/Entry.astro";
+import Highlights from "./system/Highlights.astro";
 import english from "../data/cv.en.json";
 import swedish from "../data/cv.sv.json";
 import SiteLayout from "../layouts/SiteLayout.astro";
@@ -52,8 +58,12 @@ const sections = [
 	{ id: "education", label: cv.labels.education },
 ];
 const otherRoles = [cv.experience.rightGrafiska, cv.experience.freelance];
-const [firstName, ...nameRest] = cv.name.split(" ");
-const restName = nameRest.join(" ");
+const contactLinks = [
+	{ label: cv.labels.email, value: cv.contact.email, href: `mailto:${cv.contact.email}` },
+	{ label: cv.labels.linkedin, value: "syradar", href: cv.contact.linkedin, external: true },
+	{ label: cv.labels.github, value: "@syradar", href: cv.contact.github, external: true },
+	{ label: cv.labels.curatedReads, value: cv.labels.readingList, href: cv.contact.curatedReads, external: true },
+];
 ---
 
 <SiteLayout locale={locale} cv={cv} showcase={showcase}>
@@ -70,32 +80,25 @@ const restName = nameRest.join(" ");
 		</header>
 	)}
 	<div slot="hero" class="syr-hero-inner">
-		<header class="syr-intro">
-			<p class="syr-meta">{cv.location}</p>
-			<h1>
-				<span>{firstName}</span>
-				<span>{restName}</span>
-			</h1>
-			<p class="syr-headline">{cv.headline}</p>
-			<Actions email={cv.contact.email} contactLabel={cv.labels.contact} pdfLabel={cv.labels.pdf} pdfHref={`/cv-david-malmstrom-${locale}.pdf`} />
-		</header>
-
-		<nav class="syr-section-nav syr-squircle" aria-label={cv.labels.sections} data-section-nav>
-			<span class="syr-nav-glider syr-squircle" aria-hidden="true"></span>
-			{sections.map((section) => <a class="syr-squircle" href={`#${section.id}`}>{section.label}</a>)}
-		</nav>
+		<Hero
+			name={cv.name}
+			location={cv.location}
+			headline={cv.headline}
+			email={cv.contact.email}
+			contactLabel={cv.labels.contact}
+			pdfLabel={cv.labels.pdf}
+			pdfHref={`/cv-david-malmstrom-${locale}.pdf`}
+		/>
+		<SectionNav label={cv.labels.sections} sections={sections} />
 	</div>
 
 	<main id="main-content" class="syr-page">
-		<section id="experience" class="syr-section" aria-labelledby="experience-heading">
-			<h2 id="experience-heading">{cv.labels.experience}</h2>
-			<div class="syr-section-content syr-stack">
-				<Surface as="article">
-					<p class="syr-meta">
-						{cv.experience.devcore.dates.start} — {dateEnd(cv.experience.devcore.dates.end)} · {employmentLabel(cv.experience.devcore.employmentType)}
-					</p>
-					<h3>{cv.experience.devcore.title}</h3>
-					<p class="syr-company">{cv.experience.devcore.company}</p>
+		<Section id="experience" title={cv.labels.experience} headingId="experience-heading" contentClass="syr-stack">
+				<Entry
+					dates={`${cv.experience.devcore.dates.start} — ${dateEnd(cv.experience.devcore.dates.end)} · ${employmentLabel(cv.experience.devcore.employmentType)}`}
+					title={cv.experience.devcore.title}
+					company={cv.experience.devcore.company}
+				>
 					<p class="syr-description">{cv.experience.devcore.description}</p>
 					<p class="syr-meta syr-client-heading">{cv.labels.clientWork}</p>
 					<div class="syr-assignment-list">
@@ -109,15 +112,13 @@ cv.experience.devcore.assignments.map((assignment) => (
 									description={assignment.highlights ? undefined : assignment.description}
 								>
 									{assignment.highlights && (
-										<ul class="syr-experience-highlights">
-											{assignment.highlights.map((highlight) => <li>{highlight}</li>)}
-										</ul>
+										<Highlights items={assignment.highlights} />
 									)}
 								</Role>
 							))
 						}
 					</div>
-				</Surface>
+				</Entry>
 				{
 					otherRoles.map((role) => (
 						<Role
@@ -128,43 +129,16 @@ cv.experience.devcore.assignments.map((assignment) => (
 						/>
 					))
 				}
-			</div>
-		</section>
+		</Section>
 
-		<section id="about" class="syr-section" aria-labelledby="about-heading">
-			<h2 id="about-heading">{cv.labels.about}</h2>
-			<div class="syr-section-content">
+		<Section id="about" title={cv.labels.about} headingId="about-heading">
 				<Surface as="div">
 					<p class="syr-about-copy">{cv.summary}</p>
-					<ul class="syr-contact-links">
-						<li>
-							<a href={`mailto:${cv.contact.email}`}>
-								<span>{cv.labels.email}</span><span>{cv.contact.email}</span>
-							</a>
-						</li>
-						<li>
-							<a href={cv.contact.linkedin} target="_blank" rel="noreferrer">
-								<span>{cv.labels.linkedin}</span><span>syradar</span>
-							</a>
-						</li>
-						<li>
-							<a href={cv.contact.github} target="_blank" rel="noreferrer">
-								<span>{cv.labels.github}</span><span>@syradar</span>
-							</a>
-						</li>
-						<li>
-							<a href={cv.contact.curatedReads} target="_blank" rel="noreferrer">
-								<span>{cv.labels.curatedReads}</span><span>{cv.labels.readingList}</span>
-							</a>
-						</li>
-					</ul>
+					<ContactLinks links={contactLinks} />
 				</Surface>
-			</div>
-		</section>
+		</Section>
 
-		<section id="skills" class="syr-section" aria-labelledby="skills-heading">
-			<h2 id="skills-heading">{cv.labels.skills}</h2>
-			<div class="syr-section-content syr-stack">
+		<Section id="skills" title={cv.labels.skills} headingId="skills-heading" contentClass="syr-stack">
 				<Surface as="div">
 					<div class="syr-skill-groups">
 						{
@@ -177,89 +151,40 @@ cv.experience.devcore.assignments.map((assignment) => (
 						}
 					</div>
 				</Surface>
-			</div>
-		</section>
+		</Section>
 
-		<section id="education" class="syr-section" aria-labelledby="education-heading">
-			<h2 id="education-heading">{cv.labels.education}</h2>
-			<div class="syr-section-content syr-stack">
-				<Surface as="article">
-					<p class="syr-meta">{cv.education.dates}</p>
-					<h3>{cv.education.program}</h3>
-					<p class="syr-company">{cv.education.institution}</p>
-					<p class="syr-description">{cv.education.details}</p>
-				</Surface>
-				<Surface as="article">
-					<p class="syr-meta">{cv.certification.issued}</p>
-					<h3>{cv.certification.name}</h3>
-					<p class="syr-company">{cv.certification.issuer} · {cv.labels.certifications}</p>
-				</Surface>
-			</div>
-		</section>
+		<Section id="education" title={cv.labels.education} headingId="education-heading" contentClass="syr-stack">
+			<Entry
+				dates={cv.education.dates}
+				title={cv.education.program}
+				company={cv.education.institution}
+				description={cv.education.details}
+			/>
+			<Entry
+				dates={cv.certification.issued}
+				title={cv.certification.name}
+				company={`${cv.certification.issuer} · ${cv.labels.certifications}`}
+			/>
+		</Section>
 
-		<section class="syr-section" aria-labelledby="languages-heading">
-			<h2 id="languages-heading">{cv.labels.languages}</h2>
-			<div class="syr-section-content">
+		<Section title={cv.labels.languages} headingId="languages-heading">
 				<Surface as="div">
-					<ul class="syr-language-list">
-						{
-							cv.languages.map((language) => (
-								<li>
-									<h3>{language.name}</h3>
-									<p>{language.proficiency}</p>
-								</li>
-							))
-						}
-					</ul>
+					<LanguageList languages={cv.languages} />
 				</Surface>
-			</div>
-		</section>
+		</Section>
 
-		<section class="syr-section" aria-labelledby="recommendation-heading">
-			<h2 id="recommendation-heading">{cv.labels.recommendation}</h2>
-			<div class="syr-section-content">
+		<Section title={cv.labels.recommendation} headingId="recommendation-heading">
 				<Quotation {...cv.recommendation} />
-			</div>
-		</section>
-		<section id="personal" class="syr-section" aria-labelledby="personal-heading">
-			<h2 id="personal-heading">{cv.labels.personal}</h2>
-			<div class="syr-section-content">
+		</Section>
+		<Section id="personal" title={cv.labels.personal} headingId="personal-heading">
 				<Surface as="div">
 					<p class="syr-description">
 						{cv.personal.interests}{" "}{cv.personal.projectIntro}{" "}
 						<a href={cv.personal.projectUrl} target="_blank" rel="noreferrer">{cv.personal.projectName}</a>, {cv.personal.projectDescription}
 					</p>
 				</Surface>
-			</div>
-		</section>
+		</Section>
 		{showcase && <ComponentExamples />}
 	</main>
 	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 </SiteLayout>
-
-<script>
-
-	const nav = document.querySelector<HTMLElement>("[data-section-nav]");
-	const glider = nav?.querySelector<HTMLElement>(".syr-nav-glider");
-
-	const moveGlider = (link: HTMLElement) => {
-		if (!nav || !glider) return;
-		const navBox = nav.getBoundingClientRect();
-		const box = link.getBoundingClientRect();
-		glider.style.width = `${box.width}px`;
-		glider.style.height = `${box.height}px`;
-		glider.style.transform = `translate(${box.left - navBox.left}px, ${box.top - navBox.top}px)`;
-		glider.dataset.visible = "true";
-	};
-
-	nav?.querySelectorAll<HTMLElement>("a").forEach((link) => {
-		link.addEventListener("pointerenter", () => moveGlider(link));
-		link.addEventListener("focus", () => moveGlider(link));
-	});
-	nav?.addEventListener("pointerleave", () => {
-		if (glider) glider.dataset.visible = "false";
-	});
-	nav?.addEventListener("focusout", () => {
-		if (glider) glider.dataset.visible = "false";
-	});
-</script>

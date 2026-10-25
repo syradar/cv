@@ -1,0 +1,21 @@
+---
+export interface Language {
+  name: string;
+  proficiency: string;
+}
+
+interface Props {
+  languages: Language[];
+}
+
+const { languages } = Astro.props;
+---
+
+<ul class="syr-language-list" data-component="language-list" data-static="true">
+  {languages.map((language) => (
+    <li>
+      <h3>{language.name}</h3>
+      <p>{language.proficiency}</p>
+    </li>
+  ))}
+</ul>

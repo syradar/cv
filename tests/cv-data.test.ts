@@ -24,9 +24,15 @@ describe("CV locale data", () => {
         if (typeof value === "string") {
           expect(value.trim().length).toBeGreaterThan(0);
         } else if (Array.isArray(value)) {
-          value.forEach(visit);
+          const items = value;
+          for (const item of items) {
+            visit(item);
+          }
         } else if (value !== null && typeof value === "object") {
-          Object.values(value).forEach(visit);
+          const children = Object.values(value);
+          for (const child of children) {
+            visit(child);
+          }
         }
       };
 

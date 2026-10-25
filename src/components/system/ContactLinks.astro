@@ -1,0 +1,28 @@
+---
+export interface ContactLink {
+  label: string;
+  value: string;
+  href: string;
+  external?: boolean;
+}
+
+interface Props {
+  links: ContactLink[];
+}
+
+const { links } = Astro.props;
+---
+
+<ul class="syr-contact-links" data-component="contact-links" data-static="true">
+  {links.map((link) => (
+    <li>
+      <a
+        href={link.href}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noreferrer" : undefined}
+      >
+        <span>{link.label}</span><span>{link.value}</span>
+      </a>
+    </li>
+  ))}
+</ul>

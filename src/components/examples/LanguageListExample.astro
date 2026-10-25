@@ -1,0 +1,10 @@
+---
+import Surface from "../system/Surface.astro";
+import LanguageList from "../system/LanguageList.astro";
+import cv from "../../data/cv.en.json";
+
+---
+
+<Surface>
+  <LanguageList languages={cv.languages} />
+</Surface>

@@ -3,7 +3,8 @@ interface Props {
   as?: "div" | "article" | "figure";
   variant?: "default" | "nested" | "accent";
   class?: string;
+  component?: string;
 }
-const { as: Tag = "div", variant = "default", class: className } = Astro.props;
+const { as: Tag = "div", variant = "default", class: className, component = "surface" } = Astro.props;
 ---
-<Tag class:list={[variant === "nested" ? "syr-nested" : "syr-card", { "syr-card-accent": variant === "accent" }, "syr-squircle", className]}><slot /></Tag>
+<Tag class:list={[variant === "nested" ? "syr-nested" : "syr-card", { "syr-card-accent": variant === "accent" }, "syr-squircle", className]} data-component={component} data-static="true"><slot /></Tag>

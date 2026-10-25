@@ -1,11 +1,16 @@
 ---
 import Surface from "../system/Surface.astro";
 import Role from "../system/Role.astro";
+import Section from "../system/Section.astro";
 import cv from "../../data/cv.en.json";
 const role = cv.experience.rightGrafiska;
 ---
 
-<div class="workshop-surface-stage">
+<Section
+  title={cv.labels.experience}
+  headingId="example-roles-heading"
+  contentClass="syr-stack"
+>
   <Role
     title={role.title}
     company={role.company}
@@ -28,4 +33,4 @@ const role = cv.experience.rightGrafiska;
       }
     </div>
   </Surface>
-</div>
+</Section>

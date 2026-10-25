@@ -1,6 +1,6 @@
 ---
 import { Font } from "astro:assets";
-import ThemeMenu from "../components/ThemeMenu.astro";
+import HeroBand from "../components/system/HeroBand.astro";
 import english from "../data/cv.en.json";
 import "../styles/global.css";
 
@@ -16,10 +16,6 @@ const title = showcase
 const description = showcase
 	? "A component workshop by David Malmström, exploring three visual identities through one shared design system."
 	: cv.summary;
-const languages = [
-	{ code: "en", label: "English", href: "/" },
-	{ code: "sv", label: "Svenska", href: "/sv/" },
-];
 ---
 
 <!doctype html>
@@ -64,57 +60,21 @@ const languages = [
 		>
 		<slot name="workshop" />
 		<div class="syr-site">
-			<div class="syr-hero-band">
-				<div class="syr-hero-pattern" aria-hidden="true"></div>
-				<div class="syr-topbar">
-					<nav
-						class="syr-segmented syr-squircle"
-						aria-label={cv.labels.language}
-					>
-						{
-							languages.map((language) =>
-								language.code === locale ? (
-									<span
-										class="syr-squircle"
-										aria-current="true"
-										lang={language.code}
-									>
-										{language.label}
-									</span>
-								) : (
-									<a
-										class="syr-squircle"
-										href={language.href}
-										lang={language.code}
-										hreflang={language.code}
-									>
-										{language.label}
-									</a>
-								),
-							)
-						}
-					</nav>
-					<a
-						class="syr-workshop-link"
-						href={showcase ? "/" : "/design-system/"}
-					>
-						{
-							showcase
-								? "Back to CV"
-								: locale === "sv"
-									? "Designsystem"
-									: "Design system"
-						}
-					</a>
-					<ThemeMenu locale={locale} />
-				</div>
+			<HeroBand locale={locale} cv={cv} showcase={showcase}>
 				<slot name="hero" />
-			</div>
+			</HeroBand>
 			<slot />
 			<footer class="syr-footer">
 				<p>© {new Date().getFullYear()} {cv.plainName}</p>
 				<a href={`mailto:${cv.contact.email}`}>{cv.contact.email}</a>
 			</footer>
 		</div>
+		<script>
+			import { initializeComponents } from "../scripts/component-runner";
+			import { initializePreferenceEffects } from "../scripts/preference-effects";
+
+			const callbacks = initializePreferenceEffects(document);
+			initializeComponents(document, callbacks);
+		</script>
 	</body>
 </html>

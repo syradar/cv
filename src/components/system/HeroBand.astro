@@ -1,0 +1,58 @@
+---
+import ThemeMenu from "../ThemeMenu.astro";
+import english from "../../data/cv.en.json";
+
+interface Props {
+  locale: "en" | "sv";
+  cv: typeof english;
+  showcase?: boolean;
+  static?: boolean;
+}
+
+const { locale, cv, showcase = false, static: isStatic = false } = Astro.props;
+const languages = [
+  { code: "en", label: "English", href: "/" },
+  { code: "sv", label: "Svenska", href: "/sv/" },
+];
+---
+
+<div class="syr-hero-band" data-component="hero-band" data-static="true">
+  <div class="syr-hero-pattern" aria-hidden="true"></div>
+  <div class="syr-topbar">
+    <nav class="syr-segmented syr-squircle" aria-label={cv.labels.language}>
+      {
+        languages.map((language) =>
+          language.code === locale ? (
+            <span
+              class="syr-squircle"
+              aria-current="true"
+              lang={language.code}
+            >
+              {language.label}
+            </span>
+          ) : (
+            <a
+              class="syr-squircle"
+              href={language.href}
+              lang={language.code}
+              hreflang={language.code}
+            >
+              {language.label}
+            </a>
+          ),
+        )
+      }
+    </nav>
+    <a class="syr-workshop-link" href={showcase ? "/" : "/design-system/"}>
+      {
+        showcase
+          ? "Back to CV"
+          : locale === "sv"
+            ? "Designsystem"
+            : "Design system"
+      }
+    </a>
+    <ThemeMenu locale={locale} scope="hero" static={isStatic} />
+  </div>
+  <slot />
+</div>

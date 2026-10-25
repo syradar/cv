@@ -3,4 +3,4 @@ import Surface from "./Surface.astro";
 interface Props { quote: string; author: string; role: string; context: string }
 const {quote, author, role, context} = Astro.props;
 ---
-<Surface as="figure" class="syr-recommendation"><blockquote lang="en">{quote}</blockquote><figcaption><strong>{author}</strong><span>{role}</span><span>{context}</span></figcaption></Surface>
+<Surface as="figure" class="syr-recommendation" component="quotation"><blockquote lang="en">{quote}</blockquote><figcaption><strong>{author}</strong><span>{role}</span><span>{context}</span></figcaption></Surface>

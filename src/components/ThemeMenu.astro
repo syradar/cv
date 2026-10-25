@@ -1,5 +1,11 @@
 ---
-const { locale = "en" } = Astro.props;
+interface Props {
+  locale?: "en" | "sv";
+  scope?: string;
+  static?: boolean;
+}
+
+const { locale = "en", scope = "site", static: isStatic = false } = Astro.props;
 const sv = locale === "sv";
 const title = sv ? "Visningsinställningar" : "Display settings";
 const identities = [
@@ -8,20 +14,20 @@ const identities = [
   {value: "neobrutalism", label: "Neobrutalism", detail: sv ? "Kontrast och attityd" : "Contrast and attitude", sample: "Aa"},
 ];
 ---
-<details class="ds-controls">
+<details
+  class="ds-controls"
+  data-component="appearance-menu"
+  data-static={isStatic}
+>
   <summary aria-label={title}><span aria-hidden="true">◧</span> {sv ? "Utseende" : "Appearance"}</summary>
   <div class="ds-settings">
     <div class="ds-settings-heading"><strong>{title}</strong><span>{sv ? "Samma innehåll. Nytt uttryck." : "Same content. Different character."}</span></div>
     <fieldset><legend>{sv ? "Identitet" : "Identity"}</legend>
-      {identities.map(identity => <label class="ds-preset"><input type="radio" name="identity" value={identity.value} data-identity-option aria-label={identity.label} /><span class:list={["ds-sample", `ds-sample-${identity.value}`]} aria-hidden="true">{identity.sample}</span><span><strong>{identity.label}</strong><small>{identity.detail}</small></span></label>)}
+      {identities.map(identity => <label class="ds-preset"><input type="radio" name={`identity-${scope}`} value={identity.value} data-identity-option aria-label={identity.label} /><span class:list={["ds-sample", `ds-sample-${identity.value}`]} aria-hidden="true">{identity.sample}</span><span><strong>{identity.label}</strong><small>{identity.detail}</small></span></label>)}
     </fieldset>
     <fieldset><legend>{sv ? "Färgläge" : "Color mode"}</legend><div class="ds-modes">
-      {[{value:"light",label:sv?"Ljust":"Light"},{value:"dark",label:sv?"Mörkt":"Dark"},{value:"system",label:sv?"System":"System"}].map(mode => <label><input type="radio" name="appearance" value={mode.value} data-theme-option aria-label={mode.label} /><span>{mode.label}</span></label>)}
+      {[{value:"light",label:sv?"Ljust":"Light"},{value:"dark",label:sv?"Mörkt":"Dark"},{value:"system",label:sv?"System":"System"}].map(mode => <label><input type="radio" name={`appearance-${scope}`} value={mode.value} data-theme-option aria-label={mode.label} /><span>{mode.label}</span></label>)}
     </div></fieldset>
     <p class="ds-status" aria-live="polite" data-preference-status></p>
   </div>
 </details>
-<script>
-  import { initializeSettings } from "../scripts/preferences";
-  initializeSettings();
-</script>

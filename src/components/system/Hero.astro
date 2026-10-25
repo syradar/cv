@@ -1,0 +1,27 @@
+---
+import Actions from "./Actions.astro";
+
+interface Props {
+  name: string;
+  location: string;
+  headline: string;
+  email: string;
+  contactLabel: string;
+  pdfLabel: string;
+  pdfHref: string;
+}
+
+const { name, location, headline, email, contactLabel, pdfLabel, pdfHref } =
+  Astro.props;
+const [firstName, ...nameRest] = name.split(" ");
+---
+
+<header class="syr-intro" data-component="hero" data-static="true">
+  <p class="syr-meta">{location}</p>
+  <h1>
+    <span>{firstName}</span>
+    <span>{nameRest.join(" ")}</span>
+  </h1>
+  <p class="syr-headline">{headline}</p>
+  <Actions {email} {contactLabel} {pdfLabel} {pdfHref} />
+</header>

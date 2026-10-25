@@ -54,7 +54,7 @@ const modes = ["light", "dark", "system"];
               </div>
               {identities.map((identity) => (
                 <div
-                  class="compare-cell"
+                  class="compare-cell compare-cell-stacked"
                   data-identity={identity.value}
                   data-theme="light"
                   data-compare-cell
@@ -69,6 +69,9 @@ const modes = ["light", "dark", "system"];
     </div>
 
     <script>
+      import { initializeComponents } from "../scripts/component-runner";
+
+      initializeComponents(document);
       const cells = document.querySelectorAll<HTMLElement>(
         "[data-compare-cell]",
       );
@@ -80,6 +83,10 @@ const modes = ["light", "dark", "system"];
         inputMode.addEventListener("change", () => {
           for (const cell of cells) {
             cell.dataset.theme = inputMode.value;
+            const themeOptions = cell.querySelectorAll<HTMLInputElement>("[data-theme-option]");
+            for (const input of themeOptions) {
+              input.checked = input.value === inputMode.value;
+            }
           }
         });
       }
@@ -122,6 +129,7 @@ const modes = ["light", "dark", "system"];
       .compare-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        padding-bottom: 5rem;
       }
       .compare-heading {
         margin: 0;
@@ -146,6 +154,14 @@ const modes = ["light", "dark", "system"];
       .compare-cell {
         min-width: 0;
         padding: 1.5rem;
+      }
+      .compare-cell-stacked {
+        grid-column: 1 / -1;
+        padding-block: 1rem;
+      }
+      .compare-cell-stacked > * {
+        width: min(100% - 3rem, 68rem);
+        margin-inline: auto;
       }
     </style>
   </body>

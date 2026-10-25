@@ -4,7 +4,7 @@ interface Props { title: string; company: string; description?: string; dates: s
 const {title, company, description, dates, nested = false} = Astro.props;
 const Heading = nested ? "h4" : "h3";
 ---
-<Surface as="article" variant={nested ? "nested" : "default"}>
+<Surface as="article" variant={nested ? "nested" : "default"} component="role">
   <p class="syr-meta">{dates}</p><Heading>{title}</Heading><p class="syr-company">{company}</p>
   {description && <p class="syr-description">{description}</p>}<slot />
 </Surface>

@@ -1,0 +1,21 @@
+---
+import Entry from "../system/Entry.astro";
+import Role from "../system/Role.astro";
+import cv from "../../data/cv.en.json";
+
+---
+
+<div class="workshop-surface-stage">
+  <Entry
+    dates={cv.education.dates}
+    title={cv.education.program}
+    company={cv.education.institution}
+    description={cv.education.details}
+  />
+  <Role
+    title={cv.experience.rightGrafiska.title}
+    company={cv.experience.rightGrafiska.company}
+    dates={`${cv.experience.rightGrafiska.dates.start} — ${cv.experience.rightGrafiska.dates.end}`}
+    description={cv.experience.rightGrafiska.description}
+  />
+</div>

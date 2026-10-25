@@ -1,16 +1,23 @@
 ---
 import Surface from "../system/Surface.astro";
 import SkillList from "../system/SkillList.astro";
+import Section from "../system/Section.astro";
 import cv from "../../data/cv.en.json";
 ---
 
-<div class="workshop-surface-stage">
+<Section title={cv.labels.skills} headingId="example-skills-heading" contentClass="syr-stack">
   <Surface variant="accent">
-    <h3 class="syr-group-heading">Featured skills</h3>
+    <h3 class="syr-group-heading">{cv.labels.topSkills}</h3>
     <SkillList items={cv.skills.groups[0].items.slice(0, 5)} prominent />
   </Surface>
   <Surface>
-    <h3 class="syr-group-heading">{cv.skills.groups[0].name}</h3>
-    <SkillList items={cv.skills.groups[0].items} />
+    <div class="syr-skill-groups">
+      {cv.skills.groups.map((group) => (
+        <div>
+          <h3 class="syr-group-heading">{group.name}</h3>
+          <SkillList items={group.items} />
+        </div>
+      ))}
+    </div>
   </Surface>
-</div>
+</Section>

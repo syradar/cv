@@ -1,0 +1,15 @@
+---
+import Section from "../system/Section.astro";
+import Entry from "../system/Entry.astro";
+import cv from "../../data/cv.en.json";
+
+---
+
+<Section title={cv.labels.education} headingId="example-education-heading" contentClass="syr-stack">
+  <Entry
+    dates={cv.education.dates}
+    title={cv.education.program}
+    company={cv.education.institution}
+    description={cv.education.details}
+  />
+</Section>

@@ -1,0 +1,18 @@
+---
+interface Props {
+  dates: string;
+  title: string;
+  company: string;
+  description?: string;
+}
+
+const { dates, title, company, description } = Astro.props;
+---
+
+<article class="syr-card syr-squircle" data-component="entry" data-static="true">
+  <p class="syr-meta">{dates}</p>
+  <h3>{title}</h3>
+  <p class="syr-company">{company}</p>
+  {description && <p class="syr-description">{description}</p>}
+  <slot />
+</article>

@@ -1,0 +1,16 @@
+---
+import Highlights from "../system/Highlights.astro";
+import Role from "../system/Role.astro";
+import cv from "../../data/cv.en.json";
+
+const assignment = cv.experience.devcore.assignments[0];
+---
+
+<Role
+  nested
+  title={assignment.title}
+  company={assignment.company}
+  dates={`${assignment.dates.start} — ${cv.labels.current}`}
+>
+  <Highlights items={assignment.highlights ?? []} />
+</Role>

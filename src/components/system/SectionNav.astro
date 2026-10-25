@@ -1,0 +1,29 @@
+---
+interface SectionLink {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  label: string;
+  sections: SectionLink[];
+}
+
+const { label, sections } = Astro.props;
+---
+
+<nav
+  class="syr-section-nav syr-squircle"
+  data-component="section-nav"
+  data-static="true"
+  aria-label={label}
+>
+  <span
+    class="syr-nav-glider syr-squircle"
+    data-component="glider"
+    data-static="true"
+    aria-hidden="true"></span>
+  {sections.map((section) => (
+    <a class="syr-squircle" href={`#${section.id}`}>{section.label}</a>
+  ))}
+</nav>

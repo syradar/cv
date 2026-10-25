@@ -1,3 +1,8 @@
+## Code Style
+
+- Prefer `for...of` loops over `.forEach()` for iteration.
+- Assign function-call results to a `const` before iterating; keep function calls out of the `for...of` iterable expression.
+
 ## Development
 
 When starting the dev server, use background mode:
