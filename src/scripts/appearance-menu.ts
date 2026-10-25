@@ -61,7 +61,7 @@ export function initializeAppearanceMenu(menu: HTMLElement, callbacks: Component
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && menu.open) {
       menu.open = false;
-      menu.querySelector<HTMLElement>("summary")?.focus();
+      menu.querySelector<HTMLElement>("[data-appearance-trigger]")?.focus();
     }
   });
 }

@@ -24,6 +24,6 @@ const { label, sections } = Astro.props;
     data-static="true"
     aria-hidden="true"></span>
   {sections.map((section) => (
-    <a class="syr-squircle" href={`#${section.id}`}>{section.label}</a>
+    <a data-section-link class="syr-squircle" href={`#${section.id}`}>{section.label}</a>
   ))}
 </nav>

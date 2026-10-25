@@ -36,8 +36,8 @@
     line-height: var(--syr-title-leading);
   }
 
-  .syr-intro h1 span {
-    display: block;
+  .syr-name-characters {
+    display: none;
   }
 
   .syr-headline {

@@ -19,7 +19,7 @@ const identities = [
   data-component="appearance-menu"
   data-static={isStatic}
 >
-  <summary aria-label={title}><span aria-hidden="true">◧</span> {sv ? "Utseende" : "Appearance"}</summary>
+  <summary data-appearance-trigger aria-label={title}><span aria-hidden="true">◧</span> {sv ? "Utseende" : "Appearance"}</summary>
   <div class="ds-settings">
     <div class="ds-settings-heading"><strong>{title}</strong><span>{sv ? "Samma innehåll. Nytt uttryck." : "Same content. Different character."}</span></div>
     <fieldset><legend>{sv ? "Identitet" : "Identity"}</legend>

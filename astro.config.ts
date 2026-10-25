@@ -23,14 +23,46 @@ export default defineConfig({
       provider: fontProviders.google(),
       name: "Bricolage Grotesque",
       cssVariable: "--font-bricolage-grotesque",
-      weights: ["400", "700"],
+      weights: ["200 800"],
       options: {
         experimental: {
           variableAxis: {
-            wdth: ["75", "100"],
+            wdth: [[75, 100]],
+            opsz: [[12, 96]],
           },
         },
       },
+    },
+    {
+      // Use full local fonts to preserve discretionary ligatures and true small caps.
+      provider: fontProviders.local(),
+      name: "Cardo",
+      cssVariable: "--font-cardo",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/cardo/regular.ttf"],
+            weight: "400",
+            style: "normal",
+          },
+          {
+            src: ["./src/assets/fonts/cardo/italic.ttf"],
+            weight: "400",
+            style: "italic",
+          },
+          {
+            src: ["./src/assets/fonts/cardo/bold.ttf"],
+            weight: "700",
+            style: "normal",
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Inter",
+      cssVariable: "--font-inter",
+      weights: ["100 900"],
     },
   ],
   i18n: {

@@ -9,19 +9,33 @@ interface Props {
   contactLabel: string;
   pdfLabel: string;
   pdfHref: string;
+  emoji: string;
 }
 
-const { name, location, headline, email, contactLabel, pdfLabel, pdfHref } =
-  Astro.props;
-const [firstName, ...nameRest] = name.split(" ");
+const {
+  name,
+  location,
+  headline,
+  email,
+  contactLabel,
+  pdfLabel,
+  pdfHref,
+  emoji,
+} = Astro.props;
+const segmenter = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+const words = name.split(" ").map((text) => ({
+  text,
+  characters: Array.from(segmenter.segment(text), ({ segment }) => segment),
+}));
 ---
 
 <header class="syr-intro" data-component="hero" data-static="true">
   <p class="syr-meta">{location}</p>
-  <h1>
-    <span>{firstName}</span>
-    <span>{nameRest.join(" ")}</span>
+  <h1 aria-label={name}>
+    <span class="syr-name-plain" aria-hidden="true">{name.split(" ").map((word, index) => <>{index > 0 && <br />}{word}</>)}</span>
+    <span class="syr-name-characters" aria-hidden="true">{words.map((word, index) => <>{index > 0 && <br />}<span class="syr-name-line" data-name-line><span class="syr-name-line-reference" data-name-reference>{word.text}</span><span class="syr-name-line-content" data-name-content>{word.characters.map((character) => <span class="syr-name-character">{character}</span>)}</span></span></>)}</span>{" "}<span class="syr-name-emoji" aria-hidden="true">{emoji}</span>
   </h1>
+
   <p class="syr-headline">{headline}</p>
   <Actions {email} {contactLabel} {pdfLabel} {pdfHref} />
 </header>

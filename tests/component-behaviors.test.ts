@@ -10,13 +10,14 @@ import { getGliderPosition } from "../src/scripts/section-glider";
 
 describe("component runner", () => {
   it("resolves registered interactive components", () => {
-    for (const name of ["actions", "appearance-menu", "glider"]) {
+    const names = ["actions", "appearance-menu", "glider", "hero"];
+    for (const name of names) {
       expect(resolveComponentInitializer(name, false)).toBeTypeOf("function");
     }
   });
 
   it("allows unregistered static components but rejects unregistered interactive ones", () => {
-    expect(resolveComponentInitializer("hero", true)).toBeUndefined();
+    expect(resolveComponentInitializer("surface", true)).toBeUndefined();
     expect(() => resolveComponentInitializer("misspelled", false)).toThrow(
       'No initializer registered for interactive component "misspelled".',
     );

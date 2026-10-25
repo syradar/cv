@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { examples } from "../components/examples/registry";
+import { Font } from "astro:assets";
 
 const identities = [
   { value: "nasa", label: "Modern NASA" },
@@ -17,6 +18,9 @@ const modes = ["light", "dark", "system"];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>Compare identities</title>
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-bricolage-grotesque" preload />
+    <Font cssVariable="--font-cardo" preload />
   </head>
   <body class="compare">
     <header class="compare-bar">
@@ -28,6 +32,7 @@ const modes = ["light", "dark", "system"];
             <label>
               <input
                 type="radio"
+                data-compare-mode
                 name="mode"
                 value={mode}
                 checked={mode === "light"}
@@ -77,13 +82,15 @@ const modes = ["light", "dark", "system"];
       );
 
       const inputModes =
-        document.querySelectorAll<HTMLInputElement>("input[name=mode]");
+        document.querySelectorAll<HTMLInputElement>("[data-compare-mode]");
 
       for (const inputMode of inputModes) {
         inputMode.addEventListener("change", () => {
           for (const cell of cells) {
             cell.dataset.theme = inputMode.value;
-            const themeOptions = cell.querySelectorAll<HTMLInputElement>("[data-theme-option]");
+            const themeOptions = cell.querySelectorAll<HTMLInputElement>(
+              "[data-theme-option]",
+            );
             for (const input of themeOptions) {
               input.checked = input.value === inputMode.value;
             }

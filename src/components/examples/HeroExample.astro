@@ -4,13 +4,13 @@ import SectionNav from "../system/SectionNav.astro";
 import HeroBand from "../system/HeroBand.astro";
 import cv from "../../data/cv.en.json";
 
-const [firstName, ...restName] = cv.name.split(" ");
 ---
 
 <HeroBand locale="en" cv={cv} static>
   <div class="syr-hero-inner">
     <Hero
-      name={`${firstName} ${restName.join(" ")}`}
+      name={cv.name}
+      emoji={cv.labels.nameEmoji}
       location={cv.location}
       headline={cv.headline}
       email={cv.contact.email}

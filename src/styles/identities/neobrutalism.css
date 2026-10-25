@@ -60,7 +60,129 @@
   }
 }
 
+@property --syr-name-wght {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 800;
+}
+
+@property --syr-name-wdth {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 100;
+}
+
+@property --syr-name-opsz {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 96;
+}
+
 @layer components {
+  @keyframes syr-name-weight {
+    from {
+      --syr-name-wght: 200;
+    }
+    to {
+      --syr-name-wght: 800;
+    }
+  }
+
+  @keyframes syr-name-width {
+    from {
+      --syr-name-wdth: 75;
+    }
+    to {
+      --syr-name-wdth: 100;
+    }
+  }
+
+  @keyframes syr-name-optical-size {
+    from {
+      --syr-name-opsz: 12;
+    }
+    to {
+      --syr-name-opsz: 96;
+    }
+  }
+
+  [data-identity="neobrutalism"] {
+    .syr-intro h1 {
+      .syr-name-plain {
+        display: none;
+      }
+
+      .syr-name-characters {
+        display: inline;
+        --syr-name-wght: 200;
+        --syr-name-wdth: 85;
+        --syr-name-opsz: 24;
+
+        .syr-name-line {
+          position: relative;
+          display: inline-block;
+          vertical-align: baseline;
+        }
+
+        .syr-name-line-reference {
+          display: block;
+          visibility: hidden;
+          white-space: nowrap;
+          font-variation-settings:
+            "wght" 800,
+            "wdth" 100,
+            "opsz" 96;
+        }
+
+        .syr-name-line-content {
+          position: absolute;
+          inset: 0 auto auto 0;
+          width: max-content;
+          white-space: nowrap;
+          transform-origin: left center;
+        }
+
+        .syr-name-line-content > .syr-name-character {
+          font-weight: unset;
+          font-variation-settings:
+            "wght" var(--syr-name-wght),
+            "wdth" var(--syr-name-wdth),
+            "opsz" var(--syr-name-opsz);
+        }
+
+        @media screen and (prefers-reduced-motion: no-preference) {
+          .syr-name-line-content > .syr-name-character {
+            animation:
+              syr-name-weight 5.3s ease-in-out infinite alternate,
+              syr-name-width 7.1s ease-in-out infinite alternate,
+              syr-name-optical-size 3.7s ease-in-out infinite alternate;
+            animation-delay: 0s, -1.1s, -2.2s;
+          }
+
+          .syr-name-line-content > :nth-child(4n + 2 of .syr-name-character) {
+            animation-delay: -0.7s, -3.3s, -0.4s;
+          }
+          .syr-name-line-content > :nth-child(4n + 3 of .syr-name-character) {
+            animation-delay: -2.6s, -0.5s, -1.8s;
+          }
+          .syr-name-line-content > :nth-child(4n + 4 of .syr-name-character) {
+            animation-delay: -4.1s, -5.8s, -2.9s;
+          }
+        }
+
+        .syr-name-line-content > :nth-child(2n + 1 of .syr-name-character) {
+          --syr-name-wght: 400;
+        }
+        .syr-name-line-content > :nth-child(3n + 5 of .syr-name-character) {
+          --syr-name-wdth: 75;
+        }
+        .syr-name-line-content > :nth-child(4n + 4 of .syr-name-character) {
+          --syr-name-opsz: 12;
+        }
+      }
+    }
+  }
+
   [data-identity="neobrutalism"] .syr-hero-band {
     border-bottom: 3px solid var(--syr-line);
   }

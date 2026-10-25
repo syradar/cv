@@ -1,5 +1,5 @@
 {
-  "name": "David Malmström ✌️",
+  "name": "David Malmström",
   "plainName": "David Malmström",
   "headline": "Senior frontendutvecklare",
   "location": "Stockholm, Sverige",
@@ -35,7 +35,8 @@
     "linkedin": "LinkedIn",
     "github": "GitHub",
     "curatedReads": "Utvalda teknikartiklar",
-    "personal": "På fritiden"
+    "personal": "På fritiden",
+    "nameEmoji": "✌️"
   },
   "experience": {
     "devcore": {

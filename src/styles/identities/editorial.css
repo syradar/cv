@@ -1,6 +1,7 @@
 /* Editorial: serif type, paper tones, square corners, no elevation. */
 @layer identities {
   [data-identity="editorial"] {
+    font-variant-ligatures: common-ligatures discretionary-ligatures;
     --syr-paper: #f8f7f3;
     --syr-card: #fdfcf9;
     --syr-card-nested: #f4f2ec;
@@ -15,7 +16,7 @@
     --syr-font-display: var(--font-editorial-display);
     --syr-font-mono: ui-sans-serif, system-ui, sans-serif;
     --syr-title-weight: 400;
-    --syr-title-tracking: -0.045em;
+    --syr-title-tracking: normal;
     --syr-title-leading: 1.02;
     --syr-section-space: var(--space-20);
     --syr-card-padding: clamp(1.2rem, 3vw, 2rem);
@@ -57,11 +58,43 @@
 
 @layer components {
   [data-identity="editorial"] {
+    /* Nonzero tracking suppresses discretionary ligatures in browsers. */
+    h1,
+    h2,
+    h3,
+    h4,
+    .syr-intro h1,
+    .syr-section > h2,
+    .syr-card h3,
+    .syr-nested h4 {
+      letter-spacing: normal;
+    }
+
+    h2,
+    .syr-section > h2 {
+      /* Cardo's true small caps are available in the regular face only. */
+      font-weight: 400;
+      font-variant-caps: small-caps;
+    }
+
+    h3,
+    .syr-card h3 {
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    h4,
+    .syr-nested h4 {
+      font-weight: 700;
+      font-style: normal;
+    }
+
     .syr-hero-band {
       border-bottom: 1px solid var(--syr-line);
     }
     .syr-intro {
       max-width: 51rem;
+      font-variant-numeric: oldstyle-nums;
     }
     .syr-card {
       border-inline: 0;
@@ -108,9 +141,6 @@
 
 @layer base {
   @supports (corner-shape: scoop) {
-    [data-identity="editorial"] {
-    }
-
     [data-identity="editorial"] :is(.syr-button) {
       corner-shape: scoop;
       --syr-radius-control: 0;
