@@ -3,7 +3,7 @@
   "plainName": "David Malmström",
   "headline": "Senior frontendutvecklare",
   "location": "Stockholm, Sverige",
-  "summary": "Jag bygger tillgängliga digitala upplevelser där genomtänkt design möter pålitlig teknik. Som IT-konsult samarbetar jag med team för att göra webbapplikationer snabbare, enklare att använda och lättare att underhålla.",
+  "summary": "Jag är senior frontendutvecklare med bakgrund inom design. Jag bygger och moderniserar webbapplikationer inom e-handel, finans och välgörenhet, och bidrar ofta inom DevOps och UX vid sidan av frontendutvecklingen. Jag tycker om att förbättra arbetssätt och samarbeta i agila team.",
   "labels": {
     "skipToContent": "Hoppa till innehållet",
     "about": "Om mig",
@@ -29,13 +29,13 @@
     "themeLight": "Ljust",
     "themeDark": "Mörkt",
     "themeSystem": "System",
-    "topSkills": "Främsta kompetenser",
     "clientWork": "Utvalda kunduppdrag",
     "educationNote": "Studier i datavetenskap; examen slutfördes inte.",
     "email": "E-post",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "curatedReads": "Utvalda teknikartiklar"
+    "curatedReads": "Utvalda teknikartiklar",
+    "personal": "På fritiden"
   },
   "experience": {
     "devcore": {
@@ -47,7 +47,7 @@
         "end": "current"
       },
       "location": "Stockholm, Sverige · Hybrid",
-      "description": "Jag leder och bidrar i kundprojekt där jag utvecklar dynamiska och tillgängliga applikationer med Angular och React. Tillsammans med kunder och designers skapar jag intuitiva gränssnitt och effektivare leveranser med GitHub Actions, Azure och OpenShift. Jag fokuserar på prestanda, skalbarhet, förvaltning, mentorskap och teamutveckling.",
+      "description": "Jag leder och bidrar i kundprojekt där jag kombinerar frontendutveckling med UX, DevOps och tvärfunktionellt samarbete.",
       "assignments": [
         {
           "company": "Konfidentiell kund — större resursbolag",
@@ -59,12 +59,21 @@
           },
           "location": "Stockholms län, Sverige · Hybrid",
           "highlights": [
-            "Ledde frontendleveransen för ett underleverantörsteam som byggde ett storskaligt projekt för kundens webbplats.",
-            "Migrerade frontend från Vue 2 till Vue 3.",
-            "Strukturerade om SCSS för att använda moderna CSS-funktioner.",
-            "Införde TypeScript stegvis på nya och äldre sidor.",
-            "Satte upp frontendtester med Vitest och presenterade frontendförändringar för teamet."
+            "Ledde migreringen från Vue 2 till Vue 3 för produktlistor, produktsidor och kassaflöde i en e-handelsapplikation för företagskunder.",
+            "Integrerade flera betaltjänster och möjliggjorde ERP-specifik konfiguration.",
+            "Etablerade kommunikation mellan vanlig JavaScript och Vue, med gemensamma JavaScript-metoder för API-anrop.",
+            "Införde enhets- och komponenttester med Vitest samt TypeScript stegvis för att fånga fel i ny och äldre kod och göra frontendbeteendet mer förutsägbart."
           ]
+        },
+        {
+          "company": "Konfidentiell kund — välgörenhetsorganisation",
+          "title": "Mjukvaruutvecklare",
+          "employmentType": "contract",
+          "dates": {
+            "start": "Juni 2025",
+            "end": "Aug 2025"
+          },
+          "description": "Byggde en React-applikation med donationsformulär och BankID-integration, med TanStack Query för servertillstånd och Zustand för klienttillstånd."
         },
         {
           "company": "Konfidentiell kund — större svensk bank",
@@ -75,7 +84,13 @@
             "end": "Mars 2024"
           },
           "location": "Stockholms län, Sverige",
-          "description": "Utvecklade React- och Angular-applikationer med stort fokus på tillgänglighet och användarupplevelse. Bidrog även inom design, .NET Core och C#, DevOps, dokumentation och mentorskap i ett agilt tvärfunktionellt team."
+          "highlights": [
+            "Ledde löpande Angular-uppgraderingar från version 8 till 14 för applikationer inom förmögenhetsförvaltning.",
+            "Strukturerade en Nx-arbetsyta med separata bibliotek, komponenter och tjänster.",
+            "Byggde ett typsäkert översättningssystem med automatisk komplettering av översättningsnycklar.",
+            "Samarbetade över teamgränser och nära designsystemteamet i en tvärfunktionell miljö.",
+            "Tog över en livförsäkrings- och pensionsapplikation från ett annat team och byggde om den, vilket utökade arbetet till ett nytt verksamhetsområde utöver förmögenhetsförvaltning."
+          ]
         }
       ]
     },
@@ -103,7 +118,6 @@
     }
   },
   "skills": {
-    "top": ["TypeScript", "React", "Angular", "Vue.js", "Accessibility"],
     "groups": [
       {
         "name": "Språk och ramverk",
@@ -122,7 +136,15 @@
       },
       {
         "name": "Frontend och verktyg",
-        "items": ["Vite", "Optimizely"]
+        "items": [
+          "Vite",
+          "Nx",
+          "Vitest",
+          "TanStack Query",
+          "Zustand",
+          "Optimizely",
+          "GitHub Copilot"
+        ]
       },
       {
         "name": "Backend och data",
@@ -130,19 +152,15 @@
       },
       {
         "name": "Molnet och DevOps",
-        "items": ["DevOps", "GitHub Actions", "OpenShift", "Git", "Linux"]
+        "items": ["Kubernetes", "GitHub Actions", "TeamCity", "OpenShift", "Git", "Linux"]
       },
       {
         "name": "Tillgänglighet och design",
-        "items": ["Accessibility", "User Experience (UX)", "Figma", "Graphic Design", "Illustrator"]
+        "items": ["Tillgänglighet", "UX/UI", "Figma", "Design", "Illustrator"]
       },
       {
         "name": "Ledarskap och arbetssätt",
-        "items": ["Professional Mentoring"]
-      },
-      {
-        "name": "AI",
-        "items": ["Artificial Intelligence (AI)", "GitHub Copilot"]
+        "items": ["Agila metoder", "Tvärfunktionellt samarbete", "Tekniskt ledarskap"]
       }
     ]
   },
@@ -178,5 +196,12 @@
     "linkedin": "https://www.linkedin.com/in/syradar/",
     "github": "https://github.com/syradar",
     "curatedReads": "https://syradar.github.io/blog/links/"
+  },
+  "personal": {
+    "interests": "På fritiden tycker jag om yoga, meditation, indiespel, rollspel och matlagning.",
+    "projectIntro": "Jag utvecklar också",
+    "projectName": "Yxans klagan",
+    "projectUrl": "https://yxans-klagan.vercel.app/",
+    "projectDescription": "ett webbverktyg för rollspel."
   }
 }

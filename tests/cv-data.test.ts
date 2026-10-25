@@ -37,22 +37,20 @@ describe("CV locale data", () => {
   it("keeps recruiter-focused role evidence and frontend skills", () => {
     expect(english.headline).toBe("Senior Frontend Engineer");
     expect(swedish.headline).toBe("Senior frontendutvecklare");
-    expect(english.skills.top).toEqual([
-      "TypeScript",
-      "React",
-      "Angular",
-      "Vue.js",
-      "Accessibility",
-    ]);
-    expect(english.experience.devcore.assignments[0].highlights).toHaveLength(5);
-    expect(swedish.experience.devcore.assignments[0].highlights).toHaveLength(5);
+    const frontendSkills = english.skills.groups.flatMap((group) => group.items);
+    for (const skill of ["TypeScript", "React", "Angular", "Vue.js", "Accessibility", "Vitest"]) {
+      expect(frontendSkills).toContain(skill);
+    }
+    expect(english.experience.devcore.assignments[0].highlights).toHaveLength(4);
+    expect(swedish.experience.devcore.assignments[0].highlights).toHaveLength(4);
     expect(english.experience.devcore.assignments[0].company).toContain("Confidential client");
     expect(swedish.experience.devcore.assignments[0].company).toContain("Konfidentiell kund");
 
     const removedSkills = new Set([
       "Software Development",
       "Documentation",
-      "Agile Methodologies",
+      "Artificial Intelligence (AI)",
+      "Professional Mentoring",
       "Cross-functional Collaborations",
       "Front-End Development",
       "E-Commerce",

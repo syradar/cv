@@ -165,10 +165,6 @@ cv.experience.devcore.assignments.map((assignment) => (
 		<section id="skills" class="syr-section" aria-labelledby="skills-heading">
 			<h2 id="skills-heading">{cv.labels.skills}</h2>
 			<div class="syr-section-content syr-stack">
-				<Surface as="div" variant="accent">
-					<h3 class="syr-group-heading">{cv.labels.topSkills}</h3>
-					<SkillList items={cv.skills.top} prominent />
-				</Surface>
 				<Surface as="div">
 					<div class="syr-skill-groups">
 						{
@@ -223,6 +219,17 @@ cv.experience.devcore.assignments.map((assignment) => (
 			<h2 id="recommendation-heading">{cv.labels.recommendation}</h2>
 			<div class="syr-section-content">
 				<Quotation {...cv.recommendation} />
+			</div>
+		</section>
+		<section id="personal" class="syr-section" aria-labelledby="personal-heading">
+			<h2 id="personal-heading">{cv.labels.personal}</h2>
+			<div class="syr-section-content">
+				<Surface as="div">
+					<p class="syr-description">
+						{cv.personal.interests}{" "}{cv.personal.projectIntro}{" "}
+						<a href={cv.personal.projectUrl} target="_blank" rel="noreferrer">{cv.personal.projectName}</a>, {cv.personal.projectDescription}
+					</p>
+				</Surface>
 			</div>
 		</section>
 		{showcase && <ComponentExamples />}

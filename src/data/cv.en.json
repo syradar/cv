@@ -3,7 +3,7 @@
   "plainName": "David Malmström",
   "headline": "Senior Frontend Engineer",
   "location": "Stockholm, Sweden",
-  "summary": "I build accessible digital experiences that bring together thoughtful design and dependable engineering. As an IT consultant, I work with teams to make web applications faster, easier to use, and simpler to maintain.",
+  "summary": "I’m a senior frontend engineer with a background in design. I build and modernize web applications across ecommerce, finance, and charity, often contributing to DevOps and UX alongside frontend development. I enjoy improving how teams work and collaborating in agile teams.",
   "labels": {
     "skipToContent": "Skip to content",
     "about": "About",
@@ -29,13 +29,13 @@
     "themeLight": "Light",
     "themeDark": "Dark",
     "themeSystem": "System",
-    "topSkills": "Top skills",
     "clientWork": "Selected client work",
     "educationNote": "Studies in computer science; degree not completed.",
     "email": "Email",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "curatedReads": "Curated tech reads"
+    "curatedReads": "Curated tech reads",
+    "personal": "Outside work"
   },
   "experience": {
     "devcore": {
@@ -47,7 +47,7 @@
         "end": "current"
       },
       "location": "Stockholm, Sweden · Hybrid",
-      "description": "I lead and contribute to client projects, building dynamic and accessible applications with Angular and React. I work closely with clients and designers to create intuitive interfaces, and improve delivery with GitHub Actions, Azure, and OpenShift. My focus is on performance, scalability, maintainability, mentoring, and helping teams grow.",
+      "description": "I lead and contribute to client projects, combining frontend development with UX, DevOps, and collaboration across disciplines.",
       "assignments": [
         {
           "company": "Confidential client — large resource company",
@@ -59,12 +59,21 @@
           },
           "location": "Stockholm County, Sweden · Hybrid",
           "highlights": [
-            "Led frontend delivery for a subcontractor team building a large-scale project for the client’s website.",
-            "Migrated the frontend from Vue 2 to Vue 3.",
-            "Restructured SCSS to use modern CSS features.",
-            "Introduced TypeScript incrementally across new and legacy pages.",
-            "Set up frontend tests with Vitest and presented frontend changes to the team."
+            "Led the Vue 2 to Vue 3 migration across an enterprise ecommerce application’s product listings, product pages, and checkout.",
+            "Integrated multiple payment gateways and enabled ERP-specific configuration.",
+            "Established communication between vanilla JavaScript and Vue, with shared JavaScript API methods.",
+            "Introduced Vitest unit and component testing, and adopted TypeScript incrementally to catch errors in new and legacy code and make frontend behavior more predictable."
           ]
+        },
+        {
+          "company": "Confidential client — charity",
+          "title": "Software Developer",
+          "employmentType": "contract",
+          "dates": {
+            "start": "Jun 2025",
+            "end": "Aug 2025"
+          },
+          "description": "Built a React donation application with BankID integration, using TanStack Query for server state and Zustand for client state."
         },
         {
           "company": "Confidential client — large Swedish bank",
@@ -75,7 +84,13 @@
             "end": "Mar 2024"
           },
           "location": "Stockholm County, Sweden",
-          "description": "Built React and Angular applications with a strong focus on accessibility and user experience. Contributed to design, .NET Core and C# services, DevOps, documentation, and mentoring in an agile cross-functional team."
+          "highlights": [
+            "Led successive Angular upgrades from version 8 to 14 for private wealth management applications.",
+            "Structured an Nx workspace with separate libraries, components, and services.",
+            "Built a type-safe translation system with autocomplete for translation keys.",
+            "Collaborated across teams and closely with the design system team in a cross-functional environment.",
+            "Took ownership of a life insurance and pension application from another team and rebuilt it, expanding beyond private wealth management."
+          ]
         }
       ]
     },
@@ -103,7 +118,6 @@
     }
   },
   "skills": {
-    "top": ["TypeScript", "React", "Angular", "Vue.js", "Accessibility"],
     "groups": [
       {
         "name": "Languages and frameworks",
@@ -122,7 +136,15 @@
       },
       {
         "name": "Frontend and tooling",
-        "items": ["Vite", "Optimizely"]
+        "items": [
+          "Vite",
+          "Nx",
+          "Vitest",
+          "TanStack Query",
+          "Zustand",
+          "Optimizely",
+          "GitHub Copilot"
+        ]
       },
       {
         "name": "Backend and data",
@@ -130,19 +152,15 @@
       },
       {
         "name": "Cloud and DevOps",
-        "items": ["DevOps", "GitHub Actions", "OpenShift", "Git", "Linux"]
+        "items": ["Kubernetes", "GitHub Actions", "TeamCity", "OpenShift", "Git", "Linux"]
       },
       {
         "name": "Accessibility and design",
-        "items": ["Accessibility", "User Experience (UX)", "Figma", "Graphic Design", "Illustrator"]
+        "items": ["Accessibility", "UX/UI", "Figma", "Design", "Illustrator"]
       },
       {
         "name": "Leadership and ways of working",
-        "items": ["Professional Mentoring"]
-      },
-      {
-        "name": "AI",
-        "items": ["Artificial Intelligence (AI)", "GitHub Copilot"]
+        "items": ["Agile methodologies", "Cross-functional collaboration", "Technical leadership"]
       }
     ]
   },
@@ -178,5 +196,12 @@
     "linkedin": "https://www.linkedin.com/in/syradar/",
     "github": "https://github.com/syradar",
     "curatedReads": "https://syradar.github.io/blog/links/"
+  },
+  "personal": {
+    "interests": "Outside work, I enjoy yoga, meditation, indie video games, roleplaying games, and cooking.",
+    "projectIntro": "I also build",
+    "projectName": "Yxans klagan",
+    "projectUrl": "https://yxans-klagan.vercel.app/",
+    "projectDescription": "a web tool for roleplaying games."
   }
 }

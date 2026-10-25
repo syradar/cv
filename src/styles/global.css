@@ -188,6 +188,10 @@
   }
 
   @media print {
+    :root {
+      font-size: 14px;
+    }
+
     :root,
     :root[data-theme] {
       --syr-paper: white;

@@ -424,6 +424,10 @@
   }
 
   @media print {
+    #about {
+      break-inside: avoid;
+    }
+
     .syr-page {
       width: 100%;
     }
@@ -466,7 +470,7 @@
     }
 
     .syr-card {
-      padding: 0.65rem 0.8rem;
+      padding: 0.45rem 0.8rem;
       border: var(--syr-border-width) solid var(--syr-line);
       break-inside: auto;
     }
