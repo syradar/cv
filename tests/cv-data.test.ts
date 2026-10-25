@@ -44,7 +44,7 @@ describe("CV locale data", () => {
     expect(english.headline).toBe("Senior Frontend Engineer");
     expect(swedish.headline).toBe("Senior frontendutvecklare");
     const frontendSkills = english.skills.groups.flatMap((group) => group.items);
-    for (const skill of ["TypeScript", "React", "Angular", "Vue.js", "Accessibility", "Vitest"]) {
+    for (const skill of ["TypeScript", "React", "Angular", "Vue", "Accessibility", "Vitest"]) {
       expect(frontendSkills).toContain(skill);
     }
     expect(english.experience.devcore.assignments[0].highlights).toHaveLength(4);

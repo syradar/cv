@@ -13,7 +13,7 @@
     "certifications": "Certification",
     "languages": "Languages",
     "recommendation": "Recommendation",
-    "contact": "Get in touch",
+    "contact": "Send an email",
     "current": "Present",
     "consultant": "IT Consultant",
     "contract": "Contract",
@@ -23,7 +23,7 @@
     "credentialIssued": "Issued",
     "language": "Language",
     "sections": "Page sections",
-    "pdf": "PDF",
+    "pdf": "Download CV",
     "readingList": "Reading list",
     "theme": "Theme",
     "themeLight": "Light",
@@ -127,41 +127,54 @@
           "JavaScript",
           "React",
           "Angular",
-          "Vue.js",
+          "Vue",
           "HTML",
           "CSS",
           "SCSS",
-          "Tailwind CSS",
-          "C#"
+          "Tailwind CSS"
         ]
       },
       {
-        "name": "Frontend and tooling",
+        "name": "Tooling, testing and state management",
         "items": [
           "Vite",
           "Nx",
           "Vitest",
           "TanStack Query",
           "Zustand",
-          "Optimizely",
-          "GitHub Copilot"
+          "NgRx",
+          "Pinia",
+          "Pinia Colada"
         ]
       },
       {
         "name": "Backend and data",
-        "items": [".NET Core", "ASP.NET Core", "SQL"]
+        "items": ["C#", ".NET Core", "ASP.NET Core", "Optimizely", "SQL", "Redis", "MongoDB"]
       },
       {
         "name": "Cloud and DevOps",
-        "items": ["Kubernetes", "GitHub Actions", "TeamCity", "OpenShift", "Git", "Linux"]
+        "items": [
+          "Kubernetes",
+          "GitHub Actions",
+          "TeamCity",
+          "OpenShift",
+          "Cloudflare Workers",
+          "Git",
+          "Linux"
+        ]
       },
       {
         "name": "Accessibility and design",
-        "items": ["Accessibility", "UX/UI", "Figma", "Design", "Illustrator"]
+        "items": ["Accessibility", "UX/UI", "Figma", "Adobe Illustrator"]
       },
       {
-        "name": "Leadership and ways of working",
-        "items": ["Agile methodologies", "Cross-functional collaboration", "Technical leadership"]
+        "name": "Leadership and collaboration",
+        "items": [
+          "Agile delivery (Scrum, SAFe)",
+          "Cross-functional collaboration",
+          "Technical leadership",
+          "Mentoring junior developers"
+        ]
       }
     ]
   },

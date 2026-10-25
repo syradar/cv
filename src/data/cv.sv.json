@@ -13,7 +13,7 @@
     "certifications": "Certifiering",
     "languages": "Språk",
     "recommendation": "Rekommendation",
-    "contact": "Kontakta mig",
+    "contact": "Skicka ett mejl",
     "current": "Nuvarande",
     "consultant": "IT-konsult",
     "contract": "Konsultuppdrag",
@@ -23,7 +23,7 @@
     "credentialIssued": "Utfärdad",
     "language": "Språk",
     "sections": "Sidavsnitt",
-    "pdf": "PDF",
+    "pdf": "Ladda ned CV",
     "readingList": "Läslistan",
     "theme": "Tema",
     "themeLight": "Ljust",
@@ -127,12 +127,11 @@
           "JavaScript",
           "React",
           "Angular",
-          "Vue.js",
+          "Vue",
           "HTML",
           "CSS",
           "SCSS",
-          "Tailwind CSS",
-          "C#"
+          "Tailwind CSS"
         ]
       },
       {
@@ -143,25 +142,39 @@
           "Vitest",
           "TanStack Query",
           "Zustand",
-          "Optimizely",
-          "GitHub Copilot"
+          "NgRx",
+          "Pinia",
+          "Pinia Colada"
         ]
       },
       {
         "name": "Backend och data",
-        "items": [".NET Core", "ASP.NET Core", "SQL"]
+        "items": ["C#", ".NET Core", "ASP.NET Core", "Optimizely", "SQL", "Redis", "MongoDB"]
       },
       {
         "name": "Molnet och DevOps",
-        "items": ["Kubernetes", "GitHub Actions", "TeamCity", "OpenShift", "Git", "Linux"]
+        "items": [
+          "Kubernetes",
+          "GitHub Actions",
+          "TeamCity",
+          "OpenShift",
+          "Cloudflare Workers",
+          "Git",
+          "Linux"
+        ]
       },
       {
         "name": "Tillgänglighet och design",
-        "items": ["Tillgänglighet", "UX/UI", "Figma", "Design", "Illustrator"]
+        "items": ["Tillgänglighet", "UX/UI", "Figma", "Adobe Illustrator"]
       },
       {
         "name": "Ledarskap och arbetssätt",
-        "items": ["Agila metoder", "Tvärfunktionellt samarbete", "Tekniskt ledarskap"]
+        "items": [
+          "Agila leveranser (Scrum, SAFe)",
+          "Tvärfunktionellt samarbete",
+          "Tekniskt ledarskap",
+          "Mentorskap för juniora utvecklare"
+        ]
       }
     ]
   },
