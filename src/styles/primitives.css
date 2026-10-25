@@ -18,11 +18,11 @@
     --space-16: 4rem;
     --space-20: 5rem;
     --font-bricolage-grotesque: arial;
-    --font-cardo: arial;
+    --font-junicode: arial;
     --font-inter: arial;
     --font-sans: var(--font-inter);
-    --font-serif: var(--font-cardo);
-    --font-editorial-display: var(--font-cardo);
+    --font-serif: var(--font-junicode);
+    --font-editorial-display: var(--font-junicode);
     --font-grotesk: var(--font-bricolage-grotesque);
   }
 }

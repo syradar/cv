@@ -36,24 +36,21 @@ export default defineConfig({
     {
       // Use full local fonts to preserve discretionary ligatures and true small caps.
       provider: fontProviders.local(),
-      name: "Cardo",
-      cssVariable: "--font-cardo",
+      name: "Junicode",
+      cssVariable: "--font-junicode",
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/cardo/regular.ttf"],
-            weight: "400",
+            src: ["./src/assets/fonts/junicode/roman.woff2"],
+            weight: "300 700",
+            stretch: "75% 125%",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/cardo/italic.ttf"],
-            weight: "400",
+            src: ["./src/assets/fonts/junicode/italic.woff2"],
+            weight: "300 700",
+            stretch: "75% 125%",
             style: "italic",
-          },
-          {
-            src: ["./src/assets/fonts/cardo/bold.ttf"],
-            weight: "700",
-            style: "normal",
           },
         ],
       },

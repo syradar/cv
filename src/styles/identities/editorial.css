@@ -1,17 +1,42 @@
 /* Editorial: serif type, paper tones, square corners, no elevation. */
 @layer identities {
   [data-identity="editorial"] {
-    font-variant-ligatures: common-ligatures discretionary-ligatures;
-    --syr-paper: #f8f7f3;
-    --syr-card: #fdfcf9;
-    --syr-card-nested: #f4f2ec;
-    --syr-tint: #e8e6df;
-    --syr-ink: #242a30;
-    --syr-muted: #535e68;
-    --syr-line: #c2c5c5;
-    --syr-accent: #263f58;
-    --syr-accent-ink: #263f58;
-    --syr-on-accent: #fff;
+    font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+    --editorial-96: 96pt;
+    --editorial-84: 84pt;
+    --editorial-72: 72pt;
+    --editorial-60: 60pt;
+    --editorial-48: 48pt;
+    --editorial-42: 42pt;
+    --editorial-36: 36pt;
+    --editorial-30: 30pt;
+    --editorial-24: 24pt;
+    --editorial-21: 21pt;
+    --editorial-18: 18pt;
+    --editorial-16: 16pt;
+    --editorial-14: 14pt;
+    --editorial-12: 12pt;
+    --editorial-10: 10pt;
+    --editorial-9: 9pt;
+    --editorial-8: 8pt;
+    --editorial-7: 7pt;
+    --editorial-6: 6pt;
+
+    --editorial-grid: var(--editorial-16);
+    font-size: var(--editorial-12);
+    line-height: var(--editorial-grid);
+
+    --syr-paper: oklch(96.58% 0.00529 95.189);
+    /* --syr-paper: transparent; */
+    --syr-card: var(--syr-paper);
+    --syr-card-nested: var(--syr-paper);
+    --syr-tint: var(--syr-paper);
+    --syr-ink: oklab(28.166000000000004% -0.00516 -0.01302);
+    --syr-muted: var(--syr-ink);
+    --syr-line: var(--syr-ink);
+    --syr-accent: var(--syr-ink);
+    --syr-accent-ink: var(--syr-ink);
+    --syr-on-accent: var(--syr-paper);
     --syr-font-body: var(--font-serif);
     --syr-font-display: var(--font-editorial-display);
     --syr-font-mono: ui-sans-serif, system-ui, sans-serif;
@@ -66,31 +91,39 @@
     .syr-intro h1,
     .syr-section > h2,
     .syr-card h3,
-    .syr-nested h4 {
+    .syr-nested h4,
+    li {
       letter-spacing: normal;
+      margin: 0;
+      line-height: round(up, 1em, var(--editorial-grid));
     }
 
     h2,
     .syr-section > h2 {
-      /* Cardo's true small caps are available in the regular face only. */
+      margin-bottom: 1rlh !important;
       font-weight: 400;
-      font-variant-caps: small-caps;
+      font-size: var(--editorial-48);
     }
 
     h3,
     .syr-card h3 {
+      margin-bottom: 0.5rlh !important;
       font-weight: 400;
       font-style: italic;
+      font-size: var(--editorial-36);
     }
 
     h4,
     .syr-nested h4 {
-      font-weight: 700;
+      margin-bottom: 0.5rlh !important;
       font-style: normal;
+      font-variant-caps: small-caps;
+      font-weight: 700;
+      font-size: var(--editorial-24);
     }
 
     .syr-hero-band {
-      border-bottom: 1px solid var(--syr-line);
+      border-bottom: 1pt solid var(--syr-line);
     }
     .syr-intro {
       max-width: 51rem;
@@ -99,13 +132,45 @@
     .syr-card {
       border-inline: 0;
       border-bottom: 0;
+      padding: 1rlh var(--editorial-16);
+      border: 1pt solid var(--syr-line);
+
+      h3:has(+ .syr-company) {
+        margin-bottom: 0;
+      }
+
+      h3 + .syr-company {
+        margin-bottom: 1rlh;
+      }
     }
+
     .syr-description {
-      font-size: 1.05rem;
-      line-height: 1.8;
+      font-size: unset;
+      line-height: unset;
+      margin: 0;
+      margin-block-end: 1rlh;
+    }
+
+    .syr-meta {
+      font-family: var(--syr-font-body);
+      font-weight: 400;
+      font-size: var(--editorial-10);
+      text-transform: uppercase;
+      font-variant-caps: small-caps;
+    }
+
+    .syr-headline {
+      font-size: var(--editorial-24);
+      font-weight: 400;
+      font-variant-caps: small-caps;
+    }
+
+    .syr-actions {
+      margin-top: 2rlh;
     }
 
     .syr-button {
+      font-size: var(--editorial-12);
       transition:
         background-color 160ms ease,
         border-radius 240ms ease-in-out;
@@ -136,10 +201,69 @@
         text-transform: inherit;
       }
     }
+
+    .syr-nested {
+      padding: 1rlh var(--editorial-16);
+    }
+
+    .syr-section {
+      display: grid;
+      grid-template-columns: 1fr;
+
+      h2 {
+        /* text-align: center; */
+        font-size: 3rem;
+        font-variant-caps: normal;
+        /* font-style: italic; */
+      }
+
+      h3 {
+        /* text-align: center; */
+        font-size: 2rem;
+        /* font-variant-caps: normal; */
+        font-style: italic;
+      }
+    }
+
+    .syr-group-heading {
+      margin: unset !important;
+    }
+
+    .syr-skill-list {
+      li {
+        font-size: var(--editorial-12);
+        line-height: 1rlh;
+      }
+    }
+  }
+
+  @supports (corner-shape: scoop) {
+    [data-identity="editorial"] :is(.syr-card) {
+      corner-shape: scoop;
+      --syr-radius-card: var(--editorial-12);
+    }
   }
 }
 
 @layer base {
+  [data-identity="editorial"] {
+    body {
+      /* --baseline: 16pt;
+
+      background-image: linear-gradient(
+        to bottom,
+        rgb(255 0 0 / 20%) 1pt,
+        transparent 1pt
+      ) !important;
+      background-size: 100% var(--baseline);
+      */
+    }
+
+    .syr-topbar {
+      min-height: round(up, 4.5rem, 1rlh);
+    }
+  }
+
   @supports (corner-shape: scoop) {
     [data-identity="editorial"] :is(.syr-button) {
       corner-shape: scoop;
