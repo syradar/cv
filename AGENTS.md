@@ -2,6 +2,9 @@
 
 - Prefer `for...of` loops over `.forEach()` for iteration.
 - Assign function-call results to a `const` before iterating; keep function calls out of the `for...of` iterable expression.
+- Always use braces for control-flow bodies, including single-statement `if` branches, guard clauses, and loops. Put the body on its own indented line; do not write inline guards such as `if (!value) continue;`.
+- Separate logical steps with a single blank line: declaration groups, guard clauses, loops, observer/listener setup, and subsequent side effects. In particular, leave a blank line between declarations and a following guard or loop, after a guard clause, and after a loop before the next logical step.
+- Keep closely related declarations together and simple sibling `if` blocks together; do not insert blank lines between every statement. Follow `src/scripts/name-width.ts` as the formatting example. Oxfmt preserves this spacing but does not enforce its placement.
 
 ## Development
 

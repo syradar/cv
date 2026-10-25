@@ -1,21 +1,21 @@
-import ActionsExample from "./ActionsExample.astro";
-import ContactLinksExample from "./ContactLinksExample.astro";
-import EntryExample from "./EntryExample.astro";
-import HeroExample from "./HeroExample.astro";
-import HighlightsExample from "./HighlightsExample.astro";
-import LanguageListExample from "./LanguageListExample.astro";
-import QuotationExample from "./QuotationExample.astro";
-import RolesExample from "./RolesExample.astro";
-import SectionExample from "./SectionExample.astro";
-import SkillsExample from "./SkillsExample.astro";
-import SurfaceExample from "./SurfaceExample.astro";
+import ActionsExample from "./ActionsExample.astro"
+import ContactLinksExample from "./ContactLinksExample.astro"
+import EntryExample from "./EntryExample.astro"
+import HeroExample from "./HeroExample.astro"
+import HighlightsExample from "./HighlightsExample.astro"
+import LanguageListExample from "./LanguageListExample.astro"
+import QuotationExample from "./QuotationExample.astro"
+import RolesExample from "./RolesExample.astro"
+import SectionExample from "./SectionExample.astro"
+import SkillsExample from "./SkillsExample.astro"
+import SurfaceExample from "./SurfaceExample.astro"
 
 type Example = {
-  id: string;
-  title: string;
-  description: string;
-  Component: import("astro/runtime/server/index.js").AstroComponentFactory;
-};
+  id: string
+  title: string
+  description: string
+  Component: import("astro/runtime/server/index.js").AstroComponentFactory
+}
 
 export const examples: Example[] = [
   {
@@ -85,4 +85,4 @@ export const examples: Example[] = [
     description: "The language and proficiency list from the CV.",
     Component: LanguageListExample,
   },
-];
+]
