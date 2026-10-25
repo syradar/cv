@@ -62,7 +62,7 @@ const description = showcase
 		>
 		<slot name="workshop" />
 		<div class="syr-site">
-			<HeroBand locale={locale} cv={cv} showcase={showcase}>
+			<HeroBand locale={locale} cv={cv}>
 				<slot name="hero" />
 			</HeroBand>
 			<slot />
@@ -70,6 +70,12 @@ const description = showcase
 				<p>© {new Date().getFullYear()} {cv.plainName}</p>
 				<a href={`mailto:${cv.contact.email}`}>{cv.contact.email}</a>
 			</footer>
+			{import.meta.env.DEV && (
+				<nav class="syr-dev-links" aria-label={locale === "sv" ? "Utvecklingsverktyg" : "Development tools"}>
+					<a href="/design-system/">{locale === "sv" ? "Designsystem" : "Design system"}</a>
+					<a href="/design-system/compare">{locale === "sv" ? "Jämför teman" : "Compare identities"}</a>
+				</nav>
+			)}
 		</div>
 		<script>
 			import { initializeComponents } from "../scripts/component-runner";

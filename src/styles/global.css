@@ -47,7 +47,8 @@
   }
 
   .syr-topbar,
-  .syr-footer {
+  .syr-footer,
+  .syr-dev-links {
     display: flex;
     width: min(100% - 3rem, 68rem);
     align-items: center;
@@ -101,6 +102,17 @@
     justify-content: space-between;
     color: var(--syr-muted);
     font-size: 0.78rem;
+  }
+
+  .syr-dev-links {
+    flex-wrap: wrap;
+    padding-block: 0 1.5rem;
+    color: var(--syr-muted);
+    font-size: 0.78rem;
+  }
+
+  .syr-dev-links a {
+    color: inherit;
   }
 
   .syr-footer p {
@@ -222,6 +234,7 @@
 
     .syr-topbar,
     .syr-footer,
+    .syr-dev-links,
     .syr-skip-link {
       display: none;
     }

@@ -5,11 +5,10 @@ import english from "../../data/cv.en.json";
 interface Props {
   locale: "en" | "sv";
   cv: typeof english;
-  showcase?: boolean;
   static?: boolean;
 }
 
-const { locale, cv, showcase = false, static: isStatic = false } = Astro.props;
+const { locale, cv, static: isStatic = false } = Astro.props;
 const languages = [
   { code: "en", label: "English", href: "/" },
   { code: "sv", label: "Svenska", href: "/sv/" },
@@ -43,15 +42,6 @@ const languages = [
         )
       }
     </nav>
-    <a class="syr-workshop-link" href={showcase ? "/" : "/design-system/"}>
-      {
-        showcase
-          ? "Back to CV"
-          : locale === "sv"
-            ? "Designsystem"
-            : "Design system"
-      }
-    </a>
     <ThemeMenu locale={locale} scope="hero" static={isStatic} />
   </div>
   <slot />

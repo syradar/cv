@@ -281,10 +281,11 @@
 
     .syr-section {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
 
       > h2 {
-        font-size: 4rem;
+        font-size: clamp(2rem, 6vw, 4rem);
+        overflow-wrap: anywhere;
         color: var(--syr-ink);
       }
     }
