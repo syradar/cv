@@ -457,3 +457,11 @@
     }
   }
 }
+
+@layer print {
+  @media print {
+    [data-identity="neobrutalism"] .syr-section {
+      column-gap: 1.5rem;
+    }
+  }
+}

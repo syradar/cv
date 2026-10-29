@@ -529,6 +529,19 @@
   }
 
   @media print {
+    .syr-name-emoji {
+      position: relative;
+      margin-inline-start: 0.4em;
+      visibility: hidden;
+    }
+
+    .syr-name-emoji::after {
+      content: "✌️";
+      position: absolute;
+      inset: 0;
+      visibility: visible;
+    }
+
     #about {
       break-inside: avoid;
     }
@@ -722,6 +735,25 @@
     }
     .syr-card-accent .syr-group-heading {
       color: var(--syr-ink);
+    }
+
+    .syr-meta,
+    .syr-nested .syr-meta {
+      --meta-bg: transparent;
+      border-color: var(--syr-line);
+      box-shadow: none;
+      color: var(--syr-ink);
+    }
+
+    /* Firefox cannot split grid items across pages, which leaves a blank first page. */
+    @supports (-moz-appearance: none) {
+      .syr-section {
+        display: block;
+      }
+
+      .syr-section > h2 {
+        margin-block-end: 0.5rem;
+      }
     }
   }
 }
