@@ -97,6 +97,97 @@
     justify-content: flex-end;
   }
 
+  .syr-topbar.syr-preference-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    padding-block: 0.75rem;
+  }
+
+  .syr-preference-grid > nav {
+    justify-self: start;
+  }
+
+  .syr-choice-group {
+    display: flex;
+    gap: 0.2rem;
+    min-width: 0;
+    margin: 0;
+    border: 1px solid var(--syr-line);
+    border-radius: var(--syr-radius-inner);
+    padding: 0.2rem;
+    font-size: 0.82rem;
+    color: var(--syr-hero-ink);
+  }
+
+  .syr-mode-segments {
+    justify-self: end;
+  }
+
+  .syr-choice-group label {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .syr-choice-group input,
+  .syr-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .syr-choice-group label > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.25rem;
+    border-radius: var(--syr-radius-inner);
+    padding: 0.3rem 0.7rem;
+    font-weight: 600;
+  }
+
+  .syr-choice-group svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  .syr-choice-group input:checked + span,
+  .syr-choice-group label:hover > span {
+    background: var(--syr-action-bg);
+    color: var(--syr-action-ink);
+  }
+
+  .syr-choice-group input:focus-visible + span {
+    outline: 3px solid var(--syr-accent-ink);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 760px) {
+    .syr-topbar.syr-preference-grid {
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+    }
+    .syr-identity-segments {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    .syr-identity-segments label {
+      flex: 1;
+    }
+    .syr-mode-segments {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .syr-preference-grid .syr-segmented a,
+    .syr-preference-grid .syr-segmented span[aria-current] {
+      padding-inline: 0.5rem;
+    }
+  }
+
   .syr-footer {
     min-height: 5rem;
     justify-content: space-between;
@@ -180,6 +271,19 @@
     color: var(--syr-action-ink);
   }
 
+  html[data-theme-switching],
+  html[data-theme-switching] *,
+  html[data-theme-switching] *::before,
+  html[data-theme-switching] *::after {
+    transition:
+      background-color 300ms ease,
+      color 300ms ease,
+      border-color 300ms ease,
+      box-shadow 300ms ease,
+      fill 300ms ease,
+      stroke 300ms ease !important;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -192,10 +296,6 @@
 
     .syr-segmented a {
       transition: none;
-    }
-
-    html[data-theme-switching] * {
-      transition: none !important;
     }
   }
 

@@ -1,5 +1,7 @@
 ---
 import ThemeMenu from "../ThemeMenu.astro";
+import Sun from "astro-heroicons/outline/Sun.astro";
+import Moon from "astro-heroicons/outline/Moon.astro";
 import english from "../../data/cv.en.json";
 
 interface Props {
@@ -15,9 +17,9 @@ const languages = [
 ];
 ---
 
-<div class="syr-hero-band" data-component="hero-band" data-static="true">
+<div class="syr-hero-band" data-component="hero-band" data-static={isStatic}>
   <div class="syr-hero-pattern" aria-hidden="true"></div>
-  <div class="syr-topbar">
+  <div class:list={["syr-topbar", { "syr-preference-grid": !isStatic }]} data-component={!isStatic ? "appearance-menu" : undefined}>
     <nav class="syr-segmented syr-squircle" aria-label={cv.labels.language}>
       {
         languages.map((language) =>
@@ -42,7 +44,34 @@ const languages = [
         )
       }
     </nav>
-    <ThemeMenu locale={locale} scope="hero" static={isStatic} />
+    {isStatic ? <ThemeMenu locale={locale} scope="hero" static /> : <>
+      <fieldset class="syr-choice-group syr-identity-segments">
+        <legend class="syr-visually-hidden">{locale === "sv" ? "Identitet" : "Identity"}</legend>
+        {[{value: "neobrutalism", label: "Neobrutalism"}, {value: "nasa", label: "NASA"}, {value: "editorial", label: "Editorial"}].map(identity => (
+          <label>
+            <input type="radio" name="identity-hero" value={identity.value} data-identity-option aria-label={identity.label} checked={identity.value === "nasa"} />
+            <span>{identity.label}</span>
+          </label>
+        ))}
+      </fieldset>
+      <fieldset class="syr-choice-group syr-mode-segments">
+        <legend class="syr-visually-hidden">{locale === "sv" ? "Färgläge" : "Color mode"}</legend>
+        <label title={cv.labels.themeLight}>
+          <input type="radio" name="appearance-hero" value="light" data-theme-option aria-label={cv.labels.themeLight} checked />
+          <span><Sun aria-hidden="true" /></span>
+        </label>
+        <label title={cv.labels.themeDark}>
+          <input type="radio" name="appearance-hero" value="dark" data-theme-option aria-label={cv.labels.themeDark} />
+          <span><Moon aria-hidden="true" /></span>
+        </label>
+        <label>
+          <input type="radio" name="appearance-hero" value="system" data-theme-option aria-label={cv.labels.themeSystem} />
+          <span>{cv.labels.themeSystem}</span>
+        </label>
+      </fieldset>
+      <p class="syr-visually-hidden" aria-live="polite" data-preference-status></p>
+    </>}
   </div>
   <slot />
+  {!isStatic && <button class="syr-tilt-enable" data-enable-tilt hidden type="button">{locale === "sv" ? "Aktivera lutning" : "Enable tilt"}</button>}
 </div>

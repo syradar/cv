@@ -287,3 +287,307 @@
     }
   }
 }
+
+@layer components {
+  [data-identity="editorial"] .syr-preference-grid {
+    .syr-choice-group,
+    .syr-segmented {
+      font-size: 0.9rem;
+    }
+
+    .syr-choice-group {
+      padding: 0.15rem;
+    }
+
+    .syr-choice-group label > span,
+    .syr-segmented a,
+    .syr-segmented span[aria-current] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 1.8rem;
+      padding: 0.15rem 0.65rem;
+      line-height: 1;
+    }
+
+    .syr-choice-group label > span:not(:has(svg)),
+    .syr-segmented a,
+    .syr-segmented span[aria-current] {
+      padding-top: 0.25rem;
+      padding-bottom: 0.05rem;
+    }
+
+    .syr-choice-group label:hover > span,
+    .syr-segmented a:hover {
+      background: transparent;
+      color: var(--syr-hero-ink);
+      transform: none;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+    }
+
+    .syr-choice-group input:checked + span,
+    .syr-segmented span[aria-current] {
+      background: transparent;
+      color: var(--syr-hero-ink);
+      box-shadow: inset 0 0 0 1px currentColor;
+      text-decoration: none;
+    }
+  }
+}
+
+@layer components {
+  @supports (corner-shape: scoop) {
+    [data-identity="editorial"] .syr-preference-grid {
+      .syr-choice-group,
+      .syr-segmented {
+        corner-shape: scoop;
+        border-radius: 0.4em;
+      }
+
+      .syr-choice-group input:checked + span,
+      .syr-segmented span[aria-current] {
+        corner-shape: scoop;
+        border-radius: 0.4em;
+      }
+    }
+  }
+}
+
+@layer components {
+  [data-identity="editorial"] .syr-skill-groups {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(min(100%, max(28ch, calc((100% - 2rem) / 3))), 1fr)
+    );
+  }
+}
+
+@layer components {
+  @media screen {
+    [data-identity="editorial"][data-theme="dark"] .syr-page {
+      font-size: 1.125rem;
+      line-height: 1.65;
+
+      p,
+      li,
+      blockquote {
+        font-size: 1.125rem;
+        line-height: 1.65;
+      }
+    }
+  }
+
+  @media screen and (prefers-color-scheme: dark) {
+    [data-identity="editorial"][data-theme="system"] .syr-page {
+      font-size: 1.125rem;
+      line-height: 1.65;
+
+      p,
+      li,
+      blockquote {
+        font-size: 1.125rem;
+        line-height: 1.65;
+      }
+    }
+  }
+}
+
+@layer components {
+  @media screen {
+    [data-identity="editorial"][data-theme="dark"] .syr-recommendation {
+      blockquote {
+        font-family: var(--syr-font-display);
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        line-height: 1.5;
+      }
+
+      figcaption {
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        line-height: 1.5;
+      }
+
+      figcaption strong {
+        font-family: var(--syr-font-display);
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      figcaption span {
+        font-size: 1.125rem;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  @media screen and (prefers-color-scheme: dark) {
+    [data-identity="editorial"][data-theme="system"] .syr-recommendation {
+      blockquote {
+        font-family: var(--syr-font-display);
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        line-height: 1.5;
+      }
+
+      figcaption {
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        line-height: 1.5;
+      }
+
+      figcaption strong {
+        font-family: var(--syr-font-display);
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      figcaption span {
+        font-size: 1.125rem;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+@layer components {
+  [data-identity="editorial"] .syr-section-bar {
+    .syr-nav-glider {
+      display: none;
+    }
+
+    .syr-section-nav a:hover,
+    .syr-section-nav a:focus-visible {
+      background: transparent;
+      color: var(--syr-ink);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+    }
+  }
+}
+
+@layer components {
+  [data-identity="editorial"] .syr-intro .syr-button-label {
+    position: relative;
+    top: 2px;
+  }
+}
+
+@layer components {
+  @media screen {
+    [data-identity="editorial"] {
+      .syr-hero-band {
+        display: flex;
+        flex-direction: column;
+        min-height: clamp(40rem, 70dvh, 48rem);
+      }
+
+      .syr-hero-inner {
+        display: flex;
+        flex: 1;
+        align-items: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 760px) {
+    [data-identity="editorial"] .syr-hero-band {
+      min-height: 80dvh;
+    }
+  }
+}
+
+@layer components {
+  @media screen {
+    [data-identity="editorial"] .syr-intro h1 {
+      font-size: clamp(3.8rem, 10vw, 6rem);
+      line-height: 0.95;
+    }
+  }
+
+  @media screen and (max-width: 760px) {
+    [data-identity="editorial"] {
+      .syr-intro {
+        width: 100%;
+        container-type: inline-size;
+      }
+
+      .syr-intro h1 {
+        font-size: min(18.5cqw, clamp(3.8rem, 10vw, 6rem));
+      }
+
+      .syr-name-emoji {
+        font-size: 0.7em;
+      }
+    }
+  }
+}
+
+@layer components {
+  @media screen and (max-width: 760px) {
+    [data-identity="editorial"] .syr-intro h1 {
+      display: grid;
+      grid-template-columns: max-content auto;
+      column-gap: 0.15em;
+      align-items: baseline;
+
+      .syr-name-plain {
+        display: contents;
+      }
+
+      .syr-name-plain > br {
+        display: none;
+      }
+
+      .syr-name-plain-word:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .syr-name-emoji {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
+      }
+    }
+  }
+}
+
+@layer components {
+  @media screen and (max-width: 760px) {
+    [data-identity="editorial"] .syr-page > .syr-section:first-child {
+      padding-top: 0;
+    }
+  }
+}
+
+@layer components {
+  @media screen and (max-width: 760px) {
+    [data-identity="editorial"] .syr-section-bar {
+      .syr-section-nav {
+        gap: 0.15rem;
+      }
+
+      .syr-section-nav a {
+        padding-inline: 0.1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@layer components {
+  @media screen and (max-width: 760px) {
+    [data-identity="editorial"] [data-component="role"] {
+      > h3 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
+
+      > h4 {
+        font-size: clamp(1.125rem, 5vw, 1.5rem);
+      }
+    }
+  }
+}

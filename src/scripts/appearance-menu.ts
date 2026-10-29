@@ -19,28 +19,30 @@ export function syncAppearanceMenu(
   appearance: string | null,
 ): void {
   const identityOptions = menu.querySelectorAll<HTMLInputElement>("[data-identity-option]")
+
   for (const input of identityOptions) {
     input.checked = input.value === validIdentity(identity)
   }
+
   const themeOptions = menu.querySelectorAll<HTMLInputElement>("[data-theme-option]")
+
   for (const input of themeOptions) {
     input.checked = input.value === validAppearance(appearance)
   }
 }
 
 export function initializeAppearanceMenu(menu: HTMLElement, callbacks: ComponentCallbacks): void {
-  if (!(menu instanceof HTMLDetailsElement)) {
-    throw new Error("The appearance-menu component must use a details element.")
-  }
   const owner =
     menu.closest<HTMLElement>("[data-identity][data-theme]") ?? menu.ownerDocument.documentElement
   const scope = owner.dataset.identity ?? "site"
   const preferenceInputs = menu.querySelectorAll<HTMLInputElement>(
     "[data-identity-option], [data-theme-option]",
   )
+
   for (const input of preferenceInputs) {
     input.name = `${input.name}-${scope}`
   }
+
   syncAppearanceMenu(menu, owner.dataset.identity ?? null, owner.dataset.theme ?? null)
 
   for (const input of preferenceInputs) {
@@ -48,8 +50,15 @@ export function initializeAppearanceMenu(menu: HTMLElement, callbacks: Component
       const kind = input.hasAttribute("data-identity-option") ? "identity" : "theme"
       applyPreferenceChoice(kind, input.value, callbacks)
       const status = menu.querySelector<HTMLElement>("[data-preference-status]")
-      if (status) status.textContent = input.getAttribute("aria-label") ?? input.value
+
+      if (status) {
+        status.textContent = input.getAttribute("aria-label") ?? input.value
+      }
     })
+  }
+
+  if (!(menu instanceof HTMLDetailsElement)) {
+    return
   }
 
   const document = menu.ownerDocument

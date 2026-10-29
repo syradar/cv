@@ -18,9 +18,9 @@ const modes = ["light", "dark", "system"];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>Compare identities</title>
-    <Font cssVariable="--font-inter" preload />
-    <Font cssVariable="--font-bricolage-grotesque" preload />
-    <Font cssVariable="--font-junicode" preload />
+    <Font cssVariable="--font-inter" preload={[{ subset: "latin", style: "normal" }]} />
+    <Font cssVariable="--font-bricolage-grotesque" />
+    <Font cssVariable="--font-junicode" />
   </head>
   <body class="compare">
     <header class="compare-bar">

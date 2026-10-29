@@ -20,6 +20,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "assets": "node scripts/generate-brand-assets.mjs",
     "pdf": "astro build && node scripts/generate-pdfs.mjs",
     "pdf:check": "pnpm pdf && git diff --exit-code -- public/*.pdf",
     "preview": "astro preview",

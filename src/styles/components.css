@@ -40,6 +40,93 @@
     display: none;
   }
 
+  .syr-name-emoji,
+  .syr-emoji-glyph {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  .syr-name-emoji {
+    display: inline-block;
+    touch-action: none;
+  }
+
+  .syr-emoji-glyph {
+    position: relative;
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+    touch-action: none;
+    transform-origin: center;
+    transition: none;
+  }
+
+  .syr-emoji-glyph:focus {
+    outline: none;
+  }
+
+  .syr-emoji-glyph:focus-visible:not([data-pointer-focus], [data-key-held])::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2em;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    corner-shape: round;
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .syr-emoji-face {
+    display: inline-block;
+    transform-origin: center;
+  }
+
+  .syr-emoji-face[data-anticipating="hover"],
+  .syr-emoji-face[data-anticipating="drag"] {
+    --emoji-vibration-large: 1.015;
+    --emoji-vibration-small: 0.99;
+    --emoji-vibration-angle: 1deg;
+    animation: syr-emoji-anticipation 240ms linear infinite;
+  }
+
+  .syr-emoji-face[data-anticipating="drag"] {
+    --emoji-vibration-large: 1.025;
+    --emoji-vibration-small: 0.98;
+    --emoji-vibration-angle: 2deg;
+    animation-duration: 140ms;
+  }
+
+  @keyframes syr-emoji-anticipation {
+    0%,
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+    25% {
+      transform: scale(var(--emoji-vibration-large)) rotate(calc(-1 * var(--emoji-vibration-angle)));
+    }
+    75% {
+      transform: scale(var(--emoji-vibration-small)) rotate(var(--emoji-vibration-angle));
+    }
+  }
+
+  .syr-emoji-confetti {
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+  }
+
   .syr-headline {
     margin: 1.1rem 0 0;
     color: var(--syr-hero-ink);
@@ -123,6 +210,16 @@
   .syr-button-icon {
     width: 1.1rem;
     height: 1.1rem;
+  }
+
+  .syr-section-bar {
+    --syr-hero-ink: var(--syr-ink);
+    padding-block: 0.75rem;
+  }
+
+  .syr-section-bar .syr-section-nav {
+    width: min(100% - 3rem, 68rem);
+    margin-inline: auto;
   }
 
   .syr-section-nav {
@@ -413,6 +510,10 @@
       padding-top: 3rem;
     }
 
+    .syr-page > .syr-section:first-child {
+      padding-top: 1rem;
+    }
+
     .syr-contact-links,
     .syr-language-list {
       grid-template-columns: minmax(0, 1fr);
@@ -462,6 +563,7 @@
       font-size: 1rem;
     }
 
+    .syr-section-bar,
     .syr-section-nav,
     .syr-actions {
       display: none;
@@ -620,6 +722,29 @@
     }
     .syr-card-accent .syr-group-heading {
       color: var(--syr-ink);
+    }
+  }
+}
+
+@layer components {
+  @media screen and (max-width: 760px) {
+    .syr-section-bar {
+      .syr-section-nav {
+        width: calc(100% - 2rem);
+        flex-wrap: nowrap;
+        gap: 0.3rem;
+      }
+
+      .syr-section-nav a {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        padding: 0.55rem 0.25rem;
+        font-size: clamp(0.65rem, 2.8vw, 0.88rem);
+        white-space: nowrap;
+      }
     }
   }
 }

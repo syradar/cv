@@ -17,6 +17,7 @@ const devCompareRoute: AstroIntegration = {
 }
 
 export default defineConfig({
+  site: "https://syradar.se",
   integrations: [devCompareRoute],
   fonts: [
     {

@@ -2,7 +2,9 @@ import { initializeAppearanceMenu } from "./appearance-menu"
 import { noComponentCallbacks } from "./component-callbacks"
 import type { ComponentCallbacks } from "./component-callbacks"
 import { bindPrintAction } from "./print-action"
+import { initializeNameEmoji } from "./name-emoji"
 import { initializeNameWidth } from "./name-width"
+import { initializeHeroPattern } from "./hero-pattern"
 import { initializeGlider } from "./section-glider"
 
 type ComponentInitializer = (element: HTMLElement, callbacks: ComponentCallbacks) => void
@@ -16,7 +18,11 @@ const componentRegistry: Record<string, ComponentInitializer> = {
   },
   "appearance-menu": initializeAppearanceMenu,
   glider: initializeGlider,
-  hero: initializeNameWidth,
+  hero: (element) => {
+    initializeNameWidth(element)
+    initializeNameEmoji(element)
+  },
+  "hero-band": initializeHeroPattern,
 }
 
 export function resolveComponentInitializer(

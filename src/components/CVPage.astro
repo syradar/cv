@@ -31,26 +31,6 @@ const employmentLabel = (type: string) => {
 			return cv.labels.contract;
 	}
 };
-const skills = cv.skills.groups.flatMap((group) => group.items);
-const structuredData = {
-	"@context": "https://schema.org",
-	"@type": "Person",
-	name: cv.plainName,
-	jobTitle: cv.headline,
-	description: cv.summary,
-	email: cv.contact.email,
-	address: {
-		"@type": "PostalAddress",
-		addressLocality: "Stockholm",
-		addressCountry: "SE",
-	},
-	worksFor: {
-		"@type": "Organization",
-		name: "DevCore AB",
-	},
-	sameAs: [cv.contact.github, cv.contact.linkedin],
-	knowsAbout: skills,
-};
 const sections = [
 	{ id: "experience", label: cv.labels.experience },
 	{ id: "about", label: cv.labels.about },
@@ -115,6 +95,9 @@ const contactLinks = [
 			pdfLabel={cv.labels.pdf}
 			pdfHref={`/cv-david-malmstrom-${locale}.pdf`}
 		/>
+	</div>
+
+	<div class="syr-section-bar">
 		<SectionNav label={cv.labels.sections} sections={sections} />
 	</div>
 
@@ -246,8 +229,4 @@ const contactLinks = [
 		</Section>
 		{showcase && <ComponentExamples />}
 	</main>
-	<script
-		type="application/ld+json"
-		set:html={JSON.stringify(structuredData)}
-	/>
 </SiteLayout>

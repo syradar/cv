@@ -19,7 +19,7 @@
     --neobrutalism-cyan: #7fdbda;
     --neobrutalism-red: #ff4444;
 
-    --syr-paper: var(--neobrutalism-yellow-light);
+    --syr-paper: var(--neobrutalism-purple-light);
     --syr-card: var(--neobrutalism-light);
     --syr-card-nested: var(--neobrutalism-light);
     --syr-tint: var(--neobrutalism-dark);
@@ -44,7 +44,7 @@
     --syr-radius-inner: 0;
     --syr-elevation-1: 6px 6px 0 var(--syr-line);
     --syr-elevation-2: 3px 3px 0 var(--syr-line);
-    --syr-hero-bg: var(--syr-accent);
+    --syr-hero-bg: var(--neobrutalism-yellow-light);
     --syr-hero-ink: var(--neobrutalism-dark);
     --syr-hero-muted: var(--neobrutalism-pink);
     --syr-action-bg: var(--neobrutalism-purple);
@@ -56,9 +56,9 @@
   }
 
   [data-identity="neobrutalism"][data-theme="dark"] {
-    --syr-paper: #242423;
-    --syr-card: var(--neobrutalism-dark);
-    --syr-card-nested: #242423;
+    --syr-paper: #0a060f;
+    --syr-card: #10091a;
+    --syr-card-nested: #170d23;
     --syr-tint: #d2d9ff;
     --syr-ink: var(--neobrutalism-light);
     --syr-muted: var(--neobrutalism-light);
@@ -66,38 +66,37 @@
     --syr-accent: var(--neobrutalism-green);
     --syr-accent-ink: var(--neobrutalism-light);
     --syr-on-accent: var(--neobrutalism-light);
-    --syr-hero-bg: var(--neobrutalism-dark);
+    --syr-hero-bg: #0e061c;
     --syr-hero-ink: var(--neobrutalism-light);
     --syr-hero-muted: var(--neobrutalism-pink);
     --syr-action-bg: var(--neobrutalism-purple);
     --syr-action-ink: var(--neobrutalism-dark);
     --syr-action-font: var(--syr-font-display);
     --syr-action-border: var(--neobrutalism-light);
-    --syr-quiet-bg: var(--neobrutalism-dark);
+    --syr-quiet-bg: #10091a;
     --syr-quiet-ink: var(--neobrutalism-light);
   }
 
   @media (prefers-color-scheme: dark) {
     [data-identity="neobrutalism"][data-theme="system"] {
-      --neobrutalism-dark: #242423;
-      --syr-paper: var(--neobrutalism-dark);
-      --syr-card: var(--neobrutalism-dark);
-      --syr-card-nested: var(--neobrutalism-dark);
+      --syr-paper: #0a060f;
+      --syr-card: #10091a;
+      --syr-card-nested: #170d23;
       --syr-tint: #d2d9ff;
-      --syr-ink: var(--neobrutalism-dark);
+      --syr-ink: var(--neobrutalism-light);
       --syr-muted: var(--neobrutalism-light);
       --syr-line: var(--neobrutalism-light);
       --syr-accent: var(--neobrutalism-green);
       --syr-accent-ink: var(--neobrutalism-light);
       --syr-on-accent: var(--neobrutalism-light);
-      --syr-hero-bg: var(--neobrutalism-dark);
+      --syr-hero-bg: #0e061c;
       --syr-hero-ink: var(--neobrutalism-light);
       --syr-hero-muted: var(--neobrutalism-pink);
       --syr-action-bg: var(--neobrutalism-purple);
       --syr-action-ink: var(--neobrutalism-dark);
       --syr-action-font: var(--syr-font-display);
       --syr-action-border: var(--neobrutalism-light);
-      --syr-quiet-bg: var(--neobrutalism-dark);
+      --syr-quiet-bg: #10091a;
       --syr-quiet-ink: var(--neobrutalism-light);
     }
   }
@@ -162,6 +161,16 @@
       font-weight: 700;
       box-shadow: 2px 2px 0 var(--syr-ink);
     }
+    .syr-intro .syr-meta {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      color: var(--syr-hero-ink);
+      font-weight: 400;
+      opacity: 0.7;
+    }
+
     .syr-nested .syr-meta {
       --meta-bg: var(--neobrutalism-blue);
     }
@@ -292,6 +301,7 @@
 
     .syr-contact-links {
       .syr-contact-link {
+        color: var(--neobrutalism-dark);
         background-color: var(--syr-accent);
         border: 2px solid var(--syr-ink);
 
@@ -309,9 +319,141 @@
         }
 
         .syr-contact-link-label {
-          color: var(--syr-ink);
+          color: var(--neobrutalism-dark);
         }
       }
+    }
+  }
+}
+
+@layer components {
+  @media screen and (max-width: 760px) {
+    [data-identity="neobrutalism"] {
+      .syr-hero-band {
+        display: flex;
+        flex-direction: column;
+        min-height: 80dvh;
+      }
+
+      .syr-hero-inner {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: 1.5rem;
+      }
+
+      .syr-intro {
+        container-type: inline-size;
+        padding-block: clamp(1rem, 4svh, 2rem);
+      }
+
+      .syr-intro h1 {
+        display: grid;
+        grid-template-columns: max-content auto;
+        column-gap: 0.15em;
+        align-items: baseline;
+        font-size: 18.5cqw;
+      }
+
+      .syr-intro h1 .syr-name-characters {
+        display: contents;
+      }
+
+      .syr-name-characters > br {
+        display: none;
+      }
+
+      .syr-intro h1 .syr-name-line {
+        justify-self: start;
+      }
+
+      .syr-name-line:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .syr-name-emoji {
+        justify-self: start;
+        grid-column: 2;
+        grid-row: 2;
+        font-size: 0.85em;
+      }
+    }
+  }
+}
+
+@layer components {
+  [data-identity="neobrutalism"] {
+    .syr-choice-group,
+    .syr-preference-grid > .syr-segmented {
+      gap: 0.25rem;
+      border: 2px solid var(--syr-hero-ink);
+      border-radius: 0;
+      padding: 0.25rem;
+      background: transparent;
+      color: var(--syr-hero-ink);
+    }
+
+    .syr-choice-group label > span,
+    .syr-preference-grid > .syr-segmented a,
+    .syr-preference-grid > .syr-segmented span[aria-current] {
+      min-height: 2.25rem;
+      border: 2px solid transparent;
+      border-radius: 0;
+      padding-inline: 0.5rem;
+    }
+
+    .syr-choice-group label:hover > span {
+      background: var(--neobrutalism-yellow);
+      color: var(--neobrutalism-dark);
+    }
+
+    .syr-choice-group input:checked + span,
+    .syr-preference-grid > .syr-segmented span[aria-current] {
+      border-color: var(--syr-hero-ink);
+      background: var(--neobrutalism-yellow);
+      color: var(--neobrutalism-dark);
+      box-shadow: none;
+    }
+  }
+}
+
+@layer components {
+  [data-identity="neobrutalism"] .syr-button-primary {
+    background: var(--neobrutalism-red);
+    color: #000;
+  }
+}
+
+@layer components {
+  [data-identity="neobrutalism"] .syr-section-bar {
+    .syr-nav-glider {
+      display: none;
+    }
+
+    .syr-section-nav a {
+      border: 2px solid var(--syr-ink);
+      background: transparent;
+      box-shadow: none;
+      transition:
+        transform 160ms ease-in-out,
+        box-shadow 160ms ease-in-out,
+        border-color 160ms ease-in-out,
+        background-color 160ms ease-in-out;
+    }
+
+    .syr-section-nav a:hover,
+    .syr-section-nav a:focus-visible {
+      border-color: var(--syr-ink);
+      background: var(--syr-card);
+      color: var(--syr-ink);
+      transform: translate(-3px, -3px);
+      box-shadow: 3px 3px 0 var(--syr-ink);
+    }
+
+    .syr-section-nav a:active {
+      transform: none;
+      box-shadow: none;
     }
   }
 }

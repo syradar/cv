@@ -11,6 +11,7 @@
     --syr-action-ink: #b83a00;
     --syr-quiet-bg: color-mix(in srgb, var(--syr-accent) 50%, white);
     --syr-quiet-ink: #1f1f1e;
+    --syr-glass-ink: #241408;
     --syr-paper: var(--color-gray-50);
     --syr-card: var(--color-white);
     --syr-card-nested: var(--color-white);
@@ -48,6 +49,9 @@
 
   [data-identity="nasa"][data-theme="dark"],
   :root[data-theme="dark"]:not([data-identity]) {
+    --syr-hero-bg: #190a38;
+    --syr-glass-ink: #fff;
+    --syr-action-ink: #190a38;
     --syr-paper: #181817;
     --syr-card: #242422;
     --syr-card-nested: #2e2e2c;
@@ -62,6 +66,9 @@
   @media (prefers-color-scheme: dark) {
     [data-identity="nasa"][data-theme="system"],
     :root[data-theme="system"]:not([data-identity]) {
+      --syr-hero-bg: #190a38;
+      --syr-glass-ink: #fff;
+      --syr-action-ink: #190a38;
       --syr-paper: #181817;
       --syr-card: #242422;
       --syr-card-nested: #2e2e2c;
@@ -88,5 +95,133 @@
     [data-identity="nasa"] :is(.syr-squircle, .syr-contact-links a) {
       corner-shape: squircle;
     }
+  }
+}
+
+@layer components {
+  :is([data-identity="nasa"], :root:not([data-identity])) .syr-preference-grid {
+    .syr-choice-group {
+      border-radius: 1.5rem;
+      background: transparent;
+      border-color: rgb(255 255 255 / 50%);
+    }
+
+    .syr-choice-group label > span,
+    .syr-segmented a,
+    .syr-segmented span[aria-current] {
+      border-radius: 1.2rem;
+    }
+
+    .syr-choice-group,
+    .syr-choice-group label > span,
+    .syr-choice-group label > span::before,
+    .syr-segmented a,
+    .syr-segmented span[aria-current],
+    .syr-segmented a::before,
+    .syr-segmented span[aria-current]::before {
+      corner-shape: squircle;
+    }
+
+    .syr-choice-group input:checked + span,
+    .syr-segmented span[aria-current] {
+      position: relative;
+      background: rgb(255 255 255 / 25%);
+      color: var(--syr-glass-ink);
+    }
+
+    .syr-choice-group input:focus-visible + span {
+      outline-color: var(--syr-hero-ink);
+      outline-offset: -3px;
+    }
+
+    .syr-choice-group label:hover > span,
+    .syr-segmented a:hover {
+      position: relative;
+      background: rgb(255 255 255 / 25%);
+      color: var(--syr-glass-ink);
+    }
+
+    .syr-choice-group input:checked + span::before,
+    .syr-segmented span[aria-current]::before,
+    .syr-choice-group label:hover > span::before,
+    .syr-segmented a:hover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      backdrop-filter: blur(4px) contrast(1.2) brightness(1.3);
+      mix-blend-mode: luminosity;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+  }
+}
+
+@layer components {
+  :is([data-identity="nasa"], :root:not([data-identity])) .syr-hero-band .syr-button-quiet {
+    position: relative;
+    translate: none;
+    scale: none;
+    background: rgb(255 255 255 / 25%);
+    color: var(--syr-glass-ink);
+  }
+
+  :is([data-identity="nasa"], :root:not([data-identity])) .syr-hero-band .syr-button-quiet::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    corner-shape: inherit;
+    backdrop-filter: blur(4px) contrast(1.2) brightness(1.3);
+    mix-blend-mode: luminosity;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  @media screen and (max-width: 760px) {
+    :is([data-identity="nasa"], :root:not([data-identity])) {
+      .syr-hero-band {
+        display: flex;
+        flex-direction: column;
+        min-height: 80dvh;
+      }
+
+      .syr-hero-inner {
+        display: flex;
+        flex: 1;
+        align-items: center;
+      }
+    }
+  }
+}
+
+@layer components {
+  .syr-hero-band[data-pattern-steered] .syr-hero-pattern::before {
+    inset: -608px;
+    animation: none;
+    transform: rotate(0.05deg) translate3d(var(--pattern-x, 0px), var(--pattern-y, 0px), 0);
+  }
+
+  .syr-tilt-enable {
+    display: none;
+  }
+
+  :is([data-identity="nasa"], :root:not([data-identity])) .syr-tilt-enable:not([hidden]) {
+    display: block;
+    position: absolute;
+    right: 1rem;
+    bottom: 0.5rem;
+    border: 0;
+    padding: 0.25rem 0.5rem;
+    background: transparent;
+    color: var(--syr-hero-ink);
+    font: inherit;
+    font-size: 0.75rem;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
