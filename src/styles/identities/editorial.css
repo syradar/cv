@@ -501,32 +501,6 @@
 }
 
 @layer components {
-  @media screen {
-    [data-identity="editorial"] .syr-intro h1 {
-      font-size: clamp(3.8rem, 10vw, 6rem);
-      line-height: 0.95;
-    }
-  }
-
-  @media screen and (max-width: 760px) {
-    [data-identity="editorial"] {
-      .syr-intro {
-        width: 100%;
-        container-type: inline-size;
-      }
-
-      .syr-intro h1 {
-        font-size: min(18.5cqw, clamp(3.8rem, 10vw, 6rem));
-      }
-
-      .syr-name-emoji {
-        font-size: 0.7em;
-      }
-    }
-  }
-}
-
-@layer components {
   @media screen and (max-width: 760px) {
     [data-identity="editorial"] .syr-intro h1 {
       display: grid;

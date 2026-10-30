@@ -26,7 +26,8 @@ export function initializeNameEmoji(hero: HTMLElement): void {
   }
 
   const document = hero.ownerDocument
-  const original = emoji.textContent ?? "✌️"
+  const hint = emoji.querySelector<HTMLElement>(".syr-emoji-hint")
+  const original = emoji.firstChild?.textContent ?? "✌️"
   const glyph = document.createElement("button")
   const face = document.createElement("span")
   const reducedMotion = view.matchMedia("(prefers-reduced-motion: reduce)")
@@ -61,10 +62,12 @@ export function initializeNameEmoji(hero: HTMLElement): void {
     "🧘",
   ]
   const bag = createMarbleBag(alternatives, { previous: original })
-  const reminderDelays = createMarbleBag([4, 8, 16, 32, 64, 128])
   const particles = new Set<HTMLElement>()
+  let reminderDelay = 2000
+  let reminderCount = 0
   let pointer: number | undefined
   let introTimer: number | undefined
+  let hintTimer: number | undefined
   let reminderTimer: number | undefined
   let wiggle: Animation | undefined
   let releaseAnimation: Animation | undefined
@@ -87,6 +90,10 @@ export function initializeNameEmoji(hero: HTMLElement): void {
   )
   emoji.removeAttribute("aria-hidden")
   emoji.replaceChildren(glyph)
+
+  if (hint) {
+    emoji.append(hint)
+  }
 
   const syncAnticipation = () => {
     const atDragLimit = Math.hypot(drag.x, drag.y) >= 71.99
@@ -145,6 +152,8 @@ export function initializeNameEmoji(hero: HTMLElement): void {
     syncAnticipation()
   }
   const press = () => {
+    hint?.classList.remove("is-visible")
+    view.clearTimeout(hintTimer)
     interacted = true
     pressed = true
     view.clearTimeout(introTimer)
@@ -234,6 +243,8 @@ export function initializeNameEmoji(hero: HTMLElement): void {
     syncAnticipation()
   }
   const release = () => {
+    hint?.classList.remove("is-visible")
+    view.clearTimeout(hintTimer)
     const charge = getEmojiCharge(
       holdStarted === undefined ? 150 : view.performance.now() - holdStarted,
     )
@@ -259,18 +270,25 @@ export function initializeNameEmoji(hero: HTMLElement): void {
     wiggle?.cancel()
     wiggle = glyph.animate(
       [
-        { transform: "scale(1)" },
-        { transform: "scale(1.06)", offset: 0.25 },
-        { transform: "scale(0.98)", offset: 0.55 },
-        { transform: "scale(1)" },
+        { transform: "translateY(0) rotate(0deg) scale(1)" },
+        { transform: "translateY(-8px) rotate(-18deg) scale(1.18)", offset: 0.2 },
+        { transform: "translateY(-6px) rotate(16deg) scale(1.12)", offset: 0.4 },
+        { transform: "translateY(-4px) rotate(-12deg) scale(1.08)", offset: 0.6 },
+        { transform: "translateY(-2px) rotate(8deg) scale(1.04)", offset: 0.8 },
+        { transform: "translateY(0) rotate(0deg) scale(1)" },
       ],
-      { duration: 380, easing: "ease-in-out" },
+      { duration: 650, easing: "ease-in-out" },
     )
   }
   const queueIntro = () => {
     introTimer = view.setTimeout(() => {
       if (!interacted && isVisible()) {
         launch("✌️", 0.1)
+        hintTimer = view.setTimeout(() => {
+          if (!interacted) {
+            hint?.classList.add("is-visible")
+          }
+        }, 5000)
       }
     }, 1000)
   }
@@ -286,11 +304,16 @@ export function initializeNameEmoji(hero: HTMLElement): void {
       return
     }
 
-    const delay = reminderDelays.next().value * 1000
     reminderTimer = view.setTimeout(() => {
       remind()
+      reminderCount += 1
+
+      if (reminderCount > 1) {
+        reminderDelay = Math.min(reminderDelay * 2, 128_000)
+      }
+
       scheduleReminder()
-    }, delay)
+    }, reminderDelay)
   }
 
   scheduleReminder()
@@ -393,6 +416,7 @@ export function initializeNameEmoji(hero: HTMLElement): void {
     view.clearTimeout(introTimer)
     view.clearTimeout(reminderTimer)
     view.removeEventListener("load", queueIntro)
+    view.clearTimeout(hintTimer)
 
     for (const particle of particles) {
       particle.remove()
