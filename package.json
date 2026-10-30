@@ -28,6 +28,7 @@
     "prepare": "vp config"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@types/node": "^26.6.6",
     "astro": "^7.4.4",
     "astro-heroicons": "2.1.5-1"

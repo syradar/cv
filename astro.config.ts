@@ -1,4 +1,5 @@
 // @ts-check
+import sitemap from "@astrojs/sitemap"
 import type { AstroIntegration } from "astro"
 import { defineConfig, fontProviders } from "astro/config"
 
@@ -18,7 +19,13 @@ const devCompareRoute: AstroIntegration = {
 
 export default defineConfig({
   site: "https://syradar.se",
-  integrations: [devCompareRoute],
+  integrations: [
+    devCompareRoute,
+    sitemap({
+      filter: (page) => !page.includes("/design-system"),
+      i18n: { defaultLocale: "en", locales: { en: "en-US", sv: "sv-SE" } },
+    }),
+  ],
   fonts: [
     {
       provider: fontProviders.google(),
